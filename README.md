@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div align="right">
 
   EN /
@@ -245,3 +246,7 @@ This work is published under [MIT](https://github.com/cotes2020/jekyll-theme-chi
 
 [jb]: https://www.jetbrains.com/?from=jekyll-theme-chirpy
 [cn-donation]: https://cotes.gitee.io/alipay-wechat-donation/
+=======
+# dev_blog_git_pages
+Dev blog build with git-pages
+>>>>>>> 7512ae1afa1b2f9fe6e1a92ba12914ad0463afdb
