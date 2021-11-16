@@ -1,5 +1,5 @@
 ---
-title: 4 Median of Two Sorted Arrays
+title: [LeetCode] 4 Median of Two Sorted Arrays
 author: MINJUN PARK
 date: 2021-08-21 14:11:00 +0900
 categories: [LeetCode, JavaScript]

@@ -1,7 +1,7 @@
 ---
 title: Contact
 author: MINJUN PARK
-date: 2021-05-09 14:11:00 +0900
+date: 2021-11-12 14:11:00 +0900
 categories: [Info, Contact]
 tags:
   [
