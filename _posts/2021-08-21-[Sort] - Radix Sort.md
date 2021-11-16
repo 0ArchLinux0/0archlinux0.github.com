@@ -1,5 +1,5 @@
 ---
-title: Radix Sort
+title: Sort. Radix Sort
 author: MINJUN PARK
 date: 2021-05-09 08:53:00 +0900
 categories: [Algorithm, Sort]
