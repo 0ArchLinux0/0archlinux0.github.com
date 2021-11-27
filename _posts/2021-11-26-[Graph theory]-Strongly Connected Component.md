@@ -7,11 +7,12 @@ tags:
   [
     Graph theory,
     Algorithm,
-    Java,
     Strongly Connected Component,
-    SCC
+    SCC,
+    Tarjan's algorithm,
+    Kosaraju's algorithm
   ]
-pin: false
+pin: true
 ---
 
 #Strongly Connected Component 
@@ -22,27 +23,71 @@ SCC means two components which are reachable in both ways
 -- Kosaraju's algorithm(DFS)
 -- Tarjan's algorithm
 
+#Tarjan's algorithm(DFS)
 
-```java
-class Solution {
-    public int singleNonDuplicate(int[] nums) {
-        int start = 0, end = nums.length - 1, mid;
-        while(start <= end) {
-            mid = (start + end) / 2;
-            boolean pre = false, post = false;
-            if(mid > 0 && nums[mid - 1] == nums[mid]) {
-                if((mid & 1) == 0) pre = true;
-                else post = true;
-            }
-            else if(mid < nums.length - 1 && nums[mid + 1] == nums[mid]) {
-                if((mid & 1) == 0) post = true;
-                else pre = true;
-            }
-            if(pre) end = mid - 1;
-            else if(post) start = mid + 1;
-            else return nums[mid];
-        }
-        return 0;
+```javascript
+/**
+ edges = {
+   ...fromVertex: [ ... toVertex ]  
+ }
+*/
+stack_global // stack
+sccIdx = 1; //to distinguish the node we haven't visit. 
+parent // parent sccIdx of node
+end // if formed an SCC and poped out of stack
+for(vertex of vertexs) if(parent[vertex] != 0) dfs(vertex);
+
+function dfs(vertex) {
+  parent[vertex] = tmpParent = sccIdx++; //every time dfs is called, sccIdx increase and the value is idential
+  stack_global.push(vertex);
+  for(toVertex of edges[vertex]) {
+    if(parent[toVertex] !== 0) tmpParent = min(tmpParent, dfs(toVertex));
+    else if(!end[toVertex]) tmpParent = min(tmpParent, parent[toVertex]);
+   }
+
+  if(tmpParent == parent[vertex]) { //pop out nodes that form one SCC group
+    while(true) {
+      top = stack.pop();
+      localSCC.push(top);
+      end[top] = true; 
+      /*  
+      the reason we don't do this before return this function
+      lets' assume we do this before return and 
+      think of dfs called: 
+      parent => ...node1 => node2=> parent
+      then, parent[node2] = parent.SCCIdx, end[parent] = true;
+      back to node1, since end[node2] = true, node1.SCCIdx is not updated to node2.SCCIdx which is parent.SCCIdx
+      */
+      if(top == vertex) break;
     }
+  }
+  return tmpParent;
+}
+```
+
+#Kosaraju's algorithm(DFS)
+
+```javascript
+/**
+ edges = {
+   ...fromVertex: [ ... toVertex ]  
+ }
+*/
+stack_global
+sccIdx = 1; //to distinguish the node we haven't visit. 
+visit 
+end // if formed an SCC and poped out of stack
+rev_edges // reverse directed graph
+for(vertex of vertexs) if(parent[vertex] != 0) visitDFS(vertex, stack_global, edges);
+//initialize visit to false
+while(!stack_global.isEmpty()) {
+  top = stack_global.pop();
+  if(!visit[top]) visitDFS(top, SCC, rev_edges);
+}
+
+function visitDFS(vertex, stack, edges) {
+  stack.push([vertex, sccIdx++]);
+  visit[vertex] = true;
+  for(toVertext of edges[vertex]) if(!visit[toVertex]) visitDFS(toVertex, stack);
 }
 ```
