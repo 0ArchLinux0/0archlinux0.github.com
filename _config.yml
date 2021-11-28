@@ -78,10 +78,10 @@ theme_mode: dark
 # will be added to all image (site avatar & posts' images) paths starting with '/'
 #
 # e.g. 'https://cdn.com'
-img_cdn: 'https://github.com/0ArchLinux0/profileImageForCDN/blob/master/MinJun.png?raw=true'
+img_cdn: 'https://user-images.githubusercontent.com/55131164/143733703-39f4e7a5-0ebd-4aee-a317-f0dfb6c5a4c5.png'
 
 # the avatar on sidebar, support local or CORS resources
-avatar: 'https://github.com/0ArchLinux0/profileImageForCDN/blob/master/MinJun.png?raw=true'
+avatar: 'https://user-images.githubusercontent.com/55131164/143733703-39f4e7a5-0ebd-4aee-a317-f0dfb6c5a4c5.png'
 
 # boolean type, the global switch for ToC in posts.
 toc: true
