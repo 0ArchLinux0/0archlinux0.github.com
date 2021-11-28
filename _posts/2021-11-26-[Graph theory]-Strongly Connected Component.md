@@ -1,5 +1,5 @@
 ---
-title: [Graph theory] Strongly Connected Component(SCC)
+title: Graph theory. Strongly Connected Component(SCC)
 author: MINJUN PARK
 date: 2021-11-26 9:00 +0900
 categories: [Algorithm, Graph Theory]

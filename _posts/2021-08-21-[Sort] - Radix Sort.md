@@ -14,7 +14,7 @@ tags:
     Sort,
     Coding Interview,
   ]
-pin: true
+pin: false
 ---
 ## Radix Sort
 
