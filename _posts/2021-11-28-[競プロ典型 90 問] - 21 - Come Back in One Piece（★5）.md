@@ -1,7 +1,7 @@
 ---
 title: Atcoder. 021 - Come Back in One Piece(5)
 author: MINJUN PARK
-date: 2021-11-28 3:2:00 +0900
+date: 2021-11-28 3:02:00 +0900
 categories: [AtCoder, 競プロ典型 90 問]
 tags:
   [
@@ -10,7 +10,7 @@ tags:
     Java,
     Algorithm,
     Coding Interview,
-    Atcoder,
+    AtCoder,
     Graph,
     SCC,
     Tarjan's algorithm
