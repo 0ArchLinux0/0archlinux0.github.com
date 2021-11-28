@@ -24,7 +24,7 @@ Interested in cryptograph and security
 <img style="float: left;" src="https://img.shields.io/badge/python-3670A0?style=plastic&logo=python&logoColor=ffdd54" alt="404/error"/>
 <img style="float: left;" src="https://img.shields.io/badge/numpy-%23013243.svg?style=plastic&logo=numpy&logoColor=white" alt="404/error"/>
 <img style="float: left;" src="https://img.shields.io/badge/c-%2300599C.svg?style=plastic&logo=c&logoColor=white" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/c++-%2300599C.svg?style=plastic&logo=c%2B%2B&logoColor=white" alt="404/error"/> <br>  
+<img style="float: left;" src="https://img.shields.io/badge/c++-%2300599C.svg?style=plastic&logo=c%2B%2B&logoColor=white" alt="404/error"/>  <br>  
 
 <img style="float: left;" src="https://img.shields.io/badge/Red%20Hat-EE0000?style=plastic&logo=redhat&logoColor=white" alt="404/error"/>
 <img style="float: left;" src="https://img.shields.io/badge/Arch%20Linux-1793D1?logo=arch-linux&logoColor=fff&style=plastic" alt="404/error"/>
@@ -47,7 +47,6 @@ Interested in cryptograph and security
 
 <img style="float: left;" src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=plastic&logo=mongodb&logoColor=white" alt="404/error"/>
 <img style="float: left;" src="https://img.shields.io/badge/sqlite-%2307405e.svg?style=plastic&logo=sqlite&logoColor=white" alt="404/error"/><br><br> 
-</p>
 
 ### 📞 Contact  
 <a href="mailto:bluebluerize900@gmail.com"><img style="float: left;" src="https://img.shields.io/badge/Gmail-D14836?style=plastic&logo=gmail&logoColor=white" alt="404/error"/></a>
