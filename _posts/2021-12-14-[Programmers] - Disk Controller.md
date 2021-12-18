@@ -2,12 +2,12 @@
 title: Programmers. Disk Controller
 author: MINJUN PARK
 date: 2021-12-17 00:56:00 +0900
-categories: [BOJ, Java]
+categories: [Programmers, Java]
 tags:
   [
     Java,
     Algorithm,
-    Stack,
+    PriorityQueue,
     Coding Interview,
     Programmers,
     Disk Controller,
