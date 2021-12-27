@@ -5,6 +5,11 @@
 !.nojekyll
 !.travis.yml
 
+
+#temp files
+Main.class
+Main.java
+
 # bundler cache
 _site
 vendor
