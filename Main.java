@@ -9,7 +9,7 @@ public class Main {
 		String[] line = br.readLine().split(" ");
 		int n = toi(line[0]), m = toi(line[1]);
 		int[] rootIdx = new int[n + 1];
-
+kak
 		for(int i = 1 ; i <= n; i++) rootIdx[i] = i;
 
 		for(int i = 0; i < m; i++) {
