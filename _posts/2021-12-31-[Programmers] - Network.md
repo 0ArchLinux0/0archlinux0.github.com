@@ -2,10 +2,11 @@
 title: Programmers. Find number of animals with same name
 author: MINJUN PARK
 date: 2021-12-31 00:30:00 +0900
-categories: [Programmers, Node.js]
+categories: [Programmers, JavaScript]
 tags:
   [
     Algorithm,
+    JavaScript,
     Coding Interview,
     Programmers,
     Network,
