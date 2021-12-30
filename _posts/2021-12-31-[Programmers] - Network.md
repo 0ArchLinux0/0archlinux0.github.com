@@ -1,5 +1,5 @@
 ---
-title: Programmers. Find number of animals with same name
+title: Programmers. Network
 author: MINJUN PARK
 date: 2021-12-31 00:30:00 +0900
 categories: [Programmers, JavaScript]
