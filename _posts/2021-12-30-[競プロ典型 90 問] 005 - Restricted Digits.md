@@ -13,7 +13,7 @@ tags:
     AtCoder,
     Restricted Digits
   ]
-pin: false
+pin: true
 ---
 
 [Link] <https://atcoder.jp/contests/typical90/tasks/typical90_e>
