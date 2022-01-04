@@ -5,73 +5,52 @@ public class Main {
 	static BufferedReader br;
 	public static void main(String[] args) throws IOException {
 		br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
-		String[] line;
-		int t = toi(br.readLine());
-
-		for(int iter = 0; iter < t; iter++) {
-			line = getLine();
-			int n = toi(line[0]), m = toi(line[1]), k = toi(line[2]);
-			int[][] dp = new int[n][100001];
-			for(int[] dpar: dp) Arrays.fill(dpar, Integer.MAX_VALUE);
-			ArrayList<ArrayList<Ticket>> tickets = new ArrayList<>();
-			for(int i = 0; i < n; i++) {
-				tickets.add(new ArrayList<Ticket>());
-				Arrays.fill(dp[i], Integer.MAX_VALUE);
-			}
-			PriorityQueue<int[]> pq = new PriorityQueue<>((l, r) -> l[1] - r[1]);
-
-			for(int i = 0; i < k; i++) {
-				line = getLine();
-				int u = toi(line[0]) - 1, v = toi(line[1]) - 1, c = toi(line[2]), d = toi(line[3]);
-				tickets.get(u).add(new Ticket(v, c, d));
-			}
-
-			dp[0][0] = 0;
-			boolean canGo = false;
-			pq.add(new int[] { 0, 0, 0 });
-
-			while(!pq.isEmpty()) {
-				int[] cur = pq.poll();
-				int curIdx = cur[0], curTime = cur[1], curCost = cur[2];
-				if(dp[curIdx][curCost] < curTime) continue;
-				if(curIdx == n - 1) {
-					sb.append(curTime+"\n");
-					canGo = true;
-					break;
-				}
-				for(Ticket ticket: tickets.get(curIdx)) {
-					int tcost = curCost + ticket.cost, ttime = curTime + ticket.time;
-					if(tcost > m) continue;
-					if(ttime < dp[ticket.dest][tcost]) {
-							dp[ticket.dest][tcost] = ttime;
-							pq.add(new int[]{ ticket.dest, dp[ticket.dest][tcost], tcost });
-					} 
-					for(int cost = tcost + 1; cost <= m; cost++) {
-						if(ttime < dp[ticket.dest][cost]) 
-							dp[ticket.dest][cost] = ttime;
-						else break;
-					}
-				}
-			}
-			if(!canGo) sb.append("Poor KCM\n");
+		String[] line = getLine();
+		int max = Integer.MAX_VALUE;
+		int v = toi(line[0]), e = toi(line[1]);
+		int[][] dis =  new int[v][v];
+		int[][] floyd = new int[v][v];
+		for(int i = 0; i < v; i++) {
+			Arrays.fill(floyd[i], max);
+			floyd[i][i] = 0;
 		}
-		print(sb);
+
+		for(int i = 0; i < e; i++) {
+			line = getLine();
+			int a = toi(line[0]) - 1, b = toi(line[1]) - 1, c = toi(line[2]);
+			dis[a][b] = c;
+			floyd[a][b] = Math.min(floyd[a][b], c);
+		}
+
+		for(int mid = 0; mid < v; mid++) {
+			for(int from = 0; from < v; from ++) {
+				for(int to = 0; to < v; to++) {
+					if(floyd[from][mid] != max && floyd[mid][to] != max 
+					&& floyd[from][to] > floyd[from][mid] + floyd[mid][to]) floyd[from][to] = floyd[from][mid] + floyd[mid][to];
+				}
+			}
+		}
+		
+		int ans = max;
+		for(int i = 0; i < v; i++) {
+			for(int j = 0; j < v; j++) {
+				if(i == j) continue;
+				if(floyd[i][j] != max && floyd[j][i] != max) ans = Math.min(ans, floyd[i][j] + floyd[j][i]);
+			}
+		}
+
+		print(ans == max ? -1 : ans);
 	}
 
-	static class Tickets {
-		LinkedList<Ticket> list = new LinkedList<>();		
-	}
-
-	static class Ticket {
-		int dest;
-		int cost;
-		int time;
-
-		public Ticket(int dest, int cost, int time) {
-			this.dest = dest;
-			this.cost = cost; 
-			this.time = time;
+	static class Edge{
+		int from;
+		int to;
+		int dis;
+		
+		public Edge(int from, int to, int dis) {
+			this.from = from;
+			this.to = to;
+			this.dis = dis;
 		}
 	}
 
