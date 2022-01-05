@@ -1,55 +1,43 @@
-import java.util.*;
-import java.io.*;
+class Solution {
+    public List<List<String>> partition(String s) {
+        int len = s.length();
+        char[] ch = s.toCharArray();
+        boolean[][] pal = new boolean[len][len];
+        for(int i = 0; i < len - 1; i++) {
+          pal[i][i] = true;
+          if(ch[i] == ch[i+1]) pal[i][i+1] = true;
+        }
+        
+        pal[len-1][len-1] = true;
+        for(int di = 2; di < len; di++) 
+          for(int i = 0; i < len - di; i++) 
+            if(ch[i] == ch[i+di] && pal[i+1][i+di-1]) pal[i][i+di] = true; 
 
-public class Main {
-	static BufferedReader br;
-	public static void main(String[] args) throws IOException {
-		br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
-		String[] line;
-		int t = toi(br.readLine());
-		HashMap<String, Node> hm = new HashMap<>();
+        LinkedList<Integer> ll = new LinkedList<>();
+        List<List<String>> list = new LinkedList<>();
+        dfs(pal, ch, -1, ll, list, len);
+        return list;
+    }
 
-		for(int iter = 0; iter < t; iter++) {
-			hm.clear();
-			int f = toi(br.readLine());
-			for(int i = 0; i < f; i++) {
-				line = getLine();
-				if(!hm.containsKey(line[0])) hm.put(line[0], new Node(line[0], 1));
-				if(!hm.containsKey(line[1])) hm.put(line[1], new Node(line[1], 1));
-				Node parentNode0 = getParent(hm, line[0]);
-				Node parentNode1 = getParent(hm, line[1]);
-				if(parentNode0.parent.compareTo(parentNode1.parent) < 0) {
-					parentNode0.num += parentNode1.num;
-					parentNode1.parent = parentNode0.parent;
-					sb.append(parentNode0.num).append("\n");
-				} else if(parentNode0.parent.equals(parentNode1.parent)){
-					sb.append(parentNode0.num).append("\n");
-				} else {
-					parentNode1.num += parentNode0.num;
-					parentNode0.parent = parentNode1.parent;
-					sb.append(parentNode1.num).append("\n");
-				}
-			}
-		}
-		print(sb);
-	}
-
-	static Node getParent(HashMap<String, Node> hm, String s) {
-		if(hm.get(s).parent.equals(s)) return hm.get(s);
-		Node node = getParent(hm, hm.get(s).parent);
-		hm.get(s).parent = node.parent;
-		return node;
-	}
-
-	static class Node {
-		String parent;
-		int num;
-		Node(String parent, int num) { this.parent = parent; this.num = num; }
-	}
-
-	static int toi(String s) { return Integer.parseInt(s); }
-	static String[] getLine() throws IOException { return br.readLine().split(" "); }	
-	static <T> void print(T s) { System.out.print(s); }
-	static <T> void println(T s) { System.out.println(s); }
+    void dfs(boolean[][] pal, char[] ch, int cur, LinkedList<Integer> ll, List<List<String>> list, int len) {
+      if(cur == len - 1) {
+        LinkedList<String> temp = new LinkedList<>();
+        int startIdx = 0;
+        for(int idx: ll) {
+          temp.add(String.copyValueOf(ch, startIdx, idx - startIdx + 1));
+          startIdx = idx + 1;
+        }
+        list.add(temp);
+        return;
+      }
+      for(int i = cur + 1; i < len; i++) {
+        if(pal[cur+1][i]) {
+          ll.add(i);
+          dfs(pal, ch, i, ll, list, len);
+          ll.removeLast();
+        }
+      }
+    }
+    
+    <T> void print(T s) { System.out.print(s); }
 }
