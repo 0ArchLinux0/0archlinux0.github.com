@@ -8,44 +8,35 @@ public class Main {
 		br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 		String[] line;
-		Node root = new Node(toi(br.readLine()));
-		Stack<Node> stack = new Stack<>();
-		stack.push(new Node(Integer.MAX_VALUE));
-		stack.push(root);
+		int n = toi(br.readLine());
+		Node[] nodes = new Node[n + 1];
+		for(int i = 1; i <= n; i++) nodes[i] = new Node[i];
 
-		String s;
-		// while((s = br.readLine()) != null && s.length() != 0) { //for local test
-			while((s = br.readLine()) != nul) { //for local test
-			int idx = Integer.parseInt(s);
-			if(stack.peek().idx > idx) {
-				stack.peek().left = new Node(idx);
-				stack.push(stack.peek().left);
-			} else {
-				Node node;
-				while(true) {
-					node = stack.pop();
-					if(stack.peek().idx > idx) break; 
-				}
-				node.right = new Node(idx);
-				stack.push(node.right);
-			}
-			if(s.length() == 0) return;
+		line = getLine();
+		Node node = nodes[toi(line[0])];
+		for(int i = 1; i < n; i++) {
+			Node tempNode = nodes[toi(line[i])];
+			tempNode.left = node;
+			node.right = tempNodeNode;
 		}
-		post(root, sb);
-		print(sb);
+
+
+		for(int i = 0; i < n; i++) {
+			int[] pair = al.get(i);
+			sum += get(seg, 0, n - 1, 0, pair[1], 1);
+			update(seg, 0, n - 1, pair[1], 1);
+		}
+		print(sum);
 	}
 
-	static void post(Node node, StringBuilder sb) {
-		if(node.left != null) post(node.left, sb);
-		if(node.right != null) post(node.right, sb);
-		sb.append(node.idx).append("\n");
-	}
-	
-	public static class Node {
-		Node right;
-		Node left;
+	class Node {
 		int idx;
-		Node(int idx) { this.idx = idx; }
+		int left;
+		int right;
+		boolean bleft;
+		boolean bright;
+
+		public Node(int idx) { this.idx = idx; }
 	}
 
 	static int toi(String s) { return Integer.parseInt(s); }
