@@ -9,21 +9,16 @@ public class Main {
 		StringBuilder sb = new StringBuilder();
 		// String[] line = getLine();
 		String line1 = br.readLine(), line2 = br.readLine();
-		String[][] dp = new String[line1.length()][line2.length()];
-		for(String[] tmp : dp) Arrays.fill(tmp, "");
-		String result = lcs(line1, line2, 0, 0, dp);
-		if(result.length() == 0) sb.append("0");
-		else sb.append(result.length()).append("\n").append(result);
-		print(sb); 
-	}
+		int l1 = line1.length(), l2 = line2.length();
+		String[][] dp = new String[l1][l2]; // dp[i][j]: line1 0 ~ i line 0 ~ j
+		
+		for(int i = 0; i < l1; i++) {
+			for(int j = 0; j < l2; j++) {
+				if(line1.charAt(i) == line2.charAt(j)) {
 
-	static String lcs(String line1, String line2, int idx1, int idx2, String[][] dp) {
-		if(idx1 >= line1.length() || idx2 >= line2.length()) return ""; 
-		if(dp[idx1][idx2].length() != 0) return dp[idx1][idx2];
-		if(line1.charAt(idx1) == line2.charAt(idx2)) 
-			return dp[idx1][idx2] = line1.charAt(idx1) + lcs(line1, line2, idx1 + 1, idx2 + 1, dp);
-		String s1 = lcs(line1, line2, idx1 + 1, idx2, dp), s2 = lcs(line1, line2, idx1, idx2 + 1, dp);
-		return dp[idx1][idx2] = s1.length() > s2.length() ? s1 : s2;
+				}
+			}
+		}
 	}
 
 	static int toi(String s) { return Integer.parseInt(s); }
