@@ -1,3 +1,22 @@
+---
+title: Atcoder. ABC 235 E - MST + 1
+author: MINJUN PARK
+date: 2022-01-16 02:00:00 +0900
+categories: [Atcoder, Java]
+tags:
+  [
+    Java,
+    Algorithm,
+    Atcoder,
+    ABC contest
+  ]
+pin: false
+---
+
+[Link] <https://atcoder.jp/contests/abc235/tasks/abc235_e>
+<br>
+
+```java
 import java.util.*;
 import java.io.*;
 
@@ -53,3 +72,4 @@ public class Main {
 	static <T> void print(T s) { System.out.print(s); }
 	static <T> void println(T s) { System.out.println(s); }
 }
+```
