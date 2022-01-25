@@ -3,51 +3,67 @@ import java.io.*;
 
 public class Main {
 	static BufferedReader br;
-	static int max = 0, maxIdx = 0;
+	static int[] parent;
+	static boolean[] handled;
+	static int idx;
+	static ArrayList<ArrayList<Integer>> al;
+	static Stack<Integer> stack;
+	static ArrayList<ArrayList<Integer>> scc;
 	public static void main(String[] args) throws IOException {
+		al = new ArrayList<>();
+		stack = new Stack<>();
+		scc = new ArrayList<>();
+		idx = 1;
 		br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 		int[] arr = getArr();
-		int n = arr[0], r = arr[1], query = arr[2];
-		int[] dp = new int[n + 1];
-		ArrayList<Node> al = new ArrayList<>();
-		al.add(null);
-		for(int i = 1; i <= n; i++) al.add(new Node(i));
-		for(int i = 0; i < n - 1; i++) {
+		int v = arr[0], e = arr[1];
+		parent = new int[v+1];
+		handled = new boolean[v+1];
+		for(int i = 0; i <= v; i++) al.add(new ArrayList<Integer>());
+
+		for(int i = 0; i < e; i++) {
 			arr = getArr();
-			int  u = arr[0], v = arr[1];
-			al.get(u).child.add(v);
-			al.get(v).child.add(u);
+			al.get(arr[0]).add(arr[1]);
 		}
 
-		getSubTreeNode(al, r, dp);
-
-		for(int i = 0; i < query; i++) {
-			int u = toi(br.readLine());
-			sb.append(dp[u]).append("\n");
+		for(int i = 1; i <= v; i++) {
+			if(parent[i] == 0) dfs(i);
 		}
 
+		if(scc.size() > 1) scc.sort((l, r) -> l.get(0) - r.get(0));
+		sb.append(scc.size()).append("\n");
+
+		for(ArrayList<Integer> tmp: scc) {
+			for(int ele: tmp) sb.append(ele + " ");
+			sb.append(-1).append("\n");
+		}
 		print(sb);
 	}
 
-	static int getSubTreeNode(ArrayList<Node> al, int idx, int[] dp) {
-		if(dp[idx] != 0) return dp[idx];
-		int sum = 1;
-		for(int childIdx : al.get(idx).child) {
-			if(childIdx == al.get(idx).parent) continue;
-			Node childNode = al.get(childIdx);
-			childNode.parent = idx;
-			sum += getSubTreeNode(al, childIdx, dp);
+	static int dfs(int i) {
+		int origVal;
+		origVal = parent[i] = idx++;
+		stack.push(i);
+
+		for(int vertex : al.get(i)) {
+			if(parent[vertex] == 0) parent[i] = Math.min(parent[i], dfs(vertex));
+			else if(!handled[vertex]) parent[i] = Math.min(parent[i], parent[vertex]);
 		}
-		return dp[idx] = sum;
-	}
 
-	static class Node {
-		int idx;
-		int parent;
-		ArrayList<Integer> child = new ArrayList<>();
-
-		public Node(int idx) { this.idx = idx; }
+		if(parent[i] == origVal) {
+			ArrayList<Integer> al = new ArrayList<>();
+			while(true) {
+				int idx = stack.pop();
+				handled[idx] = true;
+				al.add(idx);
+				if(idx == i) break;
+			}
+			if(al.size() > 1) al.sort((l, r) -> l - r);
+			scc.add(al);
+		}
+			
+		return parent[i];
 	}
 
 	static int toi(String s) { return Integer.parseInt(s); }
