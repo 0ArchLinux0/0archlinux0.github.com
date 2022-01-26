@@ -9,6 +9,7 @@
 #temp files
 Main.class
 Main.java
+main.js
 
 # bundler cache
 _site
