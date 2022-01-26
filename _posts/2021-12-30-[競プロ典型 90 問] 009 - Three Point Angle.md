@@ -11,9 +11,10 @@ tags:
     Algorithm,
     Coding Interview,
     AtCoder,
-    Three Point Angle
+    Three Point Angle,
+    review
   ]
-pin: true
+pin: false
 ---
 
 [Link] <https://atcoder.jp/contests/typical90/tasks/typical90_i>

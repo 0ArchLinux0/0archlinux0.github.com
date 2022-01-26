@@ -11,9 +11,11 @@ tags:
     Algorithm,
     Coding Interview,
     AtCoder,
-    Restricted Digits
+    Restricted Digits,
+    review,
+    difficult
   ]
-pin: true
+pin: false
 ---
 
 [Link] <https://atcoder.jp/contests/typical90/tasks/typical90_e>
