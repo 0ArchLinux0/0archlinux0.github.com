@@ -3,30 +3,40 @@ import java.io.*;
 
 public class Main {
 	static BufferedReader br;
-	static int n = 0;
-	static int[][] cost;
-	static int[][] dp;
 	public static void main(String[] args) throws IOException {
 		br = new BufferedReader(new InputStreamReader(System.in));
-		int[] arr = getArr();
-		int n = arr[0], s = arr[1], min = 987654321;
-		arr = getArr();
-		int sum = 0;
-		
-		int left = 0, right = 0;
-		while(left < n && right <= n) {
-			if(sum < s) {
-				if(right == n) break;
-				sum += arr[right++];
+		StringBuilder sb = new StringBuilder();
+		int n = toi(br.readLine());
+		ArrayList<Integer> al = getPrime(n);
+		int left = 0, right = 0, size = al.size(), sum = 0, cnt = 0;
+		while(left < size && right <= size) {
+			if(sum < n) {
+				if(right == size) break; 
+				sum += al.get(right++);
+			} else if(sum == n) {
+				cnt++;
+				sum -= al.get(left++);
 			} else {
-				while(sum >= s) {
-					sum -= arr[left++];
-				}
-				min = Math.min(min, right - left + 1);
+				sum -= al.get(left++);
 			}
 		}
+		print(cnt);
+	}
 
-		print(min == 987654321 ? 0 : min);
+	static ArrayList<Integer> getPrime(int n) {
+		ArrayList<Integer> al = new ArrayList<>();
+		for(int i = 2; i <= n; i++) {
+			boolean prime = true;
+			for(int e: al) {
+				if(e > Math.sqrt(i)) break;
+				if(i % e == 0) {
+					prime = false;
+					break;
+				};
+			}
+			if(prime) al.add(i);
+		}
+		return al;
 	}
 
 	static int toi(String s) { return Integer.parseInt(s); }
