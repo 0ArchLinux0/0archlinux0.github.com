@@ -12,7 +12,7 @@ tags:
     Tarjan's algorithm,
     Kosaraju's algorithm
   ]
-pin: true
+pin: false
 ---
 
 #Strongly Connected Component 
