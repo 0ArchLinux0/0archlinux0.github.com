@@ -3,37 +3,30 @@ import java.io.*;
 
 public class Main {
 	static BufferedReader br;
+	static int n = 0;
+	static int[][] cost;
+	static int[][] dp;
 	public static void main(String[] args) throws IOException {
 		br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
-		int[] arr = getArr();
-		int n = arr[0], m = arr[1];
-		ArrayList<HashSet<Integer>> al = new ArrayList<>();
-		for(int i = 0; i < n; i++) al.add(new HashSet<Integer>());
-		int[] deg = new int[n];
-		boolean[] visit = new boolean[n];
-		for(int i = 0; i < m; i++) {
-			arr = getArr();
-			int a = arr[0] - 1, b = arr[1] - 1;
-			deg[b]++;
-			al.get(a).add(b);
-		}
+		int[] arr;
+		n = toi(br.readLine());
+		cost = new int[n][n];
+		dp = new int[n][(1 << n) - 1];
+		for(int i = 0; i < n; i++) cost[i] = getArr();
+		
+		print(dfs(0, 0));
+	}
 
-		Queue<Integer> q = new LinkedList<Integer>();
-		for(int i = 0; i < n; i++) {
-			if(!visit[i] && deg[i] != 0) continue;
-			q.add(i);
-			while(!q.isEmpty()) {
-				int cur = q.poll();
-				if(visit[cur]) continue;
-				visit[cur] = true;
-				sb.append(cur + 1).append(" ");
-				for(int v : al.get(cur)) {
-					if(--deg[v] == 0) q.offer(v);
-				}
-			}
+	static int dfs(int personIdx, int bits) {
+		if(personIdx == n) return 0;
+		if(dp[personIdx][bits] != 0) return dp[personIdx][bits];
+		int min = 300000;
+		for(int taskIdx = 0; taskIdx < n; taskIdx++) {
+			if((bits & 1 << taskIdx) != 0) continue;
+			else min = Math.min(min, cost[personIdx][taskIdx] + dfs(personIdx + 1, bits | 1 << taskIdx));
 		}
-		print(sb);
+		return dp[personIdx][bits] = min;
 	}
 
 	static int toi(String s) { return Integer.parseInt(s); }
