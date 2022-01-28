@@ -3,28 +3,16 @@ import java.io.*;
 
 public class Main {
 	static BufferedReader br;
+	static StringBuilder sb = new StringBuilder();
 	public static void main(String[] args) throws IOException {
 		br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
-		int n = toi(br.readLine());
-		int[] arr = getArr();
-		Arrays.sort(arr);
-		int left = 0, right = n - 1, total, lLiq, rLiq, min = Integer.MAX_VALUE;
-		lLiq = 0;
-		rLiq = n - 1;
-		total = arr[left] + arr[right];
+		String t = br.readLine(), p = br.readLine();
+		int[] kmp = new int[p.length + 1]; 
+		getKmp(kmp, p);
+	}
+
+	static public getKmp(int[] kmp, String p) {
 		
-		while(left < right) {
-			if(Math.abs(total) < Math.abs(min)) {
-				min = total;
-				lLiq = left;
-				rLiq = right;
-				if(total == 0) break;
-			}
-			if(total > 0) total = total - arr[right] + arr[--right];
-			else total = total - arr[left] + arr[++left];
-		}
-		print(arr[lLiq] + " " + arr[rLiq]);
 	}
 
 	static int toi(String s) { return Integer.parseInt(s); }
