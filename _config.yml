@@ -86,9 +86,9 @@ avatar: 'https://user-images.githubusercontent.com/55131164/143733703-39f4e7a5-0
 # boolean type, the global switch for ToC in posts.
 toc: true
 
-disqus:
-  comments: true  # boolean type, the global switch for posts comments.
-  shortname: 'https-0archlinux0-github-io'    # Fill with your Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+# disqus:
+#   comments: true  # boolean type, the global switch for posts comments.
+#   shortname: 'https-0archlinux0-github-io'    # Fill with your Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
 
 paginate: 10
 
