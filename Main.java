@@ -9,28 +9,21 @@ public class Main {
 		String s = br.readLine();
 
 		while(!s.equals(".")) {
-			// sb.append(solve(s)).append("\n");
-			int[] pi = kmp(s);
-			int commonlen = pi[s.length() - 1], chunkLen = s.length() - commonlen;
-			if(s.length() % chunkLen != 0) {
-				sb.append(1).append("\n"); 
-				continue;
-			}
-			sb.append(s.length() / chunkLen).append("\n");
+			sb.append(kmp(s)).append("\n");
 			s = br.readLine();
 		}
-
 		print(sb);
 	}
 
-	static int[] kmp(String p) {
-		int l = 0;
+	static int kmp(String p) {
+		int l = 0, len = p.length();
 		int[] kmp = new int[p.length()];
-		for(int r = 1; r < p.length(); r++) {
-			while(l > 0 && !(p.charAt(l) == p.charAt(r))) l = kmp[l - 1];
+		for(int r = 1; r < len; r++) {
+			while(l > 0 && p.charAt(l) != p.charAt(r)) l = kmp[l - 1];
 			if(p.charAt(l) == p.charAt(r)) kmp[r] = ++l;
 		}
-		return kmp;
+		int chunkLen = len - kmp[len - 1], max = len / chunkLen;
+		return len - max * chunkLen == 0 ? max : 1;
 	}
 
 	static int toi(String s) { return Integer.parseInt(s); }
