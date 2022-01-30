@@ -1,3 +1,32 @@
+---
+title: Atcoder. ABC 237 E - Skiing
+author: MINJUN PARK
+date: 2022-01-31 08:48:00 +0900
+categories: [Atcoder, Java]
+tags:
+  [
+    Java,
+    Algorithm,
+		Coding Interview,
+    Atcoder,
+    Graph,
+    Dijkstra,
+    review,
+    ABC contest
+  ]
+pin: false
+---
+
+[Link] <https://atcoder.jp/contests/abc237/tasks/abc237_e>
+<br>
+Consider the following apth: Space 0 => Space x
+Path: upper, lower distance: U, D 
+  => happiness: D - 2 * U
+  => To maximize happiness : minimize U
+  => PriorityQue<Edge>: sort with upper distance
+<br>
+
+```java
 import java.util.*;
 import java.io.*;
 
@@ -77,3 +106,4 @@ public class Main {
 	static <T> void print(T s) { System.out.print(s); }
 	static <T> void println(T s) { System.out.println(s); }
 }
+```
