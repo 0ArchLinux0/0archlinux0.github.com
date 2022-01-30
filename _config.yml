@@ -53,7 +53,7 @@ social:
 
 
 google_analytics:
-  id: '270907906'              # fill in your Google Analytics ID
+  id: 'G-YFY3KQ4J0Y'              # fill in your Google Analytics ID
   # Google Analytics pageviews report settings
   pv:
     proxy_endpoint:   # fill in the Google Analytics superProxy endpoint of Google App Engine
