@@ -6,46 +6,31 @@ public class Main {
 	static StringBuilder sb = new StringBuilder();
 	public static void main(String[] args) throws IOException {
 		br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
-		String t = br.readLine(), p = br.readLine();
-		int[] kmp = new int[p.length()]; 
-		ArrayList<Integer> al = new ArrayList<>();
-		getKmp(kmp, p);
-		for(int e: kmp) print(e);
-		println("");
-		int l = 0, r = 0, cnt = 0;
-		while(l < t.length()) {
-			if(t.charAt(l) != p.charAt(r)) {
-				// l++;
-				if(r > 0) r = kmp[r - 1];
-				else r = 0;
+		String s = br.readLine();
+
+		while(!s.equals(".")) {
+			// sb.append(solve(s)).append("\n");
+			int[] pi = kmp(s);
+			int commonlen = pi[s.length() - 1], chunkLen = s.length() - commonlen;
+			if(s.length() % chunkLen != 0) {
+				sb.append(1).append("\n"); 
+				continue;
 			}
-			if(t.charAt(l) == p.charAt(r)) {
-				if(r == p.length() - 1) {
-					cnt++;
-					al.add(l + 2 - p.length());
-					r = kmp[r];
-				}
-				else {
-					r++;
-				}
-			} 
-			l++;
+			sb.append(s.length() / chunkLen).append("\n");
+			s = br.readLine();
 		}
-		println(cnt);
-		for(int e: al) sb.append(e).append(" ");
+
 		print(sb);
 	}
 
-	static public void getKmp(int[] kmp, String p) {
+	static int[] kmp(String p) {
 		int l = 0;
+		int[] kmp = new int[p.length()];
 		for(int r = 1; r < p.length(); r++) {
-			if(l > 0 && p.charAt(l) != p.charAt(r))
-				l = kmp[l - 1];
-			if(p.charAt(l) == p.charAt(r)) {
-				kmp[r] = ++l;
-			}
+			while(l > 0 && !(p.charAt(l) == p.charAt(r))) l = kmp[l - 1];
+			if(p.charAt(l) == p.charAt(r)) kmp[r] = ++l;
 		}
+		return kmp;
 	}
 
 	static int toi(String s) { return Integer.parseInt(s); }
