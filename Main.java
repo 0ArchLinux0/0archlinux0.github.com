@@ -4,71 +4,43 @@ import java.io.*;
 public class Main {
 	static BufferedReader br;
 	static StringBuilder sb = new StringBuilder();
-	static int[] h;
+	static int timeNum = 360000;
 	public static void main(String[] args) throws IOException {
 		br = new BufferedReader(new InputStreamReader(System.in));
+		int n = toi(br.readLine());
+		boolean[] clock1 = new boolean[2 * timeNum];
+		boolean[] clock2 = new boolean[timeNum];
 		int[] arr = getArr();
-		int n = arr[0], m = arr[1];
-		ArrayList<ArrayList<Integer>> al = new ArrayList<>();
-		for(int i = 0; i < n; i++) al.add(new ArrayList<Integer>());
+		for(int e: arr) clock1[e] = clock1[e + timeNum] = true;
+		arr = getArr();
+		for(int e: arr) clock2[e] = true;
+		print(kmp(clock1, clock2) ? "possible" : "impossible");
+	}
 
-		h = getArr();
-		for(int i = 0; i < m; i++) {
-			arr = getArr();
-			int a = arr[0] - 1, b = arr[1] - 1;
-			al.get(a).add(b);
-			al.get(b).add(a);
-		}
-
-		PriorityQueue<Edge> pq = new PriorityQueue<>((l, r) -> Long.compare(l.elevate, r.elevate));
-		long max = 0;
-		boolean[] visit = new boolean[n];
-		long[] dijk = new long[n];
-		Arrays.fill(dijk, Long.MIN_VALUE);
-		dijk[0] = 0;
-		pq.add(new Edge(0, 0, 0));
-
-		while(!pq.isEmpty()) {
-			Edge edge = pq.poll();
-			if(visit[edge.to]) continue;
-			visit[edge.to] = true;
-
-			for(int e: al.get(edge.to)) {
-				if(visit[e]) continue;
-
-				if(h[e] >= h[edge.to]) {
-					if(dijk[e] > dijk[edge.to] + getVal(edge.to, e)) continue;
-					dijk[e] = dijk[edge.to] + getVal(edge.to, e);
-					pq.add(new Edge(edge.to, e, edge.elevate + h[e] - h[edge.to]));
-					if(dijk[e] > max) max = dijk[edge.to];
-				} else {
-					if(dijk[e] > dijk[edge.to] + getVal(edge.to, e)) continue;
-					dijk[e] = dijk[edge.to] + getVal(edge.to, e);
-					pq.add(new Edge(e, e, edge.elevate));
-					if(dijk[e] > max) max = dijk[e];
-				}
+	static int[] pi(boolean[] s) {
+		int[] pi = new int[s.length];
+		int l = 0;
+		for(int r = 1; r < s.length; r++) {
+			if(l > 0 && s[l] != s[r]) l = pi[l - 1];
+			if(s[l] == s[r]) {
+				pi[r] = l + 1;
+				l++;
 			}
 		}
-
-		print(max);
+		return pi;
 	}
 
-	static int getVal(int from, int to) {
-		if(h[from] == h[to]) return 0;
-		if(h[from] > h[to]) return h[from] - h[to];
-		return 2 * (h[from] - h[to]);
-	}
-
-	static class Edge{
-		int from;
-		int to;
-		long elevate;
-
-		Edge(int from, int to, long elevate) {
-			this.from = from;
-			this.to =to;
-			this.elevate = elevate;
+	static boolean kmp(boolean[] t, boolean[] s) {
+		int[] pi = pi(s);
+		int r = 0;
+		for(int l = 0; l < t.length; l++) {
+			if(r > 0 && t[l] != s[r]) r = pi[r - 1];
+			if(t[l] == s[r]) {
+				if(r == s.length - 1) return true;
+				r++;
+			}
 		}
+		return false;
 	}
 
 	static int toi(String s) { return Integer.parseInt(s); }
