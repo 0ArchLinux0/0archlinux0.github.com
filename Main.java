@@ -11,89 +11,26 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		br = new BufferedReader(new InputStreamReader(System.in));
 		int n = toi(br.readLine());
-		int[] arr;
-		Node[] nodes = new Node[n];
-		w = getArr();
-		edp = new int[n];
-		fdp = new int[n];
-		for(int i = 0; i < n; i++) fdp[i] = w[i];
-		
-		visit = new boolean[n];
-		for(int i = 0; i < n; i++) nodes[i] = new Node(i); 
-		for(int i = 0; i < n - 1; i++) {
-			arr = getArr();
-			int a = arr[0] - 1, b = arr[1] - 1;
-			nodes[a].list.add(nodes[b]);
-			nodes[b].list.add(nodes[a]);
-		}
-		nodes[0].parent = -1;
-		bfs(nodes[0]);
-
-		int ans = Math.max(edp[0], fdp[0]);
-		Node node = nodes[0];
-		ArrayList<Integer> al = new ArrayList<>();
-		println(ans);
-
-		getVertext(ans, node, al);
-		Collections.sort(al);
-		for(int e: al) sb.append(e).append(" ");
-		print(sb);
-		// for(int e: al) print(e + " ,");
-		// for(int e: fdp) print(e+ " ");
-		// println("///////");
-		// for(int e: edp) print(e+ " ");
-		// println("////////");
+		String line = br.readLine();
+		int[] pi = getPi(line);
+		print(line.length() - pi[line.length() - 1]);
 	}
 
-	static void getVertext(int val, Node node, ArrayList<Integer> al) {
-		// println(val + " , " + (node.idx + 1));
-		int sum = w[node.idx];
-		if(val == sum) {
-			al.add(node.idx + 1);
-			return;
+	static int[] getPi(String s) {
+		int l = 0, len = s.length();
+		int[] pi = new int[len];
+		for(int r = 1; r < len; r++) {
+			while(s.charAt(l) != s.charAt(r) && l > 0) l = pi[l - 1];
+			if(s.charAt(l) == s.charAt(r)) {
+				pi[r] = ++l;
+			}
 		}
-		if(val == 0) return;
+		return pi;
+	}	
 
-		for(Node nn: node.list) {
-			if(nn.idx == node.parent) continue;
-			sum += edp[nn.idx];
-		}
-		if(sum == val) {
-			al.add(node.idx + 1);
-			for(Node nn: node.list) {
-				if(nn.idx == node.parent) continue;
-				getVertext(edp[nn.idx], nn, al);
-			}
-		} else {
-			for(Node nn: node.list) {
-				if(nn.idx == node.parent) continue;
-				getVertext(Math.max(edp[nn.idx], fdp[nn.idx]), nn, al);
-			}
-		}
-	}
 	
-	static void bfs(Node node) {
-		if(node.list.size() == 1 && node.parent != -1) {
-			return;
-		}
-		for(Node child: node.list) {
-			if(child.idx == node.parent) continue;
-			child.parent = node.idx;
-			if(!visit[child.idx]) bfs(child);
-			fdp[node.idx] += edp[child.idx];
-			edp[node.idx] += Math.max(edp[child.idx], fdp[child.idx]);
-		}
-		visit[node.idx] = true;
-	}
-
-	static class Node {
-		int idx;
-		int parent;
-		ArrayList<Node> list = new ArrayList<>();
-		Node(int idx) { this.idx = idx; }
-	}
-
-
+	
+	
 	static int toi(String s) { return Integer.parseInt(s); }
 	static String[] getLine() throws IOException { return br.readLine().split(" "); }	
 	static int[] getArr() throws IOException { return Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray(); }
