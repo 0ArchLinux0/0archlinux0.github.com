@@ -6,14 +6,17 @@ public class Main {
 	static StringBuilder sb = new StringBuilder();
 	static int[] fdp;
 	static int[] edp;
+	static int[] w;
 	static boolean[] visit;
 	public static void main(String[] args) throws IOException {
 		br = new BufferedReader(new InputStreamReader(System.in));
 		int n = toi(br.readLine());
 		int[] arr;
 		Node[] nodes = new Node[n];
+		w = getArr();
 		edp = new int[n];
-		fdp = getArr();
+		fdp = new int[n];
+		for(int i = 0; i < n; i++) fdp[i] = w[i];
 		
 		visit = new boolean[n];
 		for(int i = 0; i < n; i++) nodes[i] = new Node(i); 
@@ -25,8 +28,48 @@ public class Main {
 		}
 		nodes[0].parent = -1;
 		bfs(nodes[0]);
-		int ans = 0;
-		println(Math.max(edp[0], fdp[0]));
+
+		int ans = Math.max(edp[0], fdp[0]);
+		Node node = nodes[0];
+		ArrayList<Integer> al = new ArrayList<>();
+		println(ans);
+
+		getVertext(ans, node, al);
+		Collections.sort(al);
+		for(int e: al) sb.append(e).append(" ");
+		print(sb);
+		// for(int e: al) print(e + " ,");
+		// for(int e: fdp) print(e+ " ");
+		// println("///////");
+		// for(int e: edp) print(e+ " ");
+		// println("////////");
+	}
+
+	static void getVertext(int val, Node node, ArrayList<Integer> al) {
+		// println(val + " , " + (node.idx + 1));
+		int sum = w[node.idx];
+		if(val == sum) {
+			al.add(node.idx + 1);
+			return;
+		}
+		if(val == 0) return;
+
+		for(Node nn: node.list) {
+			if(nn.idx == node.parent) continue;
+			sum += edp[nn.idx];
+		}
+		if(sum == val) {
+			al.add(node.idx + 1);
+			for(Node nn: node.list) {
+				if(nn.idx == node.parent) continue;
+				getVertext(edp[nn.idx], nn, al);
+			}
+		} else {
+			for(Node nn: node.list) {
+				if(nn.idx == node.parent) continue;
+				getVertext(Math.max(edp[nn.idx], fdp[nn.idx]), nn, al);
+			}
+		}
 	}
 	
 	static void bfs(Node node) {
@@ -46,7 +89,6 @@ public class Main {
 	static class Node {
 		int idx;
 		int parent;
-		boolean evenIdx = false;
 		ArrayList<Node> list = new ArrayList<>();
 		Node(int idx) { this.idx = idx; }
 	}
