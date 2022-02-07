@@ -4,41 +4,102 @@ import java.io.*;
 public class Main {
 	static BufferedReader br;
 	static StringBuilder sb = new StringBuilder();
-	static int[][] dis;
+	static ArrayList<Integer> expdp;
 	static int n;
-	static int INF = 987654321;
+	static int k;
+	static String[] line;
+	static int[] convert;
 	public static void main(String[] args) throws IOException {
 		br = new BufferedReader(new InputStreamReader(System.in));
 		n = toi(br.readLine());
-		int[] arr;
-		dis = new int[n + 1][n + 1];
-		for(int i = 1; i <= n; i++) {
-			arr = getArr();
-			for(int j = 1; j <= n; j++) dis[i][j] = arr[j - 1];
+		line = new String[n];
+		convert = new int[n];
+		Arrays.fill(convert, -1);
+
+		int l = 0;
+		for(int i = 0; i < n; i++) {
+			line[i] = br.readLine();
+			l += line[i].length();
 		}
+		k = toi(br.readLine());
 
-		int[][] dp = new int[n + 1][1 << n];
-		for(int[] ar: dp) Arrays.fill(ar, INF);
+		long[][] dp = new long[k][1 << n];
+		for(long[] ar: dp) Arrays.fill(ar, -1);
 
-		print(dfs(dp, 1, 1));
+		expdp = new ArrayList<>();
+		expdp.add(1);
+
+		long num = dfs(dp, 0, (1 << n) - 1, l);
+		printProb(num);
 	}
 
-	static int dfs(int[][] dp, int idx, int bitmask) {
-		if(dp[idx][bitmask] != INF) return dp[idx][bitmask];
-		if(bitmask == (1 << n) - 1) {
-			return dis[idx][1] == 0  ? INF : dis[idx][1];
-		}
+	static int convert(int idx) {
+		if(convert[idx] != -1) return convert[idx];
+		int sum = 0;
+		String s = line[idx];
+		for(int i = 0; i < s.length(); i++) 
+			sum = (sum * 10 + s.charAt(i) - '0') % k;
 
-		int bit = 2; //b10
-		int townIdx = 2;
+		return convert[idx] = sum;
+	}
 
-		for(int i = 2; i <= n; i++) {
-			if((bit & bitmask) == 0 && dis[idx][townIdx] != 0) 
-				dp[idx][bitmask] = Math.min(dp[idx][bitmask], dfs(dp, townIdx, bitmask | bit) + dis[idx][townIdx]);
+	static long dfs(long[][] dp, int remain, int bitmask, int len) {
+		if(dp[remain][bitmask] != -1) return dp[remain][bitmask];
+		if(bitmask == 0) return dp[remain][bitmask] = (remain == 0 ? 1 : 0);
+
+		int bit = 1;
+		long sum = 0;
+		for(int i = 1; i <= n; i++) {
+			if((bitmask & bit) == 0) {
+				bit <<= 1;
+				continue;
+			}
+			int ll = len - line[i - 1].length();
+			int pair = remain - (convert(i - 1) * tenExp(ll) % k);
+			if(pair == k) pair = 0;
+			if(pair < 0) pair += k;
+			if(dfs(dp, pair, bitmask ^ bit, ll) != -1)  
+				sum += dfs(dp, pair, bitmask ^ bit, ll);
 			bit <<= 1;
-			townIdx++;
 		}
-		return dp[idx][bitmask];
+		return dp[remain][bitmask] = sum;
+	}
+
+	static void printProb(long num) {
+		if(num == 0) {
+			print("0/1");
+			return;
+		}
+		long denominator = 1;
+		for(int i = 2; i <= n; i++) denominator *= i; 
+		long gcd = gcd(num, denominator);
+		denominator /= gcd;
+		num /= gcd;
+		print(num + "/" + denominator);
+	}
+
+	static long gcd(long a, long b) {
+		long max = Math.max(a, b), min = Math.min(a, b);
+		while(true) {
+			long re = max % min;
+			if(re == 0) break;
+			max = min;
+			min = re;
+		} 
+		return min;
+	}
+
+	static int tenExp(int n) {
+		if(expdp.size() >= n + 1) return expdp.get(n);
+		int idx = expdp.size();
+		int tmp = expdp.get(idx - 1);
+		
+		while(idx <= n) {
+			tmp = (tmp * 10) % k;
+			expdp.add(tmp);
+			idx++;
+		}
+		return tmp;
 	}
 
 	static int toi(String s) { return Integer.parseInt(s); }
