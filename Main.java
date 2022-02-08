@@ -4,47 +4,88 @@ import java.io.*;
 public class Main {
 	static BufferedReader br;
 	static StringBuilder sb = new StringBuilder();
+	static int log;
 	public static void main(String[] args) throws IOException {
 		br = new BufferedReader(new InputStreamReader(System.in));
+		int n = toi(br.readLine());
 		int[] arr;
-		int m = toi(br.readLine());
-		int[] y = new int[m + 1];
-		int n = (int)(Math.log(m) / Math.log(2));
-		// int[][] sparse = new int[m + 1][11];
-		ArrayList<ArrayList<Integer>> sparse = new ArrayList<>();
-		sparse.add(new ArrayList<>());
-		
-		arr = getArr();
-		for(int i = 0; i < m; i++) {
-			ArrayList<Integer> tmp = new ArrayList<>();
-			tmp.add(arr[i]);
-			sparse.add(tmp);
-		}
+		Node[] nodes = new Node[n];
 
-		int query = toi(br.readLine());
+		for(int i = 0; i < n; i++) nodes[i] = new Node(i);
 
-		for(int i = 0; i < query; i++) {
+		log = (int)(Math.log(100000) / Math.log(2));
+
+		int[][] disperse_parent = new int[n][log + 1];
+		for(int[] ar: disperse_parent) Arrays.fill(ar, -1);
+
+		for(int i = 0; i < n - 1; i++) {
 			arr = getArr();
-			int num = arr[0], x = arr[1];
-			int digit = 0, ans = x;
+			int a = arr[0] - 1, b = arr[1] - 1;
+			nodes[a].list.add(nodes[b]);
+			nodes[b].list.add(nodes[a]);
+		}	
 
-			while(num > 0) {	
-				if((num & 1) == 1) {
-					if(sparse.get(1).size() <= digit) {
-						for(int j = sparse.get(1).size() ; j <= digit ; j++) {
-							for(int idx = 1; idx <= m; idx++) {
-								sparse.get(idx).add(sparse.get(sparse.get(idx).get(j - 1)).get(j - 1));
-							}
-						}
-					}
-					ans = sparse.get(ans).get(digit);
-				}
-				num >>= 1;
-				digit++;
-			}
-			sb.append(ans).append("\n");
+		dfs(nodes[0], disperse_parent);
+		getDT(disperse_parent);
+
+		int m = toi(br.readLine());
+
+		for(int i = 0; i < m; i++) {
+			arr = getArr();
+			int a = arr[0] - 1, b = arr[1] - 1;
+			sb.append(lca(disperse_parent, nodes, a, b) + 1).append("\n");
 		}
 		print(sb);
+	}
+
+	static int lca(int[][] disperse_parent, Node[] nodes, int a, int b) {
+		if(nodes[a].depth < nodes[b].depth) {
+			int tmp = a;
+			a = b;
+			b = tmp;
+		} 
+		for(int i = log; i >= 0; i--) {
+			if(nodes[a].depth - nodes[b].depth >= (1 << i)) a = disperse_parent[a][i];
+		}
+
+		if(a == b) return a;
+
+		for(int i = log; i >= 0; i--) {
+			if(disperse_parent[a][i] != disperse_parent[b][i]) {
+				a = disperse_parent[a][i];
+				b = disperse_parent[b][i];
+			}
+		}
+
+		return disperse_parent[a][0];
+	}
+
+	static void getDT(int[][] disperse_parent) {
+		for(int j = 1; j <= log; j++) {
+			for(int i = 0; i < disperse_parent.length; i++) {
+				if(disperse_parent[i][j - 1] == -1) continue;
+				disperse_parent[i][j] = disperse_parent[disperse_parent[i][j - 1]][j - 1];
+			}
+		}
+	}
+
+	static void dfs(Node node, int[][] disperse_parent) {
+		for(Node child : node.list) {
+			if(node.parent == child.idx) continue;
+			disperse_parent[child.idx][0] = node.idx;
+			child.parent = node.idx;
+			child.depth = node.depth + 1;
+
+			dfs(child, disperse_parent);
+		}
+	}
+
+	static class Node {
+		int idx;
+		int parent = -1;
+		int depth = 0;
+		ArrayList<Node> list = new ArrayList<>();
+		Node(int idx) { this.idx = idx; }
 	}
 
 	static int toi(String s) { return Integer.parseInt(s); }
