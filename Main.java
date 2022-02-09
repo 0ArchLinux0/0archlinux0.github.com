@@ -4,49 +4,42 @@ import java.io.*;
 public class Main {
 	static BufferedReader br;
 	static StringBuilder sb = new StringBuilder();
-	static int INF = 987654321;
-	static int pal[][];
 	public static void main(String[] args) throws IOException {
 		br = new BufferedReader(new InputStreamReader(System.in));
-		String str = br.readLine();
-		int len = str.length();
-		int[][] dp = new int[len][len];
-		pal = new int[len][len];
-		for(int[] ar: dp) Arrays.fill(ar, INF);
-		for(int[] ar: pal) Arrays.fill(ar, -1);
+		StringBuilder sb = new StringBuilder();
+		String t = br.readLine(), p = br.readLine();
+		int[] pi = new int[p.length()]; 
+		ArrayList<Integer> al = new ArrayList<>();
+		getPi(pi, p);
+		int l = 0, r = 0, cnt = 0;
 
-		int ans = solve(dp, str, 0, len - 1);
-		print(ans);
+		while(l < t.length()) {
+			while(r > 0 && t.charAt(l) != p.charAt(r)) r = pi[r - 1];
+			if(t.charAt(l) == p.charAt(r)) {
+				if(r == p.length() - 1) {
+					cnt++;
+					al.add(l + 2 - p.length());
+					r = pi[r];
+				}
+				else r++;
+			} 
+			l++;
+		}
+
+		println(cnt);
+		for(int e: al) sb.append(e).append(" ");
+		print(sb);
 	}
 
-	static int solve(int[][] dp, String str, int l, int r) {
-		if(dp[l][r] != INF) return dp[l][r];
-		if(isPalindrome(str, l, r)) return dp[l][r] =  1;
-		int min = INF;
-		for(int idx = l + 1; idx <= r; idx++) {
-			if(isPalindrome(str, idx, r)) {
-				min = Math.min(min, solve(dp, str, l, idx - 1));
-			}
+	static public void getPi(int[] pi, String p) {
+		int l = 0;
+		for(int r = 1; r < p.length(); r++) {
+			while(l > 0 && p.charAt(l) != p.charAt(r)) l = pi[l - 1];
+			if(p.charAt(l) == p.charAt(r)) pi[r] = ++l;
 		}
-		
-		return dp[l][r] = min + 1;
-	}
-
-	static boolean isPalindrome(String s, int l , int r) {
-		if(pal[l][r] != -1) return pal[l][r] ==  1 ? true : false;
-		int origL = l, origR = r;
-		while(l < r) {
-			if(s.charAt(l++) != s.charAt(r--)) {
-				pal[origL][origR] = 0;
-				return false;
-			}
-		}
-		pal[origL][origR] = 1;
-		return true;
 	}
 
 	static int toi(String s) { return Integer.parseInt(s); }
-	static long tol(String s) { return Long.parseLong(s); }
 	static String[] getLine() throws IOException { return br.readLine().split(" "); }	
 	static int[] getArr() throws IOException { return Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray(); }
 	static <T> void print(T s) { System.out.print(s); }
