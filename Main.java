@@ -4,178 +4,106 @@ import java.io.*;
 public class Main {
 	static BufferedReader br;
 	static StringBuilder sb = new StringBuilder();
-	static int log, n;
-	static long[][] costArr;
-	static int[][] parent;
+	static int sccIdx = 1, groupIdx = 0;
+	static Stack<Integer> stack = new Stack<>();
+	static int[] parent;
+	static int[] group;
+	static boolean[] finished;
 	static Node[] nodes;
 	public static void main(String[] args) throws IOException {
 		br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
-		n = toi(br.readLine());
-		log = (int)(Math.log(n) / Math.log(2)) + 1;
-		nodes = new Node[n];
-		for(int i = 0; i < n; i++) nodes[i] = new Node(i);
+		ArrayList<Edge> edges = new ArrayList<>();
+		int test = toi(br.readLine());
 		int[] arr;
 
-		for(int i = 0; i < n - 1; i++) {
+		for(int iter = 0; iter < test; iter++) {
 			arr = getArr();
-			int a = arr[0] - 1, b = arr[1] - 1, cost = arr[2];
-			nodes[a].list.add(new Edge(nodes[b], cost));
-			nodes[b].list.add(new Edge(nodes[a], cost));
-		}
-
-		costArr = new long[n][log + 1];
-		parent = new int[n][log + 1];
-		for(long[] ar: costArr)Arrays.fill(ar, -1);	
-		for(int[] ar: parent)Arrays.fill(ar, -1);	
-
-		initSparseDFS(nodes[0]);
-
-		fillSparseParent();
-		fillSparseCost();
-
-		int m = toi(br.readLine());
-
-		for(int i = 0; i < m; i++) {
-			arr = getArr();
-			int a = arr[1] - 1, b = arr[2] - 1;
-			if(arr[0] == 1) { // costArr from a to b 
-				sb.append(getCost(a, b)).append("\n");
-			} else { // in path a~b : k th point
-				sb.append(getKthVertext(a, b, arr[3]) + 1).append("\n");
+			int n = arr[0], m = arr[1];
+			parent = new int[n];
+			group = new int[n];
+			Arrays.fill(parent, -1);
+			edges.clear();
+			finished = new boolean[n];
+			nodes = new Node[n];
+			for(int i = 0; i < n; i++) nodes[i] = new Node(i);
+			
+			for(int i = 0; i < m; i++) {
+				arr = getArr();
+				int a = arr[0], b = arr[1];
+				nodes[a].list.add(b);
+				edges.add(new Edge(a, b));
 			}
-		}
 
+			sccIdx = 1;
+			groupIdx = 0;
+
+			for(int i = 0; i < n; i++) {
+				if(parent[i] == -1) scc(i);
+			}
+
+			
+
+			int[] deg = new int[groupIdx];
+
+			for(Edge edge: edges) {
+				int a = edge.from, b = edge.to;
+				if(group[a] == group[b]) continue;
+				deg[group[b]]++;
+			}
+
+			int degZeroCnt = 0, degZeroIdx = 0;
+			for(int i = 0; i < groupIdx; i++) {
+				if(deg[i] == 0) {
+					degZeroCnt++;
+					degZeroIdx = i;
+				}
+			}
+
+			if(degZeroCnt != 1) sb.append("Confused\n");
+			else {
+				ArrayList<Integer> tmp = new ArrayList<>();
+				for(int i = 0; i < n; i++) 
+					if(group[i] == degZeroIdx) tmp.add(i);
+				Collections.sort(tmp);
+				for(int e: tmp) sb.append(e).append("\n");
+			}
+			sb.append("\n");
+			if(iter != test - 1) br.readLine();
+		}
 		print(sb);
 	}
 
-	static long getCost(int a, int b) {
-		long cost = 0l;
-
-		if(nodes[a].depth < nodes[b].depth) {
-			int tmp = a;
-			a = b;
-			b = tmp;
+	static int scc(int idx) {
+		int origVal = parent[idx] = sccIdx++;
+		stack.push(idx);
+		for(int v: nodes[idx].list) {
+			if(parent[v] == -1) parent[idx] = Math.min(parent[idx], scc(v));
+			else if(finished[v] == false) parent[idx] = Math.min(parent[idx], parent[v]);
 		}
 
-		for(int i = log; i >= 0; i--) 
-			if(nodes[a].depth - nodes[b].depth >= 1 << i) {
-				cost += costArr[a][i];
-				a = parent[a][i];
+		if(parent[idx] == origVal) {
+			while(true) {
+				int pop = stack.pop();
+				finished[pop] = true;
+				group[pop] = groupIdx;
+				if(pop == idx) break;
 			}
-		
-		if(a == b) return cost;
-
-		for(int i = log; i >= 0; i--) {
-			if(parent[a][i] != parent[b][i]) {
-				cost += (costArr[a][i] + costArr[b][i]);
-				a = parent[a][i];
-				b = parent[b][i];
-			}
-		}
-		return cost + costArr[a][0] + costArr[b][0];
-	}
-
-	static int getKthVertext(int a, int b, int targetIdx) {
-		int nth = 1;
-		boolean swapped = false;
-		
-		if(nodes[a].depth < nodes[b].depth) {
-			int tmp = a;
-			a = b;
-			b = tmp;
-			swapped = true;
-		}
-
-		int origB = b, origA = a;
-
-		for(int i = log; i >= 0; i--) 
-			if(nodes[a].depth - nodes[b].depth >= 1 << i) {
-				nth += (1 << i);
-				a = parent[a][i];
-			}
-		
-		int elavateCnt = 0;
-
-		if(a != b) {
-			for(int i = log; i >= 0; i--) {
-				if(parent[a][i] != parent[b][i]) {
-					a = parent[a][i];
-					b = parent[b][i];
-					elavateCnt += (1 << i);
-				}
-			}
-			elavateCnt++;
+			groupIdx++;
 		} 
 
-		int totalLen = nth + 2 * elavateCnt;
-		if(swapped) targetIdx = totalLen + 1 - targetIdx;
-		
-		if(nth + elavateCnt >= targetIdx) {
-			nth = 1;
-			for(int i = log; i >= 0; i--) {
-				if(targetIdx - nth >= 1 << i) {
-					nth += (1 << i);
-					origA = parent[origA][i];
-				} 
-			}
-			return nodes[origA].idx;
-		}
-
-		// From nth + elavateCnt => 2 * elavateCnt + nth, targetIdx => 
-		targetIdx = totalLen + 1 - targetIdx;
-		nth = 1;
-		for(int i = log; i >= 0; i--) {
-			if(targetIdx - nth >= 1 << i) {
-				nth += (1 << i);
-				origB = parent[origB][i];
-			}
-		} 
-
-		return nodes[origB].idx;
-	}
-
-	static void initSparseDFS(Node node) {
-		for(Edge edge: node.list) {
-			if(node.parent == edge.to.idx) continue;
-			edge.to.parent = node.idx;
-			parent[edge.to.idx][0] = node.idx;
-			costArr[edge.to.idx][0] = (long)edge.cost;
-			edge.to.depth = node.depth + 1;
-			initSparseDFS(edge.to);
-		}
-	}
-
-	static void fillSparseParent() {
-		for(int j = 1; j <= log; j++) {
-			for(int i = 0; i < n; i++) {
-				if(parent[i][j - 1] != -1) 
-					parent[i][j] = parent[parent[i][j - 1]][j - 1];
-			}
-		}
-	}
-
-	static void fillSparseCost() {
-		for(int j = 1; j <= log; j++) {
-			for(int i = 0; i < n; i++) {
-				if(parent[i][j] != - 1) 
-					costArr[i][j] = costArr[i][j - 1] + costArr[parent[i][j - 1]][j - 1];
-			}
-		}
+		return parent[idx];
 	}
 
 	static class Node {
 		int idx;
-		int parent = -1;
-		int depth = 0;
-		ArrayList<Edge> list = new ArrayList<>();
+		ArrayList<Integer> list = new ArrayList<>();
 		public Node(int idx) { this.idx = idx; }
 	}
 
 	static class Edge {
-		Node to;
-		int cost;
-		public Edge(Node to, int cost) { this.to = to; this.cost = cost; }
+		int from, to;
+		public Edge(int from, int to) { this.from = from; this.to = to; }
 	}
 
 	static int toi(String s) { return Integer.parseInt(s); }
