@@ -4,75 +4,28 @@ import java.io.*;
 public class Main {
 	static BufferedReader br;
 	static StringBuilder sb = new StringBuilder();
-	static int sccIdx = 1;
-	static Stack<Integer> stack = new Stack<>();
-	static int[] parent;
-	static boolean[] finished;
-	static boolean cantSolve = false;
-	static Node[] nodes;
-	static int n;
 	public static void main(String[] args) throws IOException {
 		br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
-		int[] arr = getArr();
-		n = arr[0];
-		int m = arr[1];
-		nodes = new Node[2 * n];
-		finished = new boolean[2 * n];
-		parent = new int[2 * n];
-		
-		for(int i = 1; i <=n; i++) nodes[convert(i)] = new Node(i);
-		for(int i = -n; i <= -1; i++) nodes[convert(i)] = new Node(i);
-
-		for(int i = 0; i < m; i++) {
+		int test = toi(br.readLine());
+		int[] arr;
+		int[][] mex;
+		for(int iter = 0; iter < test; iter++) {
+			int n = toi(br.readLine()); //len of arry
 			arr = getArr();
-			int a = arr[0], b = arr[1], bit1 = a > 0 ? 1 : -1, bit2 = b > 0 ? 1 : -1;
-			nodes[convert((-1) * a)].list.add(b);
-			nodes[convert((-1) * b)].list.add(a);
-		}
-
-		for(int j = 0; j < 2 * n ; j++) {
-			if(parent[j] == 0) scc(j);
-			if(cantSolve) {
-				print(0);
-				return;
+			mex = new int[n][n];
+			for(int i = 0; i < n; i++) mex[i] = (i == 0 ? 1 : (i - 1));
+			for(int diff = 1; diff < n; diff++) {
+				for(int left = 0; left < n - diff; left++) {
+					mex[left][left + diff] = getMex(mex[])
+				}
 			}
 		}
-		print(1);
+		print(sb);
 	}
 
-	//0 ~ (n-1) : 1 ~(n) || n ~ (2n - 1): -1 ~ -n
-	static int convert(int idx) { return idx > 0 ? idx - 1 : n - 1 - idx; }
-	static int rev(int idx) { return idx < n ? idx + 1 : n - 1 - idx; }
-
-	static int scc(int idx) {
-		int origVal = parent[idx] = sccIdx++;
-		stack.push(idx);
-		for(int e: nodes[idx].list) {
-			if(parent[convert(e)] == 0) parent[idx] = Math.min(parent[idx], scc(convert(e)));
-			else if(finished[convert(e)] == false) parent[idx] = Math.min(parent[idx], parent[convert(e)]);
-		}
-
-		if(origVal == parent[idx]) {
-			HashSet<Integer> hs = new HashSet<>();
-			while(true) {
-				int pop = stack.pop();
-				int rev = rev(pop);
-				if(hs.contains((-1) * rev)) cantSolve = true;
-				hs.add(rev);
-				finished[pop] = true;
-				if(pop == idx) break;
-			}
-		}
-
-		return parent[idx];
-	}
-
-	static class Node {
-		int idx;
-		ArrayList<Integer> list = new ArrayList<>();
-
-		public Node(int idx) { this.idx = idx; }
+	static int getMex(int i) {
+		ireturn i - 1;
 	}
 	
 	static int toi(String s) { return Integer.parseInt(s); }
