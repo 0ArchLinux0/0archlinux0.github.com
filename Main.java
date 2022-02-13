@@ -4,82 +4,29 @@ import java.io.*;
 public class Main {
 	static BufferedReader br;
 	static StringBuilder sb = new StringBuilder();
-	static int n;
-	static Node[] nodes;
-	static int sccIdx = 1;
-	static int[] parent;
-	static boolean[] finished;
-	static boolean cantSolve = false;
-	static Stack<Integer> stack = new Stack<>();
 	public static void main(String[] args) throws IOException {
 		br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 		String line;
 		int[] arr;
-		while(true) {
-			if((line = br.readLine()) == null) break;
-			arr = Arrays.stream(line.split(" ")).mapToInt(Integer::parseInt).toArray();
-			n = arr[0];
-			int m = arr[1];
-			nodes = new Node[2 * n];
-			parent = new int[2 * n];
-			finished = new boolean[2 * n];
-			cantSolve = false;
-			sccIdx = 1;
+		int test = toi(br.readLine());
 
-			// for(int i = 0; i < 2 * n; i++) nodes[i] = new Node(rev(i));
-			for(int i = 1; i <= n; i++) nodes[convert(i)] = new Node(i);
-			for(int i = -n; i < 0; i++) nodes[convert(i)] = new Node(i);
-
-			for(int i = 0; i < m; i++) {
-				arr = getArr();
-				int a = arr[0], b = arr[1];
-				nodes[convert(a * -1)].list.add(b);
-				nodes[convert(b * -1)].list.add(a);
-			}
-            nodes[convert(-1)].list.add(1);
-            for(int i = 0; i < 2 * n; i++) {
-                if(parent[i] == 0) scc(i);
-            }
-			sb.append(cantSolve ? "no" : "yes").append("\n");
+		for(int iter = 0; iter < test; iter++) {
+			int n = toi(br.readLine());
+			arr = getArr();
+			ArrayList<Integer> zeroIdxList = new ArrayList<>();
+			int ans = n * (n + 1) * (n + 2) / 6;
+			for(int i = 0; i < n; i++) if(arr[i] == 0) zeroIdxList.add(i);
+			ans += calc(zeroIdxList, n);
+			sb.append(ans).append("\n");
 		}
 		print(sb);
 	}
 
-	static int scc(int idx) {
-		int origVal = parent[idx] = sccIdx++;
-		stack.push(idx);
-		for(int v : nodes[idx].list) {
-			if(parent[convert(v)] == 0) parent[idx] = Math.min(parent[idx], scc(convert(v)));
-			else if(!finished[convert(v)]) parent[idx] = Math.min(parent[idx], parent[convert(v)]);
-		}
-
-		if(origVal == parent[idx]) {
-			HashSet<Integer> hm = new HashSet<>();
-			while(true) {
-				int pop = stack.pop();
-				int revVal = rev(pop);
-				finished[pop] = true;
-				if(hm.contains(revVal * (-1))) cantSolve = true;
-				hm.add(revVal);
-				if(idx == pop) break;
-			}
-		}
-		return parent[idx];
-	}
-
-	static int convert(int val) {
-		return val > 0 ? val - 1 : n - 1 - val;
-	}
-
-	static int rev(int idx) {
-		return idx < n ? idx + 1 : n - 1 - idx;
-	}
-
-	static class Node {
-		int idx;
-		ArrayList<Integer> list = new ArrayList<>();
-		public Node(int idx) { this.idx = idx; }
+	static int calc(ArrayList<Integer> al, int n) {
+		int sum = 0;
+		for(int idx: al) sum += (1 + idx) * (n - idx);
+		return sum;
 	}
 	
 	static int toi(String s) { return Integer.parseInt(s); }
