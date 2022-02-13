@@ -11,6 +11,9 @@ tags:
     Algorithm,
     Coding Interview,
     Codeforces,
+    review,
+    Greedy,
+    Math,
     MEX and Array,
   ]
 pin: false
