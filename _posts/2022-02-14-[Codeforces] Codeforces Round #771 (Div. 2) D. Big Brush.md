@@ -1,3 +1,26 @@
+---
+title: Codeforces Round 771 (Div. 2) D. Big Brush
+author: MINJUN PARK
+date: 2022-02-14 23:35:00 +0900
+categories: [Codeforces, Java]
+tags:
+  [
+    Code Block,
+    Code Snippet,
+    Java,
+    Algorithm,
+    Coding Interview,
+    Codeforces,
+    Big Brush
+  ]
+pin: false
+---
+
+[Link] <https://codeforces.com/contest/1638/problem/D>
+
+<br>
+
+```java
 import java.util.*;
 import java.io.*;
 
@@ -22,9 +45,9 @@ public class Main {
 		int[] dx = new int[]{-1, 0, 1, -1, 1, -1, 0, 1};
 		boolean[][] visit = new boolean[n][m];
 		int cnt = 0;
-		
+
 		findSquare(q);
-		
+
 		while(!q.isEmpty()) {
 			Point point = q.poll();
 			int ci = point.i, cj = point.j;
@@ -98,7 +121,7 @@ public class Main {
 				if(
 					graph[i][j] == graph[i + 1][j] &&
 					graph[i][j] == graph[i][j + 1] &&
-					graph[i][j] == graph[i + 1][j + 1] 
+					graph[i][j] == graph[i + 1][j + 1]
 				) {
 					q.add(new Point(i, j, graph[i][j]));
 				}
@@ -123,13 +146,14 @@ public class Main {
 		public History(Point point, int color) {
 			this.point = point;
 			this.color = color;
-		}	
+		}
 	}
-	
+
 	static int toi(String s) { return Integer.parseInt(s); }
 	static long tol(String s) { return Long.parseLong(s); }
-	static String[] getLine() throws IOException { return br.readLine().split(" "); }	
+	static String[] getLine() throws IOException { return br.readLine().split(" "); }
 	static int[] getArr() throws IOException { return Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray(); }
 	static <T> void print(T s) { System.out.print(s); }
 	static <T> void println(T s) { System.out.println(s); }
 }
+```
