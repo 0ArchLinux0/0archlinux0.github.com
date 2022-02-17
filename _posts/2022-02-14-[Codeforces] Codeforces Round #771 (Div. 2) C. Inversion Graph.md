@@ -10,6 +10,8 @@ tags:
     Java,
     Algorithm,
     Coding Interview,
+		Div 2,
+		Codeforces Round,
     Codeforces,
     Inversion Graph
   ]

@@ -2,7 +2,7 @@
 title: Codeforces Round 770 (Div. 2) B. Fortune Telling
 author: MINJUN PARK
 date: 2022-02-07 23:35:00 +0900
-categories: [Codeforces, Java]
+categories: [Codeforces, Codeforces Round]
 tags:
   [
     Code Block,
@@ -10,6 +10,7 @@ tags:
     Java,
     Algorithm,
     Coding Interview,
+		Div 2,
     Codeforces,
     Fortune Telling
   ]

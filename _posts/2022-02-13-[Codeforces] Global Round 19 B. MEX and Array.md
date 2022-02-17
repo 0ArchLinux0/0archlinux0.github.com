@@ -2,7 +2,7 @@
 title: Codeforces Global Round 19 B. MEX and Array
 author: MINJUN PARK
 date: 2022-02-13 11:30:00 +0900
-categories: [Codeforces, Java]
+categories: [Codeforces, Codeforces Global Round]
 tags:
   [
     Code Block,
@@ -11,6 +11,7 @@ tags:
     Algorithm,
     Coding Interview,
     Codeforces,
+		Codeforces Global Round,
     review,
     Greedy,
     Math,

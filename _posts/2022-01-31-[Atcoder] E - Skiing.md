@@ -2,7 +2,7 @@
 title: AtCoder. ABC 237 E - Skiing
 author: MINJUN PARK
 date: 2022-01-31 08:48:00 +0900
-categories: [AtCoder, Java]
+categories: [AtCoder, ABC Contest]
 tags:
   [
     Java,

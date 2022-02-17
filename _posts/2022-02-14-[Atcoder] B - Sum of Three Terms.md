@@ -2,7 +2,7 @@
 title: AtCoder. Regular Contest 135 B - Sum of Three Terms
 author: MINJUN PARK
 date: 2022-02-14 02:32:00 +0900
-categories: [AtCoder, Java]
+categories: [AtCoder, Regular Contest]
 tags:
   [
     Java,
@@ -10,7 +10,7 @@ tags:
 		Coding Interview,
     AtCoder,
     XOR,
-    Regular contest
+    Regular Contest
   ]
 pin: false
 ---

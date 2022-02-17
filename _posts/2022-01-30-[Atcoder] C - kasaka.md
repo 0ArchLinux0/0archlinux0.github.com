@@ -2,7 +2,7 @@
 title: AtCoder. ABC 237 C - kasaka
 author: MINJUN PARK
 date: 2022-01-30 21:20:00 +0900
-categories: [AtCoder, Java]
+categories: [AtCoder, ABC Contest]
 tags:
   [
     Java,

@@ -2,7 +2,7 @@
 title: AtCoder. ABC 235 E - MST + 1
 author: MINJUN PARK
 date: 2022-01-16 02:00:00 +0900
-categories: [AtCoder, Java]
+categories: [AtCoder, ABC Contest]
 tags:
   [
     Java,

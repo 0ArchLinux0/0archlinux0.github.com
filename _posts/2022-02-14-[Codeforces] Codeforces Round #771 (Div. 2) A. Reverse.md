@@ -2,7 +2,7 @@
 title: Codeforces Round 771 (Div. 2) A. Reverse
 author: MINJUN PARK
 date: 2022-02-14 23:35:00 +0900
-categories: [Codeforces, Java]
+categories: [Codeforces, Codeforces Round]
 tags:
   [
     Code Block,
@@ -10,6 +10,8 @@ tags:
     Java,
     Algorithm,
     Coding Interview,
+		Codeforces Round,
+		Div 2,
     Codeforces,
     Reverse
   ]
