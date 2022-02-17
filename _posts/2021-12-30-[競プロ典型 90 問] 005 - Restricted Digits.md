@@ -1,5 +1,5 @@
 ---
-title: Atcoder. 005 - Restricted Digits(7)
+title: AtCoder. 005 - Restricted Digits(7)
 author: MINJUN PARK
 date: 2021-12-30 02:44:00 +0900
 categories: [AtCoder, 競プロ典型 90 問]
@@ -13,12 +13,12 @@ tags:
     AtCoder,
     Restricted Digits,
     review,
-    difficult
+    difficult,
   ]
 pin: false
 ---
 
-[Link] <https://atcoder.jp/contests/typical90/tasks/typical90_e>
+[Link] <https://AtCoder.jp/contests/typical90/tasks/typical90_e>
 
 <br>
 
@@ -76,7 +76,7 @@ public class Main {
     long ans1 = 0;
     for(int i = 0; i < b; i++) {
       ans1 += finalOp[0][i] * dp[i];
-      ans1 %= con;  
+      ans1 %= con;
     }
     System.out.println(ans1);
   }
@@ -87,7 +87,7 @@ public class Main {
     for(int i = 0, la = a.length; i < la; i++) {
       for(int j = 0, lb = b[0].length; j < lb; j++) {
         for(int k = 0; k < len; k++) {
-          ans[i][j] += a[i][k]*b[k][j];  
+          ans[i][j] += a[i][k]*b[k][j];
           ans[i][j] %= con;
         }
       }
@@ -99,7 +99,7 @@ public class Main {
     long[] ans = new long[b.length];
     for(int i = 0, la = a.length; i < la; i++) {
       for(int j = 0, lab = b.length; j < lab; j++) {
-        ans[i] += a[i][j] * b[j];  
+        ans[i] += a[i][j] * b[j];
         ans[i] %= con;
       }
     }

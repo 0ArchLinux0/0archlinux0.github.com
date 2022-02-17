@@ -1,5 +1,5 @@
 ---
-title: Atcoder. 002 - Encyclopedia of Parentheses(3)
+title: AtCoder. 002 - Encyclopedia of Parentheses(3)
 author: MINJUN PARK
 date: 2021-12-30 02:38:00 +0900
 categories: [AtCoder, 競プロ典型 90 問]
@@ -11,12 +11,12 @@ tags:
     Algorithm,
     Coding Interview,
     AtCoder,
-    Encyclopedia of Parentheses
+    Encyclopedia of Parentheses,
   ]
 pin: false
 ---
 
-[Link] <https://atcoder.jp/contests/typical90/tasks/typical90_b>
+[Link] <https://AtCoder.jp/contests/typical90/tasks/typical90_b>
 
 <br>
 

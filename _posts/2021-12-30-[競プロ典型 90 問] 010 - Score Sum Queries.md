@@ -1,5 +1,5 @@
 ---
-title: Atcoder. 010 - Score Sum Queries(2)
+title: AtCoder. 010 - Score Sum Queries(2)
 author: MINJUN PARK
 date: 2021-12-30 02:50:00 +0900
 categories: [AtCoder, 競プロ典型 90 問]
@@ -11,12 +11,12 @@ tags:
     Algorithm,
     Coding Interview,
     AtCoder,
-    Score Sum Queries
+    Score Sum Queries,
   ]
 pin: false
 ---
 
-[Link] <https://atcoder.jp/contests/typical90/tasks/typical90_j>
+[Link] <https://AtCoder.jp/contests/typical90/tasks/typical90_j>
 
 <br>
 

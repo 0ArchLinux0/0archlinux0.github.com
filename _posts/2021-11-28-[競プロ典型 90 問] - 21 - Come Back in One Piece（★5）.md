@@ -1,5 +1,5 @@
 ---
-title: Atcoder. 021 - Come Back in One Piece(5)
+title: AtCoder. 021 - Come Back in One Piece(5)
 author: MINJUN PARK
 date: 2021-11-28 3:02:00 +0900
 categories: [AtCoder, 競プロ典型 90 問]
@@ -13,12 +13,12 @@ tags:
     AtCoder,
     Graph,
     SCC,
-    Tarjan's algorithm
+    Tarjan's algorithm,
   ]
 pin: false
 ---
 
-[Link] <https://atcoder.jp/contests/typical90/tasks/typical90_u>
+[Link] <https://AtCoder.jp/contests/typical90/tasks/typical90_u>
 
 <br>
 Using class would make code lot more readable and easy to understand but I wanted to solved it fast since it's late.
@@ -59,7 +59,7 @@ public class Main {
     for(int desV : edge.get(v)) {
       if(parentArr[desV] == 0) parent = Math.min(parent, dfs(desV));
       else if(!end[desV]) parent = Math.min(parent, parentArr[desV]);
-    } 
+    }
 
     if(parent == parentArr[v]) {
       while(true) {

@@ -1,20 +1,20 @@
 ---
-title: Atcoder. ABC 237 D - LR insertion
+title: AtCoder. ABC 237 D - LR insertion
 author: MINJUN PARK
 date: 2022-01-30 21:50:00 +0900
-categories: [Atcoder, Java]
+categories: [AtCoder, Java]
 tags:
   [
     Java,
     Algorithm,
 		Coding Interview,
-    Atcoder,
+    AtCoder,
     ABC contest
   ]
 pin: false
 ---
 
-[Link] <https://atcoder.jp/contests/abc237/tasks/abc237_d>
+[Link] <https://AtCoder.jp/contests/abc237/tasks/abc237_d>
 <br>
 
 ```java
@@ -34,7 +34,7 @@ public class Main {
 		for(int i = 0; i < s.length(); i++) {
 			char ch = s.charAt(i);
 			if(ch == 'L') {
-				nodes[i].left = nodes[i + 1]; 
+				nodes[i].left = nodes[i + 1];
 			} else nodes[i].right = nodes[i + 1];
 		}
 
@@ -56,7 +56,7 @@ public class Main {
 	}
 
 	static int toi(String s) { return Integer.parseInt(s); }
-	static String[] getLine() throws IOException { return br.readLine().split(" "); }	
+	static String[] getLine() throws IOException { return br.readLine().split(" "); }
 	static int[] getArr() throws IOException { return Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray(); }
 	static <T> void print(T s) { System.out.print(s); }
 	static <T> void println(T s) { System.out.println(s); }

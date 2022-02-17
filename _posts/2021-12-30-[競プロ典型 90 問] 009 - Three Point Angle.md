@@ -1,5 +1,5 @@
 ---
-title: Atcoder. 009 - Three Point Angle(6)
+title: AtCoder. 009 - Three Point Angle(6)
 author: MINJUN PARK
 date: 2021-12-30 02:50:00 +0900
 categories: [AtCoder, 競プロ典型 90 問]
@@ -12,12 +12,12 @@ tags:
     Coding Interview,
     AtCoder,
     Three Point Angle,
-    review
+    review,
   ]
 pin: false
 ---
 
-[Link] <https://atcoder.jp/contests/typical90/tasks/typical90_i>
+[Link] <https://AtCoder.jp/contests/typical90/tasks/typical90_i>
 
 <br>
 
@@ -60,7 +60,7 @@ public class Main {
             min = Math.min(smaller, min);
             break;
           }
-          if(sort[mid] < toFind) l = mid; 
+          if(sort[mid] < toFind) l = mid;
           else if(sort[mid] == toFind) {
             min = 0;
             break;

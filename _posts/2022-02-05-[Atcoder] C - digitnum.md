@@ -1,20 +1,20 @@
 ---
-title: Atcoder. ABC 238 C - digitnum
+title: AtCoder. ABC 238 C - digitnum
 author: MINJUN PARK
 date: 2022-02-05 09:00:00 +0900
-categories: [Atcoder, Java]
+categories: [AtCoder, Java]
 tags:
   [
     Java,
     Algorithm,
 		Coding Interview,
-    Atcoder,
+    AtCoder,
     ABC contest
   ]
 pin: false
 ---
 
-[Link] <https://atcoder.jp/contests/abc238/tasks/abc238_c>
+[Link] <https://AtCoder.jp/contests/abc238/tasks/abc238_c>
 <br>
 
 ```java
@@ -51,7 +51,7 @@ public class Main {
 
 	static int toi(String s) { return Integer.parseInt(s); }
 	static long tol(String s) { return Long.parseLong(s); }
-	static String[] getLine() throws IOException { return br.readLine().split(" "); }	
+	static String[] getLine() throws IOException { return br.readLine().split(" "); }
 	static int[] getArr() throws IOException { return Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray(); }
 	static <T> void print(T s) { System.out.print(s); }
 	static <T> void println(T s) { System.out.println(s); }

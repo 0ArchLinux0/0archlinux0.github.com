@@ -1,14 +1,14 @@
 ---
-title: Atcoder. ABC 237 E - Skiing
+title: AtCoder. ABC 237 E - Skiing
 author: MINJUN PARK
 date: 2022-01-31 08:48:00 +0900
-categories: [Atcoder, Java]
+categories: [AtCoder, Java]
 tags:
   [
     Java,
     Algorithm,
 		Coding Interview,
-    Atcoder,
+    AtCoder,
     Graph,
     Dijkstra,
     review,
@@ -17,13 +17,13 @@ tags:
 pin: false
 ---
 
-[Link] <https://atcoder.jp/contests/abc237/tasks/abc237_e>
+[Link] <https://AtCoder.jp/contests/abc237/tasks/abc237_e>
 <br>
 Consider the following apth: Space 0 => Space x
-Path: upper, lower distance: U, D 
-  => happiness: D - 2 * U
-  => To maximize happiness : minimize U
-  => PriorityQue<Edge>: sort with upper distance
+Path: upper, lower distance: U, D
+=> happiness: D - 2 \* U
+=> To maximize happiness : minimize U
+=> PriorityQue<Edge>: sort with upper distance
 <br>
 
 ```java
@@ -101,7 +101,7 @@ public class Main {
 	}
 
 	static int toi(String s) { return Integer.parseInt(s); }
-	static String[] getLine() throws IOException { return br.readLine().split(" "); }	
+	static String[] getLine() throws IOException { return br.readLine().split(" "); }
 	static int[] getArr() throws IOException { return Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray(); }
 	static <T> void print(T s) { System.out.print(s); }
 	static <T> void println(T s) { System.out.println(s); }

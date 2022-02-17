@@ -1,5 +1,5 @@
 ---
-title: Atcoder. 014 - We Used to Sing a Song Together(3)
+title: AtCoder. 014 - We Used to Sing a Song Together(3)
 author: MINJUN PARK
 date: 2021-12-30 03:00:00 +0900
 categories: [AtCoder, 競プロ典型 90 問]
@@ -11,12 +11,12 @@ tags:
     Algorithm,
     Coding Interview,
     AtCoder,
-    We Used to Sing a Song Together
+    We Used to Sing a Song Together,
   ]
 pin: false
 ---
 
-[Link] <https://atcoder.jp/contests/typical90/tasks/typical90_n>
+[Link] <https://AtCoder.jp/contests/typical90/tasks/typical90_n>
 
 <br>
 
@@ -29,7 +29,7 @@ public class Main{
   static StringTokenizer st;
   public static void main(String[] args) throws IOException {
     StringBuilder sb = new StringBuilder();
-    readLine(); 
+    readLine();
     int n = getInt();
     int[] a = new int[n], b = new int[n];
     readLine();

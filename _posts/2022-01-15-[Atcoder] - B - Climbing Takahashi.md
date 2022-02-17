@@ -1,20 +1,20 @@
 ---
-title: Atcoder. ABC 235 B - Climbing Takahashi
+title: AtCoder. ABC 235 B - Climbing Takahashi
 author: MINJUN PARK
 date: 2022-01-15 21:00:00 +0900
-categories: [Atcoder, Java]
+categories: [AtCoder, Java]
 tags:
   [
     Java,
     Algorithm,
 		Coding Interview,
-    Atcoder,
+    AtCoder,
     ABC contest
   ]
 pin: false
 ---
 
-[Link] <https://atcoder.jp/contests/abc235/tasks/abc235_b>
+[Link] <https://AtCoder.jp/contests/abc235/tasks/abc235_b>
 <br>
 
 ```java
@@ -42,7 +42,7 @@ public class Main {
 
 
 	static int toi(String s) { return Integer.parseInt(s); }
-	static String[] getLine() throws IOException { return br.readLine().split(" "); }	
+	static String[] getLine() throws IOException { return br.readLine().split(" "); }
 	static <T> void println(T s) { System.out.println(s); }
 }
 ```

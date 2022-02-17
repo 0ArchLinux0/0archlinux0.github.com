@@ -1,20 +1,20 @@
 ---
-title: Atcoder. ABC 235 A - Rotate
+title: AtCoder. ABC 235 A - Rotate
 author: MINJUN PARK
 date: 2022-01-15 21:00:00 +0900
-categories: [Atcoder, Java]
+categories: [AtCoder, Java]
 tags:
   [
     Java,
     Algorithm,
 		Coding Interview,
-    Atcoder,
+    AtCoder,
     ABC contest
   ]
 pin: false
 ---
 
-[Link] <https://atcoder.jp/contests/abc235/tasks/abc235_a>
+[Link] <https://AtCoder.jp/contests/abc235/tasks/abc235_a>
 <br>
 
 ```java
@@ -29,7 +29,7 @@ public class Main {
 		String input = br.readLine();
 		int[] digit = new int[3];
 		for(int i = 0; i < 3; i++) digit[i] = input.charAt(i) - '0';
-		int ans = sum(digit[0], digit[1], digit[2]) + sum(digit[1], digit[2], digit[0]) + sum(digit[2], digit[0], digit[1]);		
+		int ans = sum(digit[0], digit[1], digit[2]) + sum(digit[1], digit[2], digit[0]) + sum(digit[2], digit[0], digit[1]);
 		println(ans);
 	}
 
@@ -38,7 +38,7 @@ public class Main {
 	}
 
 	static int toi(String s) { return Integer.parseInt(s); }
-	static String[] getLine() throws IOException { return br.readLine().split(" "); }	
+	static String[] getLine() throws IOException { return br.readLine().split(" "); }
 	static <T> void println(T s) { System.out.println(s); }
 }
 ```

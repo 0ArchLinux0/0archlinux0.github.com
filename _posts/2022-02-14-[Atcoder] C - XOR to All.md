@@ -1,21 +1,21 @@
 ---
-title: Atcoder. Regular Contest 135 C - XOR to All
+title: AtCoder. Regular Contest 135 C - XOR to All
 author: MINJUN PARK
 date: 2022-02-14 02:32:00 +0900
-categories: [Atcoder, Java]
+categories: [AtCoder, Java]
 tags:
   [
     Java,
     Algorithm,
 		Coding Interview,
-    Atcoder,
+    AtCoder,
     XOR,
     Regular contest
   ]
 pin: false
 ---
 
-[Link] <https://atcoder.jp/contests/arc135/tasks/arc135_c>
+[Link] <https://AtCoder.jp/contests/arc135/tasks/arc135_c>
 <br>
 
 ## IDEA

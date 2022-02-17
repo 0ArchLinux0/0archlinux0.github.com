@@ -1,5 +1,5 @@
 ---
-title: Atcoder. 003 - Longest Circular Road(4)
+title: AtCoder. 003 - Longest Circular Road(4)
 author: MINJUN PARK
 date: 2021-12-30 02:38:00 +0900
 categories: [AtCoder, 競プロ典型 90 問]
@@ -11,12 +11,12 @@ tags:
     Algorithm,
     Coding Interview,
     AtCoder,
-    Longest Circular Road
+    Longest Circular Road,
   ]
 pin: false
 ---
 
-[Link] <https://atcoder.jp/contests/typical90/tasks/typical90_c>
+[Link] <https://AtCoder.jp/contests/typical90/tasks/typical90_c>
 
 <br>
 
@@ -32,9 +32,9 @@ public class Main {
     ArrayList<HashSet<Integer>> connection = new ArrayList<HashSet<Integer>>();
     for(int i = 0; i < n; i++) {
       connection.add(new HashSet<>());
-    } 
+    }
     Stack<int[]> stack = new Stack<>();
-    for(int i = 1; i < n; i++) { 
+    for(int i = 1; i < n; i++) {
       st = new StringTokenizer(bf.readLine());
       int a = Integer.parseInt(st.nextToken());
       int b = Integer.parseInt(st.nextToken());

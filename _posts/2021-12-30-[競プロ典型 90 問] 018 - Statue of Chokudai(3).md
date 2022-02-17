@@ -1,5 +1,5 @@
 ---
-title: Atcoder. 018 - Statue of Chokudai(3)
+title: AtCoder. 018 - Statue of Chokudai(3)
 author: MINJUN PARK
 date: 2021-12-30 03:03:00 +0900
 categories: [AtCoder, 競プロ典型 90 問]
@@ -11,12 +11,12 @@ tags:
     Algorithm,
     Coding Interview,
     AtCoder,
-    Statue of Chokudai
+    Statue of Chokudai,
   ]
 pin: false
 ---
 
-[Link] <https://atcoder.jp/contests/typical90/tasks/typical90_r>
+[Link] <https://AtCoder.jp/contests/typical90/tasks/typical90_r>
 
 <br>
 
@@ -28,7 +28,7 @@ public class Main {
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringBuilder sb = new StringBuilder();
-    
+
     int time = atoi(br.readLine());
     String[] tmp = br.readLine().split(" ");
     double r = (double)atoi(tmp[0]) / 2;
