@@ -4,42 +4,24 @@ import java.io.*;
 public class Main {
 	static BufferedReader br;
 	static StringBuilder sb = new StringBuilder();
-	static int[] seg;
+	static long[] seg;
 	static int n;
 	public static void main(String[] args) throws IOException {
 		br = new BufferedReader(new InputStreamReader(System.in));
 		sb = new StringBuilder();
-		int[] line = getArr();
-		n = line[0];
-		int m = line[1];
-		int[] arr = new int[n]; 
-
-		for(int i = 0; i < n; i++) arr[i] = toi(br.readLine());
-		seg = new int[n << 1];
+		int[] rl = getArr();
+		int[] arr;
+		n = rl[0];
+		int q = rl[1];
+		seg = new long[2*n];
+		arr = getArr();
 		init(arr);
 
-		while(m-- > 0) {
-			line = getArr();
-			int a = line[0] - 1, b = line[1];
-			sb.append(get(a, b)).append("\n");
-		}
+		
 		print(sb);
 	}
-
-	public static void init(int[] arr) {
-		for(int i = 0; i < n; i++) seg[i + n] = arr[i];
-		for(int i = n - 1; i > 0; i--) seg[i] = Math.min(seg[i<<1], seg[i<<1|1]);
-	}
-
-	public static int get(int l, int r) {
-		int ans = Integer.MAX_VALUE;
-		for(l += n, r += n; l < r; l >>= 1, r >>= 1) {
-			if((l & 1) != 0) ans = Math.min(ans, seg[l++]);
-			if((r & 1) != 0) ans = Math.min(ans, seg[--r]);
-		}
-		return ans;
-	}
-
+	
+	
 	static int toi(String s) { return Integer.parseInt(s); }
 	static long tol(String s) { return Long.parseLong(s); }
 	static String[] getLine() throws IOException { return br.readLine().split(" "); }	
