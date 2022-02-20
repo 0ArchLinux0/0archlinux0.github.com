@@ -12,7 +12,7 @@ tags:
     Programmers,
     Bigest Number,
     가장 큰 수,
-    프로그래머스
+    프로그래머스,
   ]
 pin: false
 ---
@@ -21,7 +21,7 @@ pin: false
 
 <br>
 
-```c++
+```C++
 #include <string>
 #include <vector>
 #include <algorithm>

@@ -4,15 +4,16 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-
-
 <!-- > **Note**: Add Markdown syntax content to file `_tabs/about.md` and it will show up on this page. -->
 
-Interested in cryptograph and security  
+Interested in cryptograph and security
+
 > Feel free to contact me through linkedin or email
 
 <!-- ![header](header.png) -->
+
 ## 👋 I'm Software Engineer, MINJUN PARK
+
 <!-- <p align="left"> -->
 <img style="float: left;" src="https://img.shields.io/badge/javascript-%23323330.svg?style=plastic&logo=javascript&logoColor=%23F7DF1E" alt="404/error"/>
 <img style="float: left;" src="https://img.shields.io/badge/node.js-6DA55F?style=plastic&logo=node.js&logoColor=white" alt="404/error"/>
@@ -24,30 +25,31 @@ Interested in cryptograph and security
 <img style="float: left;" src="https://img.shields.io/badge/python-3670A0?style=plastic&logo=python&logoColor=ffdd54" alt="404/error"/>
 <img style="float: left;" src="https://img.shields.io/badge/numpy-%23013243.svg?style=plastic&logo=numpy&logoColor=white" alt="404/error"/>
 <img style="float: left;" src="https://img.shields.io/badge/c-%2300599C.svg?style=plastic&logo=c&logoColor=white" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/c++-%2300599C.svg?style=plastic&logo=c%2B%2B&logoColor=white" alt="404/error"/>  <br>  
+<img style="float: left;" src="https://img.shields.io/badge/C++-%2300599C.svg?style=plastic&logo=c%2B%2B&logoColor=white" alt="404/error"/>  <br>
 
 <img style="float: left;" src="https://img.shields.io/badge/Red%20Hat-EE0000?style=plastic&logo=redhat&logoColor=white" alt="404/error"/>
 <img style="float: left;" src="https://img.shields.io/badge/Arch%20Linux-1793D1?logo=arch-linux&logoColor=fff&style=plastic" alt="404/error"/>
 <img style="float: left;" src="https://img.shields.io/badge/Android-3DDC84?style=plastic&logo=android&logoColor=white" alt="404/error"/>
 <img style="float: left;" src="https://img.shields.io/badge/VIM-%2311AB00.svg?style=plastic&logo=vim&logoColor=white" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/shell_script-%23121011.svg?style=plastic&logo=gnu-bash&logoColor=white" alt="404/error"/>  <br> 
+<img style="float: left;" src="https://img.shields.io/badge/shell_script-%23121011.svg?style=plastic&logo=gnu-bash&logoColor=white" alt="404/error"/>  <br>
 
 <img style="float: left;" src="https://img.shields.io/badge/git-%23F05033.svg?style=plastic&logo=git&logoColor=white" alt="404/error"/>
 <img style="float: left;" src="https://img.shields.io/badge/gitlab-%23181717.svg?style=plastic&logo=gitlab&logoColor=white" alt="404/error"/>
 <img style="float: left;" src="https://img.shields.io/badge/apache-%23D42029.svg?style=plastic&logo=apache&logoColor=white" alt="404/error"/>
 <img style="float: left;" src="https://img.shields.io/badge/AWS-%23FF9900.svg?style=plastic&logo=amazon-aws&logoColor=white" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/Cloudflare-F38020?style=plastic&logo=Cloudflare&logoColor=white" alt="404/error"/>  <br> 
+<img style="float: left;" src="https://img.shields.io/badge/Cloudflare-F38020?style=plastic&logo=Cloudflare&logoColor=white" alt="404/error"/>  <br>
 
 <img style="float: left;" src="https://img.shields.io/badge/NPM-%23000000.svg?style=plastic&logo=npm&logoColor=white" alt="404/error"/>
 <img style="float: left;" src="https://img.shields.io/badge/vuejs-%2335495e.svg?style=plastic&logo=vuedotjs&logoColor=%234FC08D" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/-mocha-%238D6748?style=plastic&logo=mocha&logoColor=white" alt="404/error"/>  <br> 
+<img style="float: left;" src="https://img.shields.io/badge/-mocha-%238D6748?style=plastic&logo=mocha&logoColor=white" alt="404/error"/>  <br>
 
 <img style="float: left;" src="https://img.shields.io/badge/opencv-%23white.svg?style=plastic&logo=opencv&logoColor=white" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/threejs-black?style=plastic&logo=three.js&logoColor=white" alt="404/error"/>  <br> 
+<img style="float: left;" src="https://img.shields.io/badge/threejs-black?style=plastic&logo=three.js&logoColor=white" alt="404/error"/>  <br>
 
 <img style="float: left;" src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=plastic&logo=mongodb&logoColor=white" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/sqlite-%2307405e.svg?style=plastic&logo=sqlite&logoColor=white" alt="404/error"/><br><br> 
+<img style="float: left;" src="https://img.shields.io/badge/sqlite-%2307405e.svg?style=plastic&logo=sqlite&logoColor=white" alt="404/error"/><br><br>
 
-### 📞 Contact  
+### 📞 Contact
+
 <a href="mailto:bluebluerize900@gmail.com"><img style="float: left;" src="https://img.shields.io/badge/Gmail-D14836?style=plastic&logo=gmail&logoColor=white" alt="404/error"/></a>
-<a href="https://www.linkedin.com/in/minjun-park-536ba2213/"><img style="float: left;" src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=plastic&logo=linkedin&logoColor=white" alt="404/error"/></a><br>  
+<a href="https://www.linkedin.com/in/minjun-park-536ba2213/"><img style="float: left;" src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=plastic&logo=linkedin&logoColor=white" alt="404/error"/></a><br>
