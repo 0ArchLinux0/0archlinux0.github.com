@@ -7,35 +7,48 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		br = new BufferedReader(new InputStreamReader(System.in));
 		sb = new StringBuilder();
-		StringBuilder sb2 = new StringBuilder();
+		int[] arr;
+		// int[] count;
 		int t = toi(br.readLine());
+		HashMap<Integer, Integer> hm = new HashMap<>();
 		while(t-- > 0) {
-			int n = toi(br.readLine());
-			int[] arr = getArr();
-			int secondLast = arr[n - 2], last = arr[n -1];
-			if(secondLast > last) {
-				sb.append("-1\n");
-				continue;
-			}
-			if(last >= 0) {
-				sb.append(n - 2).append("\n");
-				for(int i = 0; i < n - 2; i++) {
-					sb.append(i + 1).append(" ").append(n - 1).append(" ").append(n).append("\n");
+			arr = getArr();
+			int n = arr[0], x = arr[1];
+			hm.clear();
+			arr = getArr();
+			for(int e: arr) {
+				if(hm.containsKey(e)) {
+					hm.put(e, hm.get(e) + 1);
+				} else {
+					hm.put(e, 1);
 				}
-				continue;
 			}
-			boolean incArr = true;
-			for(int i = 0; i < n - 1; i++) {
-				if(arr[i] > arr[i+1]) {
-					incArr = false;
-					break;
+			HashSet<Integer> checked = new HashSet<>();
+			ArrayList<HashMap.Entry<Integer, Integer>> al = new ArrayList<>(hm.entrySet());
+			al.sort((l, r) -> l.getKey() - r.getKey());
+			for(HashMap.Entry<Integer, Integer> entry : al) {
+				int key = entry.getKey(), value = entry.getValue();
+				if(key % x == 0 && hm.containsKey(key / x)) {
+					int min = Math.min(value, hm.get(key/x));
+					hm.put(key/x, hm.get(key/x) - min);
+					hm.put(key, value - min);
 				} 
 			}
-			sb.append(incArr ? "0\n" : "-1\n" );
+			int cnt = 0;
+			for(int value : hm.values()) cnt += value;
+			sb.append(cnt).append("\n");
 		}
 		print(sb);
 	}
 
+	// static int[] shrink(int e, int x) {
+	// 	boolean plus = true;
+	// 	while(e % x == 0) {
+	// 		e /= x;
+	// 		plus = !plus;
+	// 	}
+	// 	return new int[] {e, plus ? 1 : -1 };
+	// }
 
 	static int toi(String s) { return Integer.parseInt(s); }
 	static long tol(String s) { return Long.parseLong(s); }

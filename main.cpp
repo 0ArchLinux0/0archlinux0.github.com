@@ -1,51 +1,66 @@
 #include <algorithm>
 #include <iostream>
 #include <vector>
+// #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
 const int INF = 987654321;
-int n, m, ans = INF;
-struct point{ int i, j; };
-vector<point> chicken;
-vector<point> home;
-vector<point> select_chicken;
+int n, m, ans = 0;
+int map[500][500];
+bool visit[500][500];
+int di[] = { 1, 0, -1, 0 };
+int dj[] = { 0, 1, 0, -1 };
 
-int distance(point p1, point p2) { return abs(p1.i - p2.i) + abs(p1.j - p2.j); }
-
-void dfs(int startIdx, int cnt) {
-  if(cnt == m) {
-    int mintmp = 0;
-    for(point hp: home) {
-      int dis = INF;
-      for(point cp : select_chicken) dis = min(dis, distance(hp, cp));
-      mintmp += dis; 
-    }
-    ans = min(ans, mintmp);
+void dfs(int ii, int jj, int cnt, int sum) {
+  if(cnt == 4) {
+    ans = max(ans, sum);
     return;
-  } 
+  }
+  for(int i = 0; i < 4; i++) {
+    int ai = ii + di[i], aj = jj + dj[i];
+    if(ai < 0 || aj < 0 || ai >= n || aj >= m) continue;
+    if(visit[ai][aj]) continue;
+    visit[ai][aj] = true;
+    dfs(ai, aj, cnt + 1, sum + map[ai][aj]);
+    visit[ai][aj] = false;
+  }  
+}
 
-  if(cnt < m - ((int)chicken.size() - startIdx)) return;
-  for(int i = startIdx; i < chicken.size(); i++) {
-    select_chicken.push_back(chicken[i]);
-    dfs(i + 1, cnt + 1);
-    select_chicken.pop_back();
+void checkfk() {
+  for(int i = 0; i < n; i++) {
+    for(int j = 0; j < m; j++) {
+      if(i > 0 && j < m - 1 && j > 0) {
+        ans = max(ans, map[i][j] + map[i][j+1] + map[i][j-1] + map[i-1][j]);
+      }
+      if(i > 0 && i < n - 1 && j < m - 1) {
+        ans = max(ans, map[i][j] + map[i][j+1] + map[i+1][j] + map[i-1][j]);
+      }
+      if(i < n - 1 && j < m - 1 && j > 0) {
+        ans = max(ans, map[i][j] + map[i][j+1] + map[i][j-1] + map[i+1][j]);
+      }
+      if(i > 0 && i < n - 1 && j > 0) {
+        ans = max(ans, map[i][j] + map[i][j-1] + map[i+1][j] + map[i-1][j]);
+      }
+    }
   }
 }
 
 int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0); cout.tie(0);
   cin >> n >> m;
   for(int i = 0; i < n; i++) {
-    for(int j = 0; j < n; j++) {
-      int in;
-      cin >> in;
-      if(in == 0) continue;
-      point p;
-      p.i = i, p.j = j;
-      if(in == 1) home.push_back(p);
-      else chicken.push_back(p);
+    for(int j = 0; j < m; j++) cin >> map[i][j];
+  }
+
+  for(int i = 0; i < n; i++) {
+    for(int j = 0; j < m; j++) {
+      visit[i][j] = true;
+      dfs(i, j, 1, map[i][j]);
+      visit[i][j] = false;
     }
   }
-  dfs(0, 0);
+  checkfk();
   cout << ans;
   return 0;
 }
