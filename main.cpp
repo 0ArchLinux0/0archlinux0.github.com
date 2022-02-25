@@ -16,7 +16,18 @@ int dj[4] = { 0, 1, 0, -1 };
 bool inspect[8][8];
 vector<int> cctv_vec;
 vector<int> rot_vec;
-vector<vector<int>> cctvs = {{1}, {1, 3}, {0, 1}, {0, 1, 3}, {0, 1, 2, 3}};
+vector<vector<int>> cctvs;
+vector<int> cctv_1 = {1};
+vector<int> cctv_2 = {1, 3};
+vector<int> cctv_3 = {0, 1};
+vector<int> cctv_4 = {0, 1, 3};
+vector<int> cctv_5 = {0, 1, 2, 3};
+cctvs.push_back(cctv_1);
+cctvs.push_back(cctv_2);
+cctvs.push_back(cctv_3);
+cctvs.push_back(cctv_4);
+cctvs.push_back(cctv_5);
+
 
 void inspect_dir(int ci, int cj, int dir) {
   while(true) {
