@@ -7,9 +7,12 @@
 
 
 #temp files
-Main.class
-Main.java
-main.js
+*.class
+*.java
+*.js
+*.exe
+*.cpp
+*.txt
 
 # bundler cache
 _site
