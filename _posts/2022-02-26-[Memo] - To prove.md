@@ -4,7 +4,7 @@ author: MINJUN PARK
 date: 2022-02-26 18:48:00 +0900
 categories: [Memo, Todo]
 tags: [Prove, Todo]
-pin: true
+pin: false
 ---
 
 <br>

@@ -13,6 +13,9 @@
 *.exe
 *.cpp
 *.txt
+*.zip
+*.py
+*.c
 
 # bundler cache
 _site
