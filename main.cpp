@@ -18,29 +18,34 @@ using namespace std;
 const int MAX = 5e5 + 1;
 const int INF = 987654321;
 
-int num[(int)1e6];
-int even[(int)1e6];
-int odd[(int)1e6];
-
-void manacher() {
-  int l_even = 0, l_odd = 0, r_even = -1, r_odd = -1;
-  for0(i, n) {
-    if(i <= r_odd) odd[i] = min(r_odd - i + 1, odd[r_odd + l_odd - i]);
-    if(i <= r_even) even[i] = min(r_even - i, even[r_odd + l_odd - i - i]);
-    while(i-odd[i] >= 0 && i+odd[i] < n && s[i-odd[i]] == s[i+odd[i]]) odd[i]++;
-    while(i+even)
-  }
-}
+int n;
 
 int main() {
   ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+  stack<int> st;
+  vector<int> list;
+  int max_len = 1;
   cin >> n;
-  fill(even, even+n, 1);
-  for0(i, n) cin >> num[i];
-  int m; cin >> m;
-  for0(i, m) {
-    int s, e; cin >> s >> e;
-    cout << query(s, e);
+  list.resize(n);
+  for0(i, n) cin >> list[i];
+  int i = 0;
+  while(i < n) {
+    while(i < n && (st.empty() || st.top() < list[i])) {
+      st.push(list[i++]);
+    }
+    if(i == n) break;
+    int len = 1; if(st.top() == list[i]) { i++, len++; } st.pop(); 
+    if(i == n) {
+      max_len = max(max_len, len);
+      break;
+    }
+    bool moved = false;
+    while(i < n && !st.empty() && st.top() == list[i++]) { moved = true; len+=2; st.pop(); }
+    if(moved) i--;
+    max_len = max(max_len, len);
+    st = {};
+    if(i == n) break;
   }
+  cout << max_len;
   return 0;
 }
