@@ -21,8 +21,10 @@ const int INF = 987654321;
 int num[(int)1e6];
 int even[(int)1e6];
 int odd[(int)1e6];
-void manacher() {
 
+void manacher() {
+  int l_e = 0, l_o = 0, r_e = -1, r_o = -1;
+  for0(i, )
 }
 
 int main() {
