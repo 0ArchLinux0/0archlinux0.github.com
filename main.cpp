@@ -18,34 +18,21 @@ using namespace std;
 const int MAX = 5e5 + 1;
 const int INF = 987654321;
 
-string s;
-ll ans = 0;
-void solve() {
-  int l_odd = 0, r_odd = -1;
-  int l_even = 0, r_even = -1;
-  vector<int> odd(s.size(), 1);
-  vector<int> even(s.size(), 0);
-  for(int i = 0; i < s.size(); i++) {
-    if(i <= r_odd) odd[i] = min(r_odd - i + 1, odd[l_odd+r_odd-i]);
-    if(i <= r_even) even[i] = min(r_even - i, even[l_even+r_even - i - 1]);
-    while(i-odd[i]>=0 && i+odd[i]<s.size() && s[i-odd[i]] == s[i+odd[i]]) odd[i]++;
-    while(i-even[i]>=0 && i+even[i]+1<s.size() && s[i-even[i]] == s[i+even[i]+1]) even[i]++;
-    if(i + odd[i] - 1 > r_odd) {
-      r_odd = i + odd[i] - 1;
-      l_odd = i - odd[i] + 1;
-    }
-    if(i + even[i] > r_even) {
-      r_even = i + even[i];
-      l_even = i + 1 - even[i];
-    }
-    ans += (odd[i] + even[i]);
-  }
-} 
+int num[(int)1e6];
+int even[(int)1e6];
+int odd[(int)1e6];
+void manacher() {
+
+}
 
 int main() {
   ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-  cin >> s;
-  solve();
-  cout << ans;
+  cin >> n;
+  for0(i, n) cin >> num[i];
+  int m; cin >> m;
+  for0(i, m) {
+    int s, e; cin >> s >> e;
+    cout << query(s, e);
+  }
   return 0;
 }
