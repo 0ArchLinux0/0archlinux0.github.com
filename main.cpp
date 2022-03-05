@@ -23,13 +23,19 @@ int even[(int)1e6];
 int odd[(int)1e6];
 
 void manacher() {
-  int l_e = 0, l_o = 0, r_e = -1, r_o = -1;
-  for0(i, )
+  int l_even = 0, l_odd = 0, r_even = -1, r_odd = -1;
+  for0(i, n) {
+    if(i <= r_odd) odd[i] = min(r_odd - i + 1, odd[r_odd + l_odd - i]);
+    if(i <= r_even) even[i] = min(r_even - i, even[r_odd + l_odd - i - i]);
+    while(i-odd[i] >= 0 && i+odd[i] < n && s[i-odd[i]] == s[i+odd[i]]) odd[i]++;
+    while(i+even)
+  }
 }
 
 int main() {
   ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
   cin >> n;
+  fill(even, even+n, 1);
   for0(i, n) cin >> num[i];
   int m; cin >> m;
   for0(i, m) {
