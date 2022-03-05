@@ -1,3 +1,23 @@
+---
+title: AtCoder. ABC 238 D - ABC Transform
+author: MINJUN PARK
+date: 2022-03-06 09:00:00 +0900
+categories: [AtCoder, ABC Contest]
+tags:
+  [
+    Java,
+    Algorithm,
+		Coding Interview,
+    AtCoder,
+    ABC contest
+  ]
+pin: false
+---
+
+[Link] <https://atcoder.jp/contests/abc242/tasks/abc242_d>
+<br>
+
+```c++
 #include <algorithm>
 #include <iostream>
 #include <vector>
@@ -26,7 +46,7 @@ int main() {
   for0(i, q) {
     ll t, k, plus = 0; cin >> t >> k;
     k--;
-    while(k != 0 && t) { 
+    while(k != 0 && t) {
       plus += (k & 1) ? 2 : 1;
       k >>= 1; t--;
     }
@@ -35,3 +55,4 @@ int main() {
   }
   return 0;
 }
+```
