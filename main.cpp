@@ -22,13 +22,17 @@ const int MAX = 2002;
 const int INF = 987654321;
 
 struct line {
-  pair<int, int>
-}
+  pair<int, int> p1, p2;
+};
 
 int n;
-vector<line> line;
+vector<line> lines;
 
 int main() {
   FASTIO;
   cin >> n;
+  for0(i, n) {
+    line l; cin >> l.p1.first >> l.p1.second >> l.p2.first >> l.p2.second;
+    lines.push_back(l);
+  }
 }
