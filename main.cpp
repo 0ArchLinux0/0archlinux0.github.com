@@ -26,13 +26,25 @@ struct line {
 };
 
 int n;
-vector<line> lines;
+line l1, l2;
+
+int cross_check(line base, line line) {
+  int di1 = line.p1.first - base.p1.first, dj1 = line.p1.second - base.p1.second;
+  int di2 = line.p2.first - base.p1.first, dj2 = line.p2.second - base.p1.second;
+  int base_di = base.p2.first - base.p1.first, base_dj = base.p2.second - base.p1.second;
+  bool ccw1 = di1*base_dj - base_di*dj1, ccw = di2*base_dj - base_di*dj2;
+  if((ccw1 > 0 && ccw2 > 0) || (ccw1 < 0 && ccw2 < 0)) return -1;
+  if(ccw1 == ccw2) return 0;
+  return 1;
+}
 
 int main() {
   FASTIO;
-  cin >> n;
-  for0(i, n) {
-    line l; cin >> l.p1.first >> l.p1.second >> l.p2.first >> l.p2.second;
-    lines.push_back(l);
+  cin >> l1.p1.first >> l1.p1.second >> l1.p2.first >> l1.p2.second;
+  cin >> l2.p1.first >> l2.p1.second >> l2.p2.first >> l2.p2.second;
+  if(!cross_check(l1, l2) || !cross_check(l2, l1)) {
+    cout << 0;
+    return 0;
   }
+  
 }
