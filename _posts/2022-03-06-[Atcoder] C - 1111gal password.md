@@ -1,5 +1,5 @@
 ---
-title: AtCoder. ABC 238 C - 1111gal password
+title: AtCoder. ABC 238 C 1111gal password
 author: MINJUN PARK
 date: 2022-03-06 09:00:00 +0900
 categories: [AtCoder, ABC Contest]

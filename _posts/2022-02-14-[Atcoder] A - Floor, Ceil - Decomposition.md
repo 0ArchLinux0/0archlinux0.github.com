@@ -1,5 +1,5 @@
 ---
-title: AtCoder. Regular Contest 135 A - Floor, Ceil - Decomposition
+title: AtCoder. Regular Contest 135 A Floor, Ceil Decomposition
 author: MINJUN PARK
 date: 2022-02-14 02:32:00 +0900
 categories: [AtCoder, Regular Contest]

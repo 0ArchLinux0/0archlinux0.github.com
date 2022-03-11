@@ -1,5 +1,5 @@
 ---
-title: AtCoder. 006 - Smallest Subsequence(5)
+title: AtCoder. 006 Smallest Subsequence(5)
 author: MINJUN PARK
 date: 2021-12-30 02:45:00 +0900
 categories: [AtCoder, 競プロ典型 90 問]

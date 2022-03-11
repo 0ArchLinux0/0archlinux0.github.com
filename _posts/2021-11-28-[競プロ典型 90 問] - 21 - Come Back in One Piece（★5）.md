@@ -1,5 +1,5 @@
 ---
-title: AtCoder. 021 - Come Back in One Piece(5)
+title: AtCoder. 021 Come Back in One Piece(5)
 author: MINJUN PARK
 date: 2021-11-28 3:02:00 +0900
 categories: [AtCoder, 競プロ典型 90 問]

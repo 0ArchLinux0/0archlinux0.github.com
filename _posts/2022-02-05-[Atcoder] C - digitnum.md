@@ -1,5 +1,5 @@
 ---
-title: AtCoder. ABC 238 C - digitnum
+title: AtCoder. ABC 238 C digitnum
 author: MINJUN PARK
 date: 2022-02-05 09:00:00 +0900
 categories: [AtCoder, ABC Contest]

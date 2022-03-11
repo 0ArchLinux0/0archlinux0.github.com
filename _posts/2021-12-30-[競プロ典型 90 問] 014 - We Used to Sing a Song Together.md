@@ -1,5 +1,5 @@
 ---
-title: AtCoder. 014 - We Used to Sing a Song Together(3)
+title: AtCoder. 014 We Used to Sing a Song Together(3)
 author: MINJUN PARK
 date: 2021-12-30 03:00:00 +0900
 categories: [AtCoder, 競プロ典型 90 問]

@@ -1,5 +1,5 @@
 ---
-title: AtCoder. 018 - Statue of Chokudai(3)
+title: AtCoder. 018 Statue of Chokudai(3)
 author: MINJUN PARK
 date: 2021-12-30 03:03:00 +0900
 categories: [AtCoder, 競プロ典型 90 問]
