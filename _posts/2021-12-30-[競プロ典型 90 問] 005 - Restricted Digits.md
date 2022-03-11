@@ -12,7 +12,7 @@ tags:
     Coding Interview,
     AtCoder,
     Restricted Digits,
-    review,
+    Review,
     difficult,
   ]
 pin: false

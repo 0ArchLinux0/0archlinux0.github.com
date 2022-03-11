@@ -2,8 +2,8 @@
   Post-specific style
 */
 
-@mixin btn-sharing-color($light-color, $important: false) {
-  @if $important {
+@mixin btn-sharing-color($light-color, $Important: false) {
+  @if $Important {
     color: var(--btn-share-color, $light-color) !important;
   } @else {
     color: var(--btn-share-color, $light-color);
@@ -17,7 +17,7 @@
 }
 
 @mixin dot($pl: 0.2rem, $pr: 0.4rem) {
-  content: "\2022";
+  content: '\2022';
   color: rgba(158, 158, 158, 0.8);
   padding-left: $pl;
   padding-right: $pr;
@@ -32,7 +32,7 @@
 }
 
 .post-content {
-  .preview-img {
+  .pReview-img {
     @include align-center;
 
     margin-top: 0;
@@ -108,7 +108,6 @@
     margin-top: 0.3rem;
     white-space: normal;
   }
-
 } // .post-navigation
 
 @keyframes fade-up {
@@ -147,10 +146,9 @@
   &.nav-link:not(.active) {
     color: inherit;
   }
-
 }
 
-nav[data-toggle=toc] {
+nav[data-toggle='toc'] {
   .nav {
     .nav > li > a.active {
       font-weight: 600 !important;
@@ -212,7 +210,7 @@ nav[data-toggle=toc] {
       height: 5px;
       border-radius: 1px;
       display: block;
-      content: "";
+      content: '';
       position: relative;
       top: 1rem;
       right: 1rem;
@@ -227,7 +225,6 @@ nav[data-toggle=toc] {
     min-height: 7.5rem;
     margin-bottom: 2rem;
   }
-
 }
 
 .post-tail-bottom a {
@@ -287,20 +284,18 @@ nav[data-toggle=toc] {
         @include btn-sharing-color(rgb(229, 20, 43));
       }
     }
-
   } // .share-icons
 
   .fas.fa-link {
     @include btn-sharing-color(rgb(171, 171, 171));
   }
-
 } // .share-wrapper
 
 .share-label {
   @include label(inherit, 400, inherit);
 
   &::after {
-    content: ":";
+    content: ':';
   }
 }
 

@@ -12,7 +12,7 @@ tags:
     Coding Interview,
     Codeforces,
 		Codeforces Global Round,
-    review,
+    Review,
     Greedy,
     Math,
     MEX and Array,

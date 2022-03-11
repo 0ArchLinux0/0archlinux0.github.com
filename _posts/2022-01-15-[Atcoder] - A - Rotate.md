@@ -1,5 +1,5 @@
 ---
-title: AtCoder. ABC 235 A Rotate
+title: AtCoder. ABC 235 A - Rotate
 author: MINJUN PARK
 date: 2022-01-15 21:00:00 +0900
 categories: [AtCoder, ABC Contest]

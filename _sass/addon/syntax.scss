@@ -2,25 +2,25 @@
 * The syntax highlight.
 */
 
-@import "colors/light-syntax";
-@import "colors/dark-syntax";
+@import 'colors/light-syntax';
+@import 'colors/dark-syntax';
 
 html:not([mode]),
-html[mode=light] {
+html[mode='light'] {
   @include light-syntax;
 }
 
-html[mode=dark] {
+html[mode='dark'] {
   @include dark-syntax;
 }
 
 @media (prefers-color-scheme: dark) {
   html:not([mode]),
-  html[mode=dark] {
+  html[mode='dark'] {
     @include dark-syntax;
   }
 
-  html[mode=light] {
+  html[mode='light'] {
     @include light-syntax;
   }
 }
@@ -78,7 +78,7 @@ div > pre {
     border: 0;
 
     td pre {
-      overflow: visible;  /* Fixed iOS safari overflow-x */
+      overflow: visible; /* Fixed iOS safari overflow-x */
       word-break: normal; /* Fixed iOS safari linenos code break */
     }
   }
@@ -105,7 +105,6 @@ div > pre {
   .gp {
     user-select: none;
   }
-
 } //.highlight
 
 code {
@@ -145,7 +144,6 @@ td.rouge-code {
     border-bottom: none !important;
     pointer-events: none;
   }
-
 }
 
 /* Hide line numbers for default, console, and terminal code snippets */
@@ -204,7 +202,6 @@ div {
       top: 1px; // center the file icon
       margin-left: 0.25rem;
     }
-
   }
 
   // clipboard
@@ -238,9 +235,7 @@ div {
     &:focus {
       outline: none;
     }
-
   }
-
 }
 
 @media all and (max-width: 576px) {

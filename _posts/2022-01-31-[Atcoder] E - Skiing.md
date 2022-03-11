@@ -11,7 +11,7 @@ tags:
     AtCoder,
     Graph,
     Dijkstra,
-    review,
+    Review,
     ABC contest
   ]
 pin: false

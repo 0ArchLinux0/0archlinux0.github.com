@@ -50,14 +50,13 @@
       border-radius: 50%;
     }
   } // .page-item
-
 } // .pagination
 
 #post-list {
   margin-top: 1rem;
   padding-right: 0.5rem;
 
-  .post-preview {
+  .post-pReview {
     padding-top: 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--main-border-color);
@@ -87,7 +86,7 @@
       color: var(--post-list-text-color);
 
       > p {
-        /* Make preview shorter on the homepage */
+        /* Make pReview shorter on the homepage */
         margin: 0;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -108,8 +107,7 @@
         display: none;
       }
     }
-
-  } // .post-preview
+  } // .post-pReview
 } // #post-list
 
 /* Hide SideBar and TOC */
@@ -121,9 +119,7 @@
       &:not(:first-child):not(:last-child) {
         display: none;
       }
-
     }
-
   }
 }
 
@@ -132,7 +128,7 @@
   #post-list {
     margin-top: 1.5rem;
 
-    .post-preview .post-meta {
+    .post-pReview .post-meta {
       .pin {
         background: var(--pin-bg);
         border-radius: 5px;
@@ -161,15 +157,12 @@
         width: 2rem;
         height: 2rem;
       }
-
     }
 
     .page-index {
       display: none;
     }
-
   } // .pagination
-
 }
 
 /* Pannel hidden */

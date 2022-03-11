@@ -12,7 +12,7 @@ tags:
     Coding Interview,
     AtCoder,
     Three Point Angle,
-    review,
+    Review,
   ]
 pin: false
 ---
