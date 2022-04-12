@@ -120,7 +120,7 @@ $\\therefore f\_{s\_{out}} = f\_{t\_{in}}\\  Q.E.D$
 
 으로 표현된다.
 
-**\## Residual network **##****
+**\#\# Residual network \#\#****
 
 > A residual network, denoted $G\_{f} (V, E\_{f})$, which models the amount of available capacity on the set of arcs in $G = (V, E)$  
 > [reference](https://en.wikipedia.org/wiki/Flow_network)
@@ -128,7 +128,7 @@ $\\therefore f\_{s\_{out}} = f\_{t\_{in}}\\  Q.E.D$
 잔류 네트워크란 잔류 용량에 초점을 맞추어 구성한 그래프이다.  
 $G=(V,E)$라면 간선 $E\_{uv} = $c\_{f}(u, v)$로 표현 된다.
 
-**## Augmenting paths **##****
+**\#\# Augmenting paths \#\#****
 
 > An augmenting path is a path $(u\_{1}, u\_{2}, ..., u\_{k})$ in the residual network, where $u\_{1} = s, u\_{k} = t$, and $c\_{f} (u\_{i}, u\_{i} + 1) > 0. A network is at maximum flow if and only if there is no augmenting path in the residual network $G\_{f}$.  
 > [reference](https://en.wikipedia.org/wiki/Flow_network)
