@@ -2,7 +2,7 @@
 title: Flow network - 네트워크 플로우
 author: MINJUN PARK
 date: 2022-04-12 18:28:00 +0900
-categories: [Algorithm, Graph Threory]
+categories: [Graph Threory, Flow network]
 tags:
   [
     Algorithm,

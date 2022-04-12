@@ -2,7 +2,7 @@
 title: Max-flow min-cut theorem - 최대 유량 최소 컷 정리
 author: MINJUN PARK
 date: 2022-04-12 18:28:00 +0900
-categories: [Algorithm, Graph Threory]
+categories: [Graph Threory, Flow network]
 tags: [Algorithm, Graph Threory, Max-flow min-cut, mfmc, flow network, 네트워크 플로우]
 pin: true
 ---
@@ -16,9 +16,9 @@ pin: true
 
 그래프 $G$에서 최대유량 $flow(s,t)\_{max}$는 항상 source와 sink의 최소컷 $cut(s,t)\_{min}$과 같다​
 
-***
+---
 <center><b># Term Definition</b></center>
-***
+---
 
 **\#\# Cut \#\#**
 
