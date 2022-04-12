@@ -18,7 +18,7 @@ pin: false
 
 ---
 
-<center>**\# Term Definition**</center>
+<center><b># Term Definition</b></center>
 
 ---
 
@@ -44,7 +44,7 @@ Cut의 정의로부터 Cut-set의 개념이 파생된다.
 
 그래프 $G=(V, E)$와 Cut $C = (S, T)$를 가정하자.
 
-이때 Cut $C = (S, T)$에 대한 Cut-set은 $\\{(u, v) \\in E \\ | \\ u \\in S, v \\in T \\}$ 로 정의된다.
+이때 Cut $C = (S, T)$에 대한 Cut-set은 $\\left\\{(u, v) \\in E \\ | \\ u \\in S, v \\in T \\right\\}$ 로 정의된다.
 
 다시 말해 $G$에서 모든 Cut-set의 $E$를 제거하면 partition S와 T는 서로 이어진, 혹은 흐를 수 있는 간선이 존재 하지 않게 된다.
 
@@ -58,11 +58,11 @@ partition에 대해 서로 흐를 수 있는 간선이 존재 하지 않는 다�
 
 뻔한 정의지만 가능한 모든 Cut중 가중치를 최소로 하는 Cut을 의미한다.
 
-$Minimum \\ cut $ $= min({ cost(C) \\ | \\ \\forall C = (S, T) \\in G })$
+$Minimum \\ cut $ $= min( cost(C) \\ | \\ \\forall C = (S, T) \\in G )$
 
 **\#\# Maximum cut \#\#**
 
-$Maximum \\ cut $ $= max({ cost(C) \\ | \\ \\forall C = (S, T) \\in G })$
+$Maximum \\ cut $ $= max( cost(C) \\ | \\ \\forall C = (S, T) \\in G )$
 
 ---
 
