@@ -16,11 +16,9 @@ pin: false
 
 그래프 $G$에서 최대유량 $flow(s,t)\_{max}$는 항상 source와 sink의 최소컷 $cut(s,t)\_{min}$과 같다​
 
----
-
+###
 <center><b># Term Definition</b></center>
-
----
+###
 
 **\#\# Cut \#\#**
 
@@ -35,6 +33,8 @@ $S, T$는 $G\_{V}$의 partition이며
 $(S \\cap T = \\emptyset)$이므로 자명하게 disjoint subsets을 만족하게 된다.
 
 Cut의 정의로부터 Cut-set의 개념이 파생된다.
+
+---
 
 **\#\# Cut-set \#\#**
 
@@ -54,17 +54,21 @@ partition에 대해 서로 흐를 수 있는 간선이 존재 하지 않는 다�
 
 이와 같은 상태를 _bridgeless_ 라고 한다.
 
+---
+
 **\#\# Minimum cut \#\#**
 
 뻔한 정의지만 가능한 모든 Cut중 가중치를 최소로 하는 Cut을 의미한다.
 
 $Minimum \\ cut $ $= min( cost(C) \\ \\mid \\ \\forall C = (S, T) \\in G )$
 
+---
+
 **\#\# Maximum cut \#\#**
 
 $Maximum \\ cut $ $= max( cost(C) \\ \\mid \\ \\forall C = (S, T) \\in G )$
 
----
+###
 
 **\# Proof**
 
