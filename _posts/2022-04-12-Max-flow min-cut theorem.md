@@ -44,7 +44,7 @@ Cut의 정의로부터 Cut-set의 개념이 파생된다.
 
 그래프 $G=(V, E)$와 Cut $C = (S, T)$를 가정하자.
 
-이때 Cut $C = (S, T)$에 대한 Cut-set은 $\\left\\{(u, v) \\in E \\ | \\ u \\in S, v \\in T \\right\\}$ 로 정의된다.
+이때 Cut $C = (S, T)$에 대한 Cut-set은 $\\left\\{(u, v) \\in E \\ \\mid \\ u \\in S, v \\in T \\right\\}$ 로 정의된다.
 
 다시 말해 $G$에서 모든 Cut-set의 $E$를 제거하면 partition S와 T는 서로 이어진, 혹은 흐를 수 있는 간선이 존재 하지 않게 된다.
 
@@ -82,40 +82,40 @@ $C(S, T) $ $= \\displaystyle\\sum\_{(u, v) \\in S \\times T} c\_{uv}$
 
 $Flow \\ f\_{uv}: $ $flow \\ from \\ u $ $to \\ v$
 
-$|f|: \\ f\_{st}$
+$\\midf\\mid: \\ f\_{st}$
 
-$Lemma \\ 1)$ $\\ |f| \\leq C\_{min}(S, T)$
+$Lemma \\ 1)$ $\\ \\midf\\mid \\leq C\_{min}(S, T)$
 
-$proof)$ 귀류법으로 $|f| > C\_{min}(S, T)$라고 가정해보자.
+$proof)$ 귀류법으로 $\\midf\\mid > C\_{min}(S, T)$라고 가정해보자.
 
-Conservation of Flows에 의해서 $|f|$ = $f\_{s\_{out}} = f\_{t\_{in}}$
+Conservation of Flows에 의해서 $\\midf\\mid$ = $f\_{s\_{out}} = f\_{t\_{in}}$
 
 마찬가지로 $ f(S\_{out}) = f\_{s\_{out}} $, $f(T\_{in}) = f\_{t\_{in}} $ 으로 부터
 
-$|f| = f\_{s\_{out}} $ $= f\_{t\_{in}} = f(S\_{out}) $ $= f(T\_{in}) = f\_{ST}$ 가 얻어진다.
+$\\midf\\mid = f\_{s\_{out}} $ $= f\_{t\_{in}} = f(S\_{out}) $ $= f(T\_{in}) = f\_{ST}$ 가 얻어진다.
 
-$|f| = f\_{ST} $ $= \\displaystyle\\sum\_{(u, v) \\in S \\times T} f\_{uv} $ $ \\leq $ $ \\displaystyle\\sum\_{(u, v) \\in S \\times T} c\_{uv} \\leq C\_{min}(S, T)$
+$\\midf\\mid = f\_{ST} $ $= \\displaystyle\\sum\_{(u, v) \\in S \\times T} f\_{uv} $ $ \\leq $ $ \\displaystyle\\sum\_{(u, v) \\in S \\times T} c\_{uv} \\leq C\_{min}(S, T)$
 
-이는 가정 $|f| > C\_{min}(S, T)$과 모순 됨으로 $\\ |f| \\leq C\_{min}(S, T)$임이 증명된다.
+이는 가정 $\\midf\\mid > C\_{min}(S, T)$과 모순 됨으로 $\\ \\midf\\mid \\leq C\_{min}(S, T)$임이 증명된다.
 
-$Lemma \\ 2)$ $\\exists C:\\  min(|f|) $ $= C\_{min}(S, T)$
+$Lemma \\ 2)$ $\\exists C:\\  min(\\midf\\mid) $ $= C\_{min}(S, T)$
 
 $proof)$ G에 대해 *Ford–Fulkerson algorithm*에서 마지막으로 갱신된(Augmented) 그래프를 $G\_{f}$라 하자.
 
 또한, $G\_{f}$의 $s$에서 유량이 흐를 수 있는 $G\_{f}$안의 정점의 집합을 $A$라고 하자.
 
-partition $\\left\\{S, T\\right\\} $ $= \\left\\{A, A^c\\right\\}$ 일때, $min(|f|) = C\_{min}(S, T)$ 만족함을 보이자.
+partition $\\left\\{S, T\\right\\} $ $= \\left\\{A, A^c\\right\\}$ 일때, $min(\\midf\\mid) = C\_{min}(S, T)$ 만족함을 보이자.
 
 1.  $\\left\\{A, A^c\\right\\}$은 $C$의 올바른 partition이다.
 
-2.  $|f| = C\_{min}(S, T)$이다.
+2.  $\\midf\\mid = C\_{min}(S, T)$이다.
 
 두가지를 보이면 될 것이다.
 
 1번은 *Ford–Fulkerson algorithm*에 따라 $\\forall u \\in A \\subset G\_{f},$ $ v \\in G\_{V}: $ $c\_{f}(u, v)( = c(u, v) - f\_uv) $ $= 0$이여야 하므로 올바른 partition임을 알 수 있다.
 
-$C\_{min}(S, T) $ $= \\sum\_{(u, v) \\in A \\times A^c} c\_{uv} = f\_{s\_{out}} $ $= |f|( \\because Conservation\\  of \\  Flows) =$ $ min(|f|)$
+$C\_{min}(S, T) $ $= \\sum\_{(u, v) \\in A \\times A^c} c\_{uv} = f\_{s\_{out}} $ $= \\midf\\mid( \\because Conservation\\  of \\  Flows) =$ $ min(\\midf\\mid)$
 
 1, 2로부터 $Lemma \\ 2) $도 증명된다.
 
-$Lemma \\ 1)$, $Lemma \\ 2)$로부터 $C\_{min}(S, T) = min(|f|)$이며 $G\_{f}$를 구함으로써 min-cut을 구성함을 있음이 증명된다.
+$Lemma \\ 1)$, $Lemma \\ 2)$로부터 $C\_{min}(S, T) = min(\\midf\\mid)$이며 $G\_{f}$를 구함으로써 min-cut을 구성함을 있음이 증명된다.
