@@ -12,30 +12,31 @@ pin: false
 > the max-flow min-cut theorem states that in a flow network, the maximum amount of flow passing from the source to the sink is equal to the total weight of the edges in a minimum cut, i.e., the smallest total weight of the edges which if removed would disconnect the source from the sink.  
 > [reference](https://en.wikipedia.org/wiki/Max-flow_min-cut_theorem#:~:text=In%20computer%20science%20and%20optimization,removed%20would%20disconnect%20the%20source)
 
-$flow(s,t)\_{max} = cut(s,t)\_{min}$
+<center>$flow(s,t)\_{max} = cut(s,t)\_{min}$</center>
 
 그래프 $G$에서 최대유량 $flow(s,t)\_{max}$는 항상 source와 sink의 최소컷 $cut(s,t)\_{min}$과 같다​
 
 ---
 
-**\# Term Definition**
+<center>**\# Term Definition**</center>
 
 ---
 
-**\## Cut **##\*\*\*\*
+**\#\# Cut \#\#**
 
 > A cut is a partition of the vertices of a graph into two disjoint subsets  
 > [reference](<https://en.wikipedia.org/wiki/Cut_(graph_theory)>)
 
 $(S, T \\in G\_{V})$ $\\land$ $(S \\cup T = G\_{V})$ $\\land$ $(S \\cap T = \\emptyset)$
 
-그래프 $G=(V, E)$에 대한 정점의 집합 $G\_{V}$ 를 다음을 만족하는 두개의 부분집합 $S, T$으로 나누었을때, $S, T$는 $G\_{V}$의 partition이며
+그래프 $G=(V, E)$에 대한 정점의 집합 $G\_{V}$ 를 다음을 만족하는 두개의 부분집합 $S, T$으로 나누었을때, 
+$S, T$는 $G\_{V}$의 partition이며
 
 $(S \\cap T = \\emptyset)$이므로 자명하게 disjoint subsets을 만족하게 된다.
 
 Cut의 정의로부터 Cut-set의 개념이 파생된다.
 
-**\## Cut-set **##\*\*\*\*
+**\#\# Cut-set \#\#**
 
 > A cut $\\displaystyle C=(S,T)$ is a partition of ${\\displaystyle V}$ of a graph ${\\displaystyle G=(V,E)}$ into two subsets S and T.  
 > The cut-set of a cut ${\\displaystyle C=(S,T)}$ is the set $\\displaystyle \\{(u,v)\\in E\\mid u\\in S,v\\in T\\}$of edges that have one endpoint in S and the other endpoint in T. If s and t are specified vertices of the graph G, then an s–t cut is a cut in which s belongs to the set S and t belongs to the set T.  
@@ -43,7 +44,7 @@ Cut의 정의로부터 Cut-set의 개념이 파생된다.
 
 그래프 $G=(V, E)$와 Cut $C = (S, T)$를 가정하자.
 
-이때 Cut $C = (S, T)$에 대한 Cut-set은 $\\left\\{(u, v) \\in E \\ | \\ u \\in S, v \\in T \\right\\}$ 로 정의된다.
+이때 Cut $C = (S, T)$에 대한 Cut-set은 $\\{(u, v) \\in E \\ | \\ u \\in S, v \\in T \\}$ 로 정의된다.
 
 다시 말해 $G$에서 모든 Cut-set의 $E$를 제거하면 partition S와 T는 서로 이어진, 혹은 흐를 수 있는 간선이 존재 하지 않게 된다.
 
@@ -53,13 +54,13 @@ partition에 대해 서로 흐를 수 있는 간선이 존재 하지 않는 다�
 
 이와 같은 상태를 _bridgeless_ 라고 한다.
 
-**\## Minimum cut **##\*\*\*\*
+**\#\# Minimum cut \#\#**
 
 뻔한 정의지만 가능한 모든 Cut중 가중치를 최소로 하는 Cut을 의미한다.
 
 $Minimum \\ cut $ $= min({ cost(C) \\ | \\ \\forall C = (S, T) \\in G })$
 
-**\## Maximum cut **##\*\*\*\*
+**\#\# Maximum cut \#\#**
 
 $Maximum \\ cut $ $= max({ cost(C) \\ | \\ \\forall C = (S, T) \\in G })$
 
