@@ -25,7 +25,7 @@ pin: true
 
 ---
 
-**\# Term Definition**
+## <center><b># Term Definition</b></center>
 
 ---
 
