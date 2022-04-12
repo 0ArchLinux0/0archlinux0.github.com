@@ -5,7 +5,7 @@ theme: jekyll-theme-chirpy
 
 # Change the following value to '/PROJECT_NAME' ONLY IF your site type is GitHub Pages Project sites
 # and doesn't have a custom domain.
-baseurl: ""
+baseurl: ''
 
 # The language of the webpage › http://www.lingoes.net/en/translator/langcode.htm
 # If it has the same name as one of the files in folder `_data/locales`, the layout language will also be changed,
@@ -20,13 +20,13 @@ timezone: Asia/Seoul
 
 title: MATHJUN # the main title
 
-tagline: Fun math, Cute chipmuck # it will display as the sub-title
+tagline: Fun math, Cute chipmunk # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   Algorithm, Java, C++, Javascript
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
-url: "https://0archlinux0.github.io/"
+url: 'https://0archlinux0.github.io/'
 
 github:
   username: 0archlinux0 # change to your github username
@@ -52,7 +52,7 @@ social:
 # ↑ --------------------------
 
 google_analytics:
-  id: "G-YFY3KQ4J0Y" # fill in your Google Analytics ID
+  id: 'G-YFY3KQ4J0Y' # fill in your Google Analytics ID
   # Google Analytics pageviews report settings
   pv:
     proxy_endpoint: # fill in the Google Analytics superProxy endpoint of Google App Engine
@@ -77,10 +77,10 @@ theme_mode: dark
 # will be added to all image (site avatar & posts' images) paths starting with '/'
 #
 # e.g. 'https://cdn.com'
-img_cdn: "https://user-images.githubusercontent.com/55131164/143733703-39f4e7a5-0ebd-4aee-a317-f0dfb6c5a4c5.png"
+img_cdn: 'https://user-images.githubusercontent.com/55131164/143733703-39f4e7a5-0ebd-4aee-a317-f0dfb6c5a4c5.png'
 
 # the avatar on sidebar, support local or CORS resources
-avatar: "https://user-images.githubusercontent.com/55131164/143733703-39f4e7a5-0ebd-4aee-a317-f0dfb6c5a4c5.png"
+avatar: 'https://user-images.githubusercontent.com/55131164/143733703-39f4e7a5-0ebd-4aee-a317-f0dfb6c5a4c5.png'
 
 # boolean type, the global switch for ToC in posts.
 toc: true
@@ -111,7 +111,7 @@ collections:
 
 defaults:
   - scope:
-      path: "" # An empty string here means all files in the project
+      path: '' # An empty string here means all files in the project
       type: posts
     values:
       layout: post
@@ -125,7 +125,7 @@ defaults:
     values:
       comments: false
   - scope:
-      path: ""
+      path: ''
       type: tabs # see `site.collections`
     values:
       layout: page
@@ -145,8 +145,8 @@ compress_html:
     envs: [development]
 
 exclude:
-  - "*.gem"
-  - "*.gemspec"
+  - '*.gem'
+  - '*.gemspec'
   - tools
   - docs
   - README.md
