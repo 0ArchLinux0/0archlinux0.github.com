@@ -4,7 +4,7 @@ author: MINJUN PARK
 date: 2022-04-12 18:28:00 +0900
 categories: [Algorithm, Graph Threory]
 tags: [Algorithm, Graph Threory, Max-flow min-cut, mfmc, flow network, 네트워크 플로우]
-pin: false
+pin: true
 ---
 
 **\# Definition**
@@ -16,9 +16,9 @@ pin: false
 
 그래프 $G$에서 최대유량 $flow(s,t)\_{max}$는 항상 source와 sink의 최소컷 $cut(s,t)\_{min}$과 같다​
 
-###
+***
 <center><b># Term Definition</b></center>
-###
+***
 
 **\#\# Cut \#\#**
 
@@ -68,7 +68,7 @@ $Minimum \\ cut $ $= min( cost(C) \\ \\mid \\ \\forall C = (S, T) \\in G )$
 
 $Maximum \\ cut $ $= max( cost(C) \\ \\mid \\ \\forall C = (S, T) \\in G )$
 
-###
+***
 
 **\# Proof**
 
