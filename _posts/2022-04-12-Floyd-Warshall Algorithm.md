@@ -2,7 +2,7 @@
 title: Floyd-Warshall Algorithm - 플로이드 워셜 알고리즘
 author: MINJUN PARK
 date: 2022-04-12 18:28:00 +0900
-categories: [Math, Number Theory]
+categories: [Graph theory, Flow network]
 tags:
   [
     Algorithm,
