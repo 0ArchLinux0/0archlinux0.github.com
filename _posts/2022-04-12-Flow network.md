@@ -42,7 +42,7 @@ flow를 정의하는 방법(notation)은 다양하다. 이 중 가장 직관적�
 _1._
 
 1번의 성질은  
-$\\forall(u, v) \\in E:$ $f(u, v) \\leq c(u,v)$  
+|$\\forall(u, v) \\in E:$ $f(u, v) \\leq c(u,v)$  
 으로 기본 공리같은 느낌이며 직관적으로도 자명하다.
 
 _2._
@@ -53,7 +53,7 @@ Skew-symmetric matrix란 $A^T = -A$를 만족하는 Square matrix(정방행렬)�
 (이에 따라 $f\_{uu} = 0$도 성립하게 된다)
 
 이와 비슷하게 flow에 대해서도 다음과 같은 성질이 성립한다.
-$f\_{uv} = -f\_{vu}$
+|$f\_{uv} = -f\_{vu}$
 
 정점 u에서 v로 유량이 흐르것과 v에서 u로 같은 양의 다른 부호의 유량이 흐르는 것을  
 동치로 취급할 수 있게 되면 flow analysis의 직관성, 논리의 흐름이 굉장히 깔끔해진다  
@@ -79,7 +79,7 @@ _3._
 
 Flow conservation은 정점 $v$로 들어오는 유량의 합의 절댓값과 나가는 유량의 합은 동일 하다는 성질이다.
 
-$f\_{v\_{in}}=f\_{v\_{out}}$
+|$f\_{v\_{in}}=f\_{v\_{out}}$
 
 $f\_{v\_{in}} = \\displaystyle\\sum\_{u: (u, v) \\in E} f\_{uv}$ $=    \\displaystyle\\sum\_{u: (u, v) \\in E} -f\_{vu}$ $= \\displaystyle\\sum\_{w: (w, v) \\in E} -f\_{vw}$ $=f\_{v\_{out}}$  
 를 얻을 수 있다.
@@ -87,7 +87,7 @@ $f\_{v\_{in}} = \\displaystyle\\sum\_{u: (u, v) \\in E} f\_{uv}$ $=    \\display
 _4._
 
 네트워크에서 유량의 값(value of flow)에 관한 성질이며 다음과 같다.  
-$\\mid f\\mid = f\_{s\_{out}} = f\_{t\_{in}}$ 
+|$\\mid f\\mid = f\_{s\_{out}} = f\_{t\_{in}}$ 
 
 s에서 직접적으로(다른 정점을 거치지 않고) 연결되어있는 점들의 집합을 $DS=\\left\\{u\\ \\mid \\ u: \\ directly \\ connected \\ from \\ s\\right\\}$라고 하자.
 
@@ -110,7 +110,9 @@ $\\therefore f\_{s\_{out}} = f\_{t\_{in}}\\  Q.E.D$
 > [reference](https://en.wikipedia.org/wiki/Flow_network)
 
 잔류 용량이란 $c\_{f}$으로 표기하며 얼마만큼의 유량이 더 흐를 수 있는지를 뜻한다.  
-용량이 유량의 최댓값이므로 잔류 용량은 $c\_{f} (e) = c(e) - f(e)$으로 표현된다.
+용량이 유량의 최댓값이므로 잔류 용량은 
+|$c\_{f} (e) = c(e) - f(e)$
+으로 표현된다.
 
 **\## Residual network **##****
 
