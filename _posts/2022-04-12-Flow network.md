@@ -28,7 +28,7 @@ pin: true
 
 ---
 
-**\## Flows **##****
+**\#\# Flows \#\#**
 
 flow를 정의하는 방법(notation)은 다양하다. 이 중 가장 직관적이며 대표적인 의사-유량(pseudo-flow라서 대충 의사-유량으로 번역하겠다)의 notation은 다음과 같다.
 
@@ -42,9 +42,7 @@ flow를 정의하는 방법(notation)은 다양하다. 이 중 가장 직관적�
 _1._
 
 1번의 성질은
-
 $\\forall(u, v) \\in E:$ $f(u, v) \\leq c(u,v)$
-
 으로기본 공리같은 느낌이며 직관적으로도 자명하다.
 
 _2._
@@ -63,13 +61,14 @@ $f\_{uv} = -f\_{vu}$
 
 혹여 $u$에서 $v$로 $E\_{uv} = 6$, $v$에서 $u$로 $E\_{vu} = 2$인 경우 $f\_{uv} = -f\_{vu}$가 성립 안하는게 아니냐 라고 생각 하시는 분들을 위하여
 
-더보기
-
+<details>
+<summary>더보기</summary>
 flow analysis에서 논리의 흐름을 위하여 $f\_{uv}$는 단순히 u에서 v로 직접적으로(다른 정점을 거치지 않고) 흐르는 유량 뿐만 아닌 가능한 모든 경로에 대한 유량의 합을 뜻한다.
 
-다시 말하자면 모든 $u \\Rightarrow v$로 갈 수 있는 경로들의 집합 $P(u,v) = \\left\\{p \\ | \\ p: \\ path \\ from \\ u \\ to \\ v}$에 대해서 유량 $f\_{uv}$ $=\\displaystyle\\sum\_{path \\ p \\in P} f(p)$으로 표현 할 수 있다.
+다시 말하자면 모든 $u \\Rightarrow v$로 갈 수 있는 경로들의 집합 $P(u,v) = \\left\\{p \\ \\mid \\ p: \\ path \\ from \\ u \\ to \\ v}$에 대해서 유량 $f\_{uv}$ $=\\displaystyle\\sum\_{path \\ p \\in P} f(p)$으로 표현 할 수 있다.
 
 따라서 $u$에서 $v$로 $E\_{uv} = 6$, $v$에서 $u$로 $E\_{vu} = 2$인 경우 $f\_{uv} = 6 -2 = 4 = -(2 - 6) = -f\_{vu}$이 성립하게 되는 것이다.
+</details>
 
 _3._
 
@@ -85,9 +84,9 @@ _4._
 
 네트워크에서 유량의 값(value of flow)에 관한 성질이며 다음과 같다.
 
-$|f| = f\_{s\_{out}} = f\_{t\_{in}}$ 
+$\\mid f\\mid = f\_{s\_{out}} = f\_{t\_{in}}$ 
 
-s에서 직접적으로(다른 정점을 거치지 않고) 연결되어있는 점들의 집합을 $DS=\\left\\{u\\ | \\ u: \\ directly \\ connected \\ from \\ s\\right\\}$라고 하자.
+s에서 직접적으로(다른 정점을 거치지 않고) 연결되어있는 점들의 집합을 $DS=\\left\\{u\\ \\mid \\ u: \\ directly \\ connected \\ from \\ s\\right\\}$라고 하자.
 
 Flow conservation에 의해
 
