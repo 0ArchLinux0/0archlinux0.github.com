@@ -2,7 +2,7 @@
 title: AtCoder. ABC 237 D LR insertion
 author: MINJUN PARK
 date: 2022-01-30 21:50:00 +0900
-categories: [AtCoder, ABC Contest]
+categories: [Record, Code]
 tags:
   [
     Java,

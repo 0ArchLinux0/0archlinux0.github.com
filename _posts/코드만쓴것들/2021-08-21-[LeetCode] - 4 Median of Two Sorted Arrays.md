@@ -2,7 +2,7 @@
 title: LeetCode. 4 Median of Two Sorted Arrays
 author: MINJUN PARK
 date: 2021-08-21 14:11:00 +0900
-categories: [LeetCode, JavaScript]
+categories: [Record, Code]
 tags:
   [
     Code Block,
@@ -11,7 +11,7 @@ tags:
     Algorithm,
     Coding Interview,
     LeetCode,
-    Median of Two Sorted Arrays
+    Median of Two Sorted Arrays,
   ]
 pin: false
 ---

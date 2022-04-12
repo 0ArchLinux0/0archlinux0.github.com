@@ -2,7 +2,7 @@
 title: AtCoder. ABC 237 A Not Overflow
 author: MINJUN PARK
 date: 2022-01-30 21:05:00 +0900
-categories: [AtCoder, ABC Contest]
+categories: [Record, Code]
 tags:
   [
     Java,

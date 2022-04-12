@@ -2,7 +2,7 @@
 title: AtCoder. 005 Restricted Digits(7)
 author: MINJUN PARK
 date: 2021-12-30 02:44:00 +0900
-categories: [AtCoder, 競プロ典型 90 問]
+categories: [Record, Code]
 tags:
   [
     Code Block,

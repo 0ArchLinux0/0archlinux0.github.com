@@ -2,7 +2,7 @@
 title: AtCoder. ABC 237 B Matrix Transposition
 author: MINJUN PARK
 date: 2022-01-30 21:10:00 +0900
-categories: [AtCoder, ABC Contest]
+categories: [Record, Code]
 tags:
   [
     Java,

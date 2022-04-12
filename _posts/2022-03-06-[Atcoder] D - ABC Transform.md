@@ -2,7 +2,7 @@
 title: AtCoder. ABC 238 D ABC Transform
 author: MINJUN PARK
 date: 2022-03-06 09:00:00 +0900
-categories: [AtCoder, ABC Contest]
+categories: [Record, Code]
 tags:
   [
     Java,

@@ -2,7 +2,7 @@
 title: Max-flow min-cut theorem - 최대 유량 최소 컷 정리
 author: MINJUN PARK
 date: 2022-04-12 18:28:00 +0900
-categories: [Graph Threory, Flow network]
+categories: [Record, Code]
 tags:
   [
     Algorithm,

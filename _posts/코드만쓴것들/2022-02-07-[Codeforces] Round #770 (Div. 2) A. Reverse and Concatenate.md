@@ -2,7 +2,7 @@
 title: Codeforces Round 770 (Div. 2) A. Reverse and Concatenate
 author: MINJUN PARK
 date: 2022-02-07 23:35:00 +0900
-categories: [Codeforces, Codeforces Round]
+categories: [Record, Code]
 tags:
   [
     Code Block,
@@ -58,7 +58,7 @@ public class Main {
 
 	static int toi(String s) { return Integer.parseInt(s); }
 	static long tol(String s) { return Long.parseLong(s); }
-	static String[] getLine() throws IOException { return br.readLine().split(" "); }	
+	static String[] getLine() throws IOException { return br.readLine().split(" "); }
 	static int[] getArr() throws IOException { return Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray(); }
 	static <T> void print(T s) { System.out.print(s); }
 	static <T> void println(T s) { System.out.println(s); }

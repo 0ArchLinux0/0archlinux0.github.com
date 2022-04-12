@@ -2,7 +2,7 @@
 title: Programmers. Stock Price
 author: MINJUN PARK
 date: 2021-12-19 06:25:00 +0900
-categories: [Programmers, Java]
+categories: [Record, Code]
 tags:
   [
     Java,
@@ -12,7 +12,7 @@ tags:
     Programmers,
     Stock Price,
     주식 가격,
-    프로그래머스
+    프로그래머스,
   ]
 pin: false
 ---

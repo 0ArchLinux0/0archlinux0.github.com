@@ -2,7 +2,7 @@
 title: Codeforces Global Round 19 A. Sorting Parts
 author: MINJUN PARK
 date: 2022-02-12 23:35:00 +0900
-categories: [Codeforces, Codeforces Global Round]
+categories: [Record, Code]
 tags:
   [
     Code Block,

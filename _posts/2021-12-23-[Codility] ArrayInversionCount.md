@@ -2,18 +2,10 @@
 title: Codility. ArrayInversionCount
 author: MINJUN PARK
 date: 2021-12-23 01:39:00 +0900
-categories: [Codility, Java]
-tags:
-  [
-    Java,
-    Algorithm,
-    Coding Interview,
-    Codility,
-    ArrayInversionCount
-  ]
+categories: [Record, Code]
+tags: [Java, Algorithm, Coding Interview, Codility, ArrayInversionCount]
 pin: false
 ---
-
 
 [Link] <https://app.codility.com/programmers/trainings/4/array_inversion_count/>
 

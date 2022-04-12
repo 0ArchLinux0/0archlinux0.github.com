@@ -2,7 +2,7 @@
 title: Codeforces Round 770 (Div. 2) B. Fortune Telling
 author: MINJUN PARK
 date: 2022-02-07 23:35:00 +0900
-categories: [Codeforces, Codeforces Round]
+categories: [Record, Code]
 tags:
   [
     Code Block,
@@ -42,7 +42,7 @@ public class Main {
 			boolean parityChange = false;
 			for(int e : a) {
 				if((e & 1) == 1) parityChange = !parityChange;
-			} 
+			}
 
 			if(yIsOdd == xIsOdd) {
 				sb.append(parityChange ? "Bob" : "Alice").append("\n");
@@ -54,7 +54,7 @@ public class Main {
 
 	static int toi(String s) { return Integer.parseInt(s); }
 	static long tol(String s) { return Long.parseLong(s); }
-	static String[] getLine() throws IOException { return br.readLine().split(" "); }	
+	static String[] getLine() throws IOException { return br.readLine().split(" "); }
 	static int[] getArr() throws IOException { return Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray(); }
 	static long[] getArr2() throws IOException { return Arrays.stream(br.readLine().split(" ")).mapToLong(Long::parseLong).toArray(); }
 	static <T> void print(T s) { System.out.print(s); }

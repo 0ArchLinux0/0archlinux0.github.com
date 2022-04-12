@@ -2,7 +2,7 @@
 title: Codeforces Round 771 (Div. 2) D. Big Brush
 author: MINJUN PARK
 date: 2022-02-14 23:35:00 +0900
-categories: [Codeforces, Java]
+categories: [Record, Code]
 tags:
   [
     Code Block,

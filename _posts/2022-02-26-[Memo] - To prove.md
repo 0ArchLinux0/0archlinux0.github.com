@@ -2,7 +2,7 @@
 title: Memo. To prove
 author: MINJUN PARK
 date: 2022-02-26 18:48:00 +0900
-categories: [Memo, Todo]
+categories: [Record, Code]
 tags: [Prove, Todo]
 pin: false
 ---
@@ -21,8 +21,6 @@ z알고리즘 증명
 => 시간복잡도도 유도
 이분매칭, 에드몬드 증명
 manber myers algorithm
-
-
 
 공부해야할것들
 네트워크 플로우, 접미사 배열, Z알고리즘(문자열), 아호 코라식,

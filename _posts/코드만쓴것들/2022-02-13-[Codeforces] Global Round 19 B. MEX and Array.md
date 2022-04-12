@@ -2,7 +2,7 @@
 title: Codeforces Global Round 19 B. MEX and Array
 author: MINJUN PARK
 date: 2022-02-13 11:30:00 +0900
-categories: [Codeforces, Codeforces Global Round]
+categories: [Record, Code]
 tags:
   [
     Code Block,

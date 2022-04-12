@@ -2,16 +2,8 @@
 title: Bézout's identity - 베주 항등식(Part. 1)
 author: MINJUN PARK
 date: 2022-04-12 18:28:00 +0900
-categories: [Graph Threory, Flow network]
-tags:
-  [
-    Algorithm,
-    Graph Threory,
-    Max-flow min-cut,
-    Ford–Fulkerson algorithm,
-    flow network,
-    네트워크 플로우,
-  ]
+categories: [Math, Number Theory]
+tags: [Math, Number Theory, Bézout's identity, 베주 항등식, 증명, 정수론]
 pin: true
 ---
 
@@ -54,23 +46,23 @@ $ \\therefore \\ k$ $= mq + r$ $= \\left(ax\_{1} + bY\_{1}\\right)q + r$
 
 $ r $ $= k - mq $ $= \\left(ax\_{2} + by\_{2}\\right) - \\left(ax\_{1} + by\_{1}\\right) q $ $=a\\left(x\_{2} - qx\_{1}\\right) + b\\left(y\_{2} - qy\_{1}\\right) $
 
-$ m \\not\\mid  k$ 라고 가정해보면$ r \\in \\mathbb{N} $임을 알 수 있고 $ r < m $이 성립하게 되어 m이 최솟값이라는 가정에 모순된다. 따라서 $ m \\mid k $ 가 항상 성립하게 된다.
+$ m \\not\\mid k$ 라고 가정해보면$ r \\in \\mathbb{N} $임을 알 수 있고 $ r < m $이 성립하게 되어 m이 최솟값이라는 가정에 모순된다. 따라서 $ m \\mid k $ 가 항상 성립하게 된다.
 
 두 가지 경우로 나눠서 생각을 해보자.
 
-1) $ a = 0 \\lor b = 0 $
+1. $ a = 0 \\lor b = 0 $
 
 일반성을 잃지 않고 $a = 0$이라고 하면 $ GCD(a,b) = GCD(b, 0) = 0 $이 얻어지고 $ x=0 \\  and \\ y =0 $라는 쌍으로 표현 할 수 있음이 자명하다.
 
 _(\* 본 증명에서는 증명의 간결함을 위하여 $ For \\ \\forall n \\in \\mathbb{N} \\ GCD(n, 0) = 0 $으로 정의한다.)_
 
-2) $ a \\neq 0 \\land b \\neq 0 $
+2. $ a \\neq 0 \\land b \\neq 0 $
 
 $ a \\in S \\land b \\in S$ 에서 $ m\\mid a \\land m\\mid b,\\ \\therefore m\\mid g$ 임을 알 수 있다.
 
 $g = mG\\left(G \\in \\mathbb{Z} \\right)$라 두자.
 
-$g $ $= mG $ $= \\left(ax\_{1} + by\_{1}\\right)G $ $= a(Gx\_{1}) + b(Gy\_{1})$ 
+$g $ $= mG $ $= \\left(ax\_{1} + by\_{1}\\right)G $ $= a(Gx\_{1}) + b(Gy\_{1})$
 
 $x = Gx\_{1}$, $y =  Gy\_{1}$으로 표현 가능하다는 것이 얻어진다.
 
@@ -90,11 +82,10 @@ $g\\mid x \\land g\\mid y$ 이므로 자명하게 $g\\mid ax+by$가 성립한다
 
 Proposition 1, 2, 3으로부터
 
-**$Theorom \\ 1)$** **$For \\ \\forall \\ a,b,x,y l \\in $ $\\mathbb{N} \\left(a \\neq 0 \\lor b \\neq 0 \\right)$ $let \\ g=GCD(a,b)$, $S$ $= \\ \\left\\{ax+by>0 \\ \\mid  \\ x,y \\in \\mathbb{Z} \\right\\}$ $T\\ = \\ \\left\\{Mg \\ \\mid  \\ M \\in \\mathbb{Z} \\right\\}$, $then \\ S = T $** 
+**$Theorom \\ 1)$** **$For \\ \\forall \\ a,b,x,y l \\in $ $\\mathbb{N} \\left(a \\neq 0 \\lor b \\neq 0 \\right)$ $let \\ g=GCD(a,b)$, $S$ $= \\ \\left\\{ax+by>0 \\ \\mid  \\ x,y \\in \\mathbb{Z} \\right\\}$ $T\\ = \\ \\left\\{Mg \\ \\mid  \\ M \\in \\mathbb{Z} \\right\\}$, $then \\ S = T $**
 
 ---
 
 이로써 정수에 대한 Bézout's identity의 증명이 완료된다.
 
 일반적인 확장은 Part.2에서, 다항식으로의 확장은 Part.3에서 마저 기술하겠다.
-

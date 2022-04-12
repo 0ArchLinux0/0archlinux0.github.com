@@ -2,7 +2,7 @@
 title: AtCoder. ABC 235 C The Kth Time Query
 author: MINJUN PARK
 date: 2022-01-15 21:00:00 +0900
-categories: [AtCoder, ABC Contest]
+categories: [Record, Code]
 tags:
   [
     Java,

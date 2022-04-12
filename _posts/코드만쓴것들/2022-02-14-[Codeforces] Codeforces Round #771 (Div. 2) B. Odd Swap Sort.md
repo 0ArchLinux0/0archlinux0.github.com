@@ -2,7 +2,7 @@
 title: Codeforces Round 771 (Div. 2) B. Odd Swap Sort
 author: MINJUN PARK
 date: 2022-02-14 23:35:00 +0900
-categories: [Codeforces, Codeforces Round]
+categories: [Record, Code]
 tags:
   [
     Code Block,
