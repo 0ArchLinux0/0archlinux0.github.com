@@ -1,7 +1,7 @@
 ---
 title: Set And Logic - 集合と論理
 author: MINJUN PARK
-date: 2022-04-13 18:28:00 +0900
+date: 2022-04-13 17:28:00 +0900
 categories: [Computer Science, Automata theory]
 tags: [Computer Science, Automata theory]
 pin: true
