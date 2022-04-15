@@ -1,5 +1,5 @@
 ---
-title: Set And Logic(2) - 集合の操作
+title: Set And Logic(2) - 집합의 조작 - 集合の操作
 author: MINJUN PARK
 date: 2022-04-16 01:39:00 +0900
 categories: [Computer Science, Automata theory]
@@ -7,8 +7,65 @@ tags: [Computer Science, Automata theory]
 pin: true
 ---
 
-## <center> 集合の操作（和、積、包含と排除の原理、閉包性、被服） </center>
+## <center> 집합의 조작(합, 곱, 포함과 배제의 원리, Closure property、Covering） </center>
 
+---
+정의 1. 환, 체, 분배법칙
+
+집합과 그 집합위의 연산 $+,\\cdot$의 두가지 이항연산자로 구성되는 쌍  
+$(X, +, \\cdot)$이 환이라함은 다음 과 같은 3가지 성질을 만족할 때이다.
+
+1. 덧셈에 대한 가환성(commutative) $(X, +)$에 대해서 가환군(아벨군)이다.
+2. 곱셈에 대한 결합법칙(associative law of multiplication)  $\\forall x, y, z \\in X \\Rightarrow (x\\cdot y)\\cdot z = x \\cdot (y \\cdot z)$  
+   
+3. 분배법칙 $\\forall x, y, z \\in X \\Rightarrow x \\cdot(y + z) = x \\cdot y + x \\cdot z$ $and$ $(x+y)\\cdot z = x \\cdot z + y \\cdot z라
+
+추가적으로 곱에 대한 교환법칙($\\forall x, y \\in X \\Rightarrow x \\cdot y = y \\cdot x $)을 만족할때 가환환(commutative ring)이라 불린다.
+또한, 가환환의 조건에 더해 다음과 같은 3가지 성질이 성립할때 체(field)라고 불린다.
+
+1. 곱셈에대해 닫혀있다　$\\forall x, y \\in X \\Rightarrow x\\cdot y \\in X$  
+2. 곱셈에 대한 항등원을 가진다 $\\forall x, y \\in X \\Rightarrow x\\cdot y \\in X$
+3. 곱셈에 대한 역원을 가진다  $\\forall x, y \\in X \\Rightarrow x\\cdot y \\in X$ 
+
+이에 더해 곱에 대한 교환 법칙이 성립할때 가환체라고 하며 일반적으로 체라고 하면 가환체를 말하는 경우가 많다.
+
+정의 2. 거리  
+
+공집합이 아닌 집합 $X$의 원소 $a,b$에 대해 실수함수 $d(x,y)$가 정의되며 다음과 같은 4가지 조건을 만족할때 $d$는 $X$의 거리라고 말할 수 있다.
+
+1. 거리는 음수가 아니다 $d(x, y) \\geq 0$  
+2. 대칭성 $x, y \\in X \\Rightarrow d(x,y) = d(y,x)$  
+3. 삼각부등식 $x, y, z \\in X \\Rightarrow d(x,z) \\leq d(x,y) + d(y, z)$  
+4. 식별불가능자 동일성 원리 $d(x,y) = 0 \\iff x = y $
+
+위의 성질들중 4번을 만족하지 않고 $d(x,y) = 0 \\Rightarrow x = y$만을 만족할때   
+유사거리(pseudometric distance) 혹은 반거리(semimetric distance)라고 불린다.
+
+정의 3. 공간거리  
+
+집합 $X$와 거리함수$d$로 이루어진 쌍 $(X, d)$를 공간거리라고 정의한다.
+
+정의 4. 유클리드 거리  
+
+n차원 유클리드 공간 $(\\mathbb{R}^n, d)$는 대표적인 거리공간중 하나이며  
+$\\mathbb{R}^n$는 길이 n의 벡터 $x=(x_{1], x_{2}, \\ldots , x_{n}}), x_{i} \\in \\mathbb{R}, i = 1, 2,\\ldots , n$ 전체로 구성된 집합이다.  
+이때 두 점 x, y의 거리는 다음과 같이 정의된다.
+$d(x, y) \\colon = (\\displaystyle\\sum_{i=1}^n \\mid x_{i} - y {i} \\mid^2)^{1 \\over 2}$ 
+
+정의 5. Open ball  
+
+경계를 포함하지 않은 구로 중심을 $x_{0}$라고 하면 다음과 같이 표현된다. 
+$S_{r}(x_{0}) = \\left\\{ x \\in X \\ \\mid \\ d(x_{0}, x) < r \\right\\}$
+
+정의 6. Open, Closed  
+
+거리공간 $(X, d)$에 대해서 $X$의 부분 집합, $U \\subseteq X$를 생각하자.
+다음이 성립할때  
+$\\forall x \\in U, \\exists r > 0$ $such \\ that$ $S_{r}(x) \\subseteq U$
+$U$를 $X$의 열린 집합(Open)이라 하며 닫힌 집합(Closed)는 $Closed = Open^c$ 여집합이 된다.
+
+---
+## <center> 集合の操作（和、積、包含と排除の原理、閉包性、被服） </center>
 ---
 
 定義 1. 環、体、分配法則
@@ -16,12 +73,17 @@ pin: true
 集合とその集合上の「和」（＋）と「積」（・）と呼ばれる（異なる）２種類の２項演算からなる三つの組
 $(X, +, \\cdot)$が「環」であるとは、以下の３つの条件が満たされるときである。
 
-1. 和に関して可換性(commutative) $\\forall x, y, z \\in X \\Rightarrow (x\\cdot y)\\cdot z = x \\cdot (y \\cdot z)$
-2. 積に関する結合法則(associative law of multiplication)
+1. 和に関して可換性(commutative) $\\forall x, y, z \\in X \\Rightarrow (x\\cdot y)\\cdot z = x \\cdot (y \\cdot z)$  
+2. 積に関する結合法則(associative law of multiplication)  
    $\\forall x, y, z \\in X \\Rightarrow x \\cdot(y + z) = x \\cdot y + x \\cdot z$ $and$ $(x+y)\\cdot z = x \\cdot z + y \\cdot z$
-   さらに、積に関する交換法則： $\\forall x, y \\in \\mathbb{X} \\Rightarrow x \\cdot y = y \\cdot x$
-   を満たすとき、「可換環」と呼ぶ。(commutative ring)
-3. 分配法則
+3. 分配法則  
+さらに、積に関する交換法則： $\\forall x, y \\in \\mathbb{X} \\Rightarrow x \\cdot y = y \\cdot x$
+を満たすとき、「可換環」と呼ぶ。(commutative ring)  
+また、可換環の条件に加え次の３つの条件が成り立つと期は「体」と呼ばれる。
+
+1. 積に関する閉性　$\\forall x, y \\in X \\Rightarrow x\\cdot y \\in X$  
+2. 積に関する単位元  $\\forall x, y \\in X \\Rightarrow x\\cdot y \\in X$
+3. 積に関する逆元  $\\forall x, y \\in X \\Rightarrow x\\cdot y \\in X$  
 
 定義 2.
 
