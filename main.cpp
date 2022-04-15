@@ -1,17 +1,17 @@
-#include <algorithm>
-#include <iostream>
-#include <vector>
-#include <map>
-#include <set>
-#include <queue>
-#include <cstring>
-#include <stack>
-#include <cmath>
-#include <tuple>
-#include <climits>
-#include <fstream>
-#include <sstream>
-// #include <bits/stdc++.h>
+// #include <algorithm>
+// #include <iostream>
+// #include <vector>
+// #include <map>
+// #include <set>
+// #include <queue>
+// #include <cstring>
+// #include <stack>
+// #include <cmath>
+// #include <tuple>
+// #include <climits>
+// #include <fstream>
+// #include <sstream>
+#include <bits/stdc++.h>
 using namespace std;
 #ifdef ONLINE_JUDGE
   #define NDEBUG
@@ -34,40 +34,48 @@ const int INF = 987654321;
 const ll INFLL = 1e13;
 // const int mod = (int)1e9+7;
 const int mod = 10007;
-const int N = 1001;
+// const int N = 1001;
 const int st = 50;
-// const int N = 1000000;
-int n, m, t, k;
+const int N = 5e3 + 1;
+int n, m, t, k, pn, mn, glen, ans;
+vector<int> a;
+int dp[8][8][8];
+int g[8], acc[8];
 
-int rev(int n) {
-  int exp = mod-2, mul = n, ans = 1;
-  while(exp) {
-    if(exp & 1) ans = (ans * mul) % mod;
-    mul = (mul * mul) % mod;
-    exp >>= 1;
+void dfs(int ci, int gn) {
+  g[ci] = gn;
+  if(ci == n - 1) {
+    fill(acc, acc + 8, 0);
+    for0(i, n) acc[g[i]] += a[i];
+    int mul = 1;
+    for0(i, glen) mul *= acc[i];
+    if(mul == 1) return;
+    ans = max(ans, mul);
+    return;
   }
-  return ans;
+  for0(i, glen) {
+    dfs(ci+1, i);
+  }
 }
 
 void solve() {
-  int v = 1, fk, fnk;
-  if(k == 0) fk = 1;
-  if(n-k == 0) fnk = 1;
-  for1(i, n+1) {
-    v = (v * i) % mod;
-    if(i == k) fk = v;
-    if(i == n-k) fnk = v;
-  }
-  cout << v*rev(fk*fnk%mod)%mod;
+  dfs(0, 0);
+  cout << ans;
 }
 
 int main() {
   #ifdef NDEBUG 
     FASTIO;
-  #else 
+  #else
     freopen("input.txt", "r", stdin);
   #endif
-  cin >> n >> k;
+  cin >> n;
+  a.resize(n); memset(g, -1, sizeof(g));
+  for0(i, n) cin >> a[i];
+  // group
+  cin >> pn >> mn;
+  glen = mn + 1;
+  // g[0] = 0;
   solve();
 }
 
