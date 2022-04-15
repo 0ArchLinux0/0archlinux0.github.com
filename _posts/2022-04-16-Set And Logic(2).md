@@ -57,12 +57,12 @@ $d(x, y) \\colon = (\\displaystyle\\sum_{i=1}^n \\mid x_{i} - y {i} \\mid^2)^{1 
 경계를 포함하지 않은 구로 중심을 $x_{0}$라고 하면 다음과 같이 표현된다. 
 $S_{r}(x_{0}) = \\left\\{ x \\in X \\ \\mid \\ d(x_{0}, x) < r \\right\\}$
 
-정의 6. Open, Closed  
+정의 6. Open set, Closed set  
 
 거리공간 $(X, d)$에 대해서 $X$의 부분 집합, $U \\subseteq X$를 생각하자.
 다음이 성립할때  
 $\\forall x \\in U, \\exists r > 0$ $such \\ that$ $S_{r}(x) \\subseteq U$
-$U$를 $X$의 열린 집합(Open)이라 하며 닫힌 집합(Closed)는 $Closed = Open^c$ 여집합이 된다.
+$U$를 $X$의 열린 집합(open set)이라 하며 닫힌 집합(closed set)는 $closed = open^c$ 여집합이 된다.
 
 ---
 ## <center> 集合の操作（和、積、包含と排除の原理、閉包性、被服） </center>
