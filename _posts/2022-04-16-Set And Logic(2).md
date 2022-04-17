@@ -118,7 +118,9 @@ E의 모든 limit point가 E의 원소일때 E는 닫혀있다고 하며 E를 �
 3. $\\mathcal{F}$의 부분집합족(family of subsets) $\\mathcal{S} \\subset P(\\mathcal{F})$가 $E$의 cover일때, $\\mathcal{S}$을 $\\mathcal{F}$의 subcover(부분 덮개)라고 한다.
 4. $\\mid \\mathcal{F} \\mid \\in \\mathbb{N}$일때 $\\mathcal{S}$를 finite subcover(유한 부분 덮개)라고 한다.
 
-정의 10. 컴팩트 집합 Compact Set
+---
+
+정의 11. 컴팩트 집합 Compact Set
 
 compact한 집합이라는 어감대로 유한성과 관련이 있다.  
 거리공간 $X$와 $X$의 부분 집합 $E$를 잡자. 이때,  
@@ -131,7 +133,54 @@ $\\exists A = \\left\\{\\alpha \\ \\mid \\ \\alpha \\in \\mathit{I} \\right\\}, 
 $E \\subset \\bigcup_{\\alpha \\in A}  \\alpha$
 를 만족할때 $E$는 Compact Set이다.
 
-정의 11. 상계, 하계, 상한, 하한  
+---
+
+정의 12. 순서집합 Ordered Set
+
+순서집합 $A$는 다음과 같은 3가지 성질을 만족하는 집합이다.  
+1. Symmetric 반사율 $\\forall a \\in A, a \\leq a$
+2. Anti-symmetric 반대칭율 $(a\\leq b) \\land (b \\leq c) \\Rightarrow a \\leq c$
+3. Transitive 추이율 $(a\\leq b) \\land (b \\leq a) \\Rightarrow a = b$
+
+---
+
+정의 13. 상계, 하계, 상한, 하한  
+Upper bound, Lower bound, Supremum, Infimum  
+
+Ordered Set $(X, \leq)$의 부분 집합 $A \\subset X$에 대하여  
+$\\exists a, \\forall x \\in A$ $s.t \\ x \\leq a$ 가 만족될때  
+$a$를 상계(Upper bound)라부르며 $X$는 '위로 유계'(Bounded from above)라고 한다.  
+$sup\\  A \\ = min(A) \\land u \\in X$ 를 상한(Supremum)이라 한다.  
+하계(Lower bound)와 '아래로 유계'(Bounded from below), 하한(Infimum, $inf \\ A$)은 반대로 정의 된다.
+
+---
+
+정의 14. 유리수의 조밀성, 실수의 조밀성
+
+임의의 서로 다른 두 실수를 잡았을때, 그 사이에 반드시 실수가 존재한다는 것을 실수의 조밀성이라 한다. 특히, 두 실수 사이에 반드시 무리수가 존재한다는 성질을 무리수의 조밀성이라 한다.
+$\\forall p, q \\in \\mathbb{R} \\land p < q,$ $\\exists r \\in \\mathbb{R} \\ s.t p < r < q$
+$\\mathbb{Q} \\subset \\mathbb{R}$ 으로부터 유리수의 조밀성이 성립함도 자명하다.
+
+---
+
+정리 15. 실수의 완비성
+
+실수 $A = \\left\\{a_{1}, a_{2}, \\ldots ,a_{n}, \\ldots\\right\\}$를 생각하자.
+$\\forall \\epsilon > 0, \\exists n_{0}$ $s.t$ $\\forall n, m \\geq n_{0} \\Rightarrow \\mid a_{n} - a{m} \\mid < \\epsilon$ 일때,  $A$는 코시 열(Cauchy sequence)이라 한다.  
+이러한 임의 Cauchy sequence가 수렴할때 그 공간은 complete(완비)하다고 한다.  
+$\\mathbb{R}$는 Complete metric space이며 이를 실수의 완비성이라고 한다.
+
+---
+
+정리 16. 상극한, 하극한
+Limit superior, Limit inferior
+
+집합족 $\\mathcal{F} = \\left\\{ A_{n} \\ \\mid \\ n \\in \\mathbb{N} \\right\\}$의 상극한, 하극한은 다음과 같이 정의된다.  
+$ \\underset{n  \\to \\infty}{\\overline{\\lim}} A_{n}$  $\\displaystyle = \\bigcap_{n=1}^{\\infty} \\bigcup_{k = n}^{\\infty}A_{k}$  
+$ \\underset{n  \\to \\infty}{\\underline{\\lim}} A_{n}$ $= \\displaystyle\\bigcup_{n=1}^{\\infty} \\bigcap_{k = n}^{\\infty}A_{k}$
+  수열 ${a_{n}}$에 대한 상극한 하극한은 다음과 같이 정의된다.
+$ \\underset{n  \\to \\infty}{\\overline{\\lim}} a_{n}$  $\\displaystyle = \\inf_{n=1}^{\\infty} \\sup_{k = n}^{\\infty}A_{k}$  
+$ \\underset{n  \\to \\infty}{\\underline{\\lim}} a_{n}$ $= \\displaystyle\\sup_{n=1}^{\\infty} \\inf_{k = n}^{\\infty}A_{k}$
 
 
 ---
