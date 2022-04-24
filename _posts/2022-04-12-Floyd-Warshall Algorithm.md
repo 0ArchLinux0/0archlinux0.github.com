@@ -15,7 +15,7 @@ tags:
     shortest path,
     최단 비용,
   ]
-pin: true
+pin: false
 ---
 
 **\# Expression**

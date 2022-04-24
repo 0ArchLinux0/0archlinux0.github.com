@@ -4,7 +4,7 @@ author: MINJUN PARK
 date: 2022-04-24 18:28:00 +0900
 categories: [Math, Number Theory]
 tags: [Math, Analysis, Nested Interval Property, 폐구간 수렴 정리, 해석학]
-pin: true
+pin: false
 ---
 
 **\# Definition of the **Nested Interval****
