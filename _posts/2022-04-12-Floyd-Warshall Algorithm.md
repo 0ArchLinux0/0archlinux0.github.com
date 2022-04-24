@@ -24,7 +24,7 @@ $ \\forall u,v \\in G: \\ \\ cost(u,v)$
 
 그래프 G에 대해서 모든 정점간의 최소 비용을 계산할때 쓰이며 음의 가중치 간선이 있어도 동작한다.
 
-## 이러한 최소 비용 문제를 일반적으로 Shortest Path Problem 으로 분류한다.
+이러한 최소 비용 문제를 일반적으로 Shortest Path Problem 으로 분류한다.
 
 **\# Algorithm**
 pseudo code

@@ -128,7 +128,7 @@ $\\therefore f\_{s\_{out}} = f\_{t\_{in}}\\  Q.E.D$
 > [reference](https://en.wikipedia.org/wiki/Flow_network)
 
 잔류 네트워크란 잔류 용량에 초점을 맞추어 구성한 그래프이다.  
-$G=(V,E)$라면 간선 $E\_{uv} = $c\_{f}(u, v)$로 표현 된다.
+$G=(V,E)$라면 간선 $E\_{uv} =$ $c\_{f}(u, v)$로 표현 된다.
 
 **\#\# Augmenting paths \#\#\*\***
 
