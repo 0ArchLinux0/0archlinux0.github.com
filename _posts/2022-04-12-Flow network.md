@@ -104,7 +104,7 @@ $\\Rightarrow$ $0 = \\displaystyle\\sum\_{u \\in V, u \\neq (s, t)}(\\displaysty
 
 $=\\displaystyle\\sum\_{(u, v) \\in V, u, v \\neq (s, t)}f\_{uv} - f\_{uv}$ $+\\displaystyle\\sum\_{u: s\\Rightarrow u}f\_{su}$ $-\\displaystyle\\sum\_{u: u\\Rightarrow t}f\_{ut}
 
-$=0$+\\displaystyle\\sum\_{u: s\\Rightarrow u}f\_{su}$ $-\\displaystyle\\sum\_{u: u\\Rightarrow t}f\_{ut}
+$=0+$ $\\displaystyle\\sum\_{u: s\\Rightarrow u}f\_{su}$ $-\\displaystyle\\sum\_{u: u\\Rightarrow t}f\_{ut}$
 
 $= f\_{s\_{out}} - f\_{t\_{in}}$
 
