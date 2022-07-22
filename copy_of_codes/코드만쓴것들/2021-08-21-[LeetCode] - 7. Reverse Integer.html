@@ -1,0 +1,39 @@
+<h2 id="reverse-integer">Reverse Integer</h2>
+
+<p><img src="https://user-images.githubusercontent.com/88752447/130302689-93185c4f-eacb-4048-bc6d-92610c10fd9f.png" alt="image" /></p>
+
+<p>[Link] <a href="https://leetcode.com/problems/reverse-integer/">https://leetcode.com/problems/reverse-integer/</a></p>
+
+<p><br /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">reverse</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">sign</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="kt">long</span> <span class="n">ln</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Long</span><span class="o">(</span><span class="n">x</span><span class="o">),</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">ln</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="n">sign</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+        <span class="k">while</span><span class="o">(</span><span class="n">ln</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">ans</span> <span class="o">*=</span> <span class="mi">10</span><span class="o">;</span>
+            <span class="n">ans</span> <span class="o">+=</span> <span class="n">ln</span><span class="o">%</span><span class="mi">10</span><span class="o">;</span>
+            <span class="n">ln</span> <span class="o">=</span> <span class="n">ln</span><span class="o">/</span><span class="mi">10</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">ans</span> <span class="o">&gt;=</span> <span class="o">(</span><span class="kt">long</span><span class="o">)</span><span class="nc">Integer</span><span class="o">.</span><span class="na">MIN_VALUE</span> <span class="o">&amp;&amp;</span> <span class="n">ans</span> <span class="o">&lt;=</span> <span class="o">(</span><span class="kt">long</span><span class="o">)</span><span class="nc">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">)</span> <span class="k">return</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">ans</span><span class="o">;</span>
+        <span class="k">else</span> <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>

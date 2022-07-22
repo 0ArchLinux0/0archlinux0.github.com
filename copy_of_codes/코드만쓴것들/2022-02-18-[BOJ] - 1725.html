@@ -1,0 +1,63 @@
+<p>[Link] <a href="https://www.acmicpc.net/problem/1725">https://www.acmicpc.net/problem/1725</a></p>
+
+<p><br /></p>
+
+<pre><code class="language-C++">#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+using namespace std;
+typedef long long ll;
+const int N = 1e5 + 1;
+int seg[2 * N];
+ll h[N];
+int n;
+ll ans = 0;
+
+void init() {
+  for(int i = 0; i &lt; n; i++) seg[i + n] = i;
+  for(int i = n - 1; i &gt; 0; i--)
+    seg[i] = h[seg[i&lt;&lt;1]] &lt; h[seg[i&lt;&lt;1|1]] ? seg[i&lt;&lt;1] : seg[i&lt;&lt;1|1];
+}
+
+int query(int l, int r) {
+  int min = 1e9, minIdx = 0;
+  for(l += n, r += n; l &lt; r; l &gt;&gt;= 1, r &gt;&gt;= 1) {
+    if(l &amp; 1) {
+      if(min &gt; h[seg[l]]) {
+        minIdx = seg[l];
+        min = h[minIdx];
+      }
+      l++;
+    }
+    if(r &amp; 1) {
+      if(min &gt; h[seg[--r]]) {
+        minIdx = seg[r];
+        min = h[minIdx];
+      }
+    }
+  }
+  return minIdx;
+}
+
+void bipartite(int l, int r) { //Does not include r
+  if(l &gt;= r) return;
+  if(l + 1 == r) {
+    ans = max(ans, h[l]);
+    return;
+  }
+  int minIdx = query(l, r);
+  ans = max(ans, h[minIdx] * (r - l));
+  bipartite(l, minIdx);
+  bipartite(minIdx + 1, r);
+}
+
+int main() {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  cout.tie(0);
+  cin &gt;&gt; n;
+  for (int i = 0; i &lt; n; i++) cin &gt;&gt; h[i];
+  init();
+  bipartite(0, n);
+  cout &lt;&lt; ans;
+}
+</code></pre>

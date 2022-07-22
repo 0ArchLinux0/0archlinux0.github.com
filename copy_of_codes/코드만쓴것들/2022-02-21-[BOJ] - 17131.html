@@ -1,0 +1,229 @@
+<p>[Link] <a href="https://www.acmicpc.net/problem/17131">https://www.acmicpc.net/problem/17131</a></p>
+
+<p><br />
+Lazy propagation with non recursive segment tree.
+There was no code sample of using lazy propagation with 
+recursive segment tree so I’ll share this code.
+Hope this help some one.
+<br />
+<br />
+*Not to using scanf and cin when ios_base::sync_with_stdio(0)(turn off the sync to stdio);
+<br /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+</pre></td><td class="rouge-code"><pre><span class="cp">#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">20</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">mod</span> <span class="o">=</span> <span class="mf">1e9</span> <span class="o">+</span> <span class="mi">7</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">adjust</span> <span class="o">=</span> <span class="mf">2e5</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">seg</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">N</span><span class="p">];</span>
+
+<span class="k">struct</span> <span class="nc">point</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">idx</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">point</span><span class="o">&gt;</span> <span class="n">points</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">point</span><span class="o">&gt;</span> <span class="n">sweep</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">update</span><span class="p">(</span><span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">y</span><span class="o">+=</span><span class="n">N</span><span class="p">;</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">y</span><span class="o">&gt;&gt;=</span><span class="mi">1</span><span class="p">)</span> <span class="n">seg</span><span class="p">[</span><span class="n">y</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">basis</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="o">=</span><span class="n">basis</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">N</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">;</span> <span class="n">l</span><span class="o">&gt;&gt;=</span><span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="o">&gt;&gt;=</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="n">cnt</span><span class="o">+=</span><span class="n">seg</span><span class="p">[</span><span class="n">l</span><span class="o">++</span><span class="p">];</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">r</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="n">cnt</span><span class="o">+=</span><span class="n">seg</span><span class="p">[</span><span class="o">--</span><span class="n">r</span><span class="p">];</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">cnt</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">clearSeg</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">seg</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="nf">cmp</span><span class="p">(</span><span class="n">point</span> <span class="n">p1</span><span class="p">,</span> <span class="n">point</span> <span class="n">p2</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">p1</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">p2</span><span class="p">.</span><span class="n">x</span><span class="p">;</span> <span class="p">}</span>
+
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">point</span> <span class="n">ptmp</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">ptmp</span><span class="p">.</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">ptmp</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+    <span class="n">ptmp</span><span class="p">.</span><span class="n">idx</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+    <span class="n">ptmp</span><span class="p">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">adjust</span><span class="p">;</span>
+    <span class="n">points</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">ptmp</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">sort</span><span class="p">(</span><span class="n">points</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">points</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">cmp</span><span class="p">);</span>
+
+  <span class="kt">int</span> <span class="n">staging_x</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">x</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">left</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">right</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">point</span><span class="o">&gt;&gt;</span> <span class="n">x_group</span><span class="p">;</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="n">point</span><span class="o">&gt;</span> <span class="n">tmp</span><span class="p">;</span>
+
+  <span class="k">for</span><span class="p">(</span><span class="n">point</span> <span class="n">p</span> <span class="o">:</span> <span class="n">points</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">staging_x</span> <span class="o">!=</span> <span class="n">p</span><span class="p">.</span><span class="n">x</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="n">x_group</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">tmp</span><span class="p">);</span>
+      <span class="n">tmp</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+      <span class="n">tmp</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+      <span class="n">staging_x</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="n">tmp</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="n">tmp</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="n">x_group</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">tmp</span><span class="p">);</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">point</span><span class="o">&gt;</span> <span class="n">vec</span><span class="o">:</span> <span class="n">x_group</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">point</span> <span class="n">p</span><span class="o">:</span> <span class="n">vec</span><span class="p">)</span> <span class="n">left</span><span class="p">[</span><span class="n">p</span><span class="p">.</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">point</span> <span class="n">p</span><span class="o">:</span> <span class="n">vec</span><span class="p">)</span> <span class="n">update</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">clearSeg</span><span class="p">();</span>
+  <span class="n">x_group</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+  <span class="n">tmp</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+  <span class="n">staging_x</span> <span class="o">=</span> <span class="n">points</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">x</span><span class="p">;</span>
+
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">points</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">point</span> <span class="n">p</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">staging_x</span> <span class="o">!=</span> <span class="n">p</span><span class="p">.</span><span class="n">x</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="n">x_group</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">tmp</span><span class="p">);</span>
+      <span class="n">tmp</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+      <span class="n">tmp</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+      <span class="n">staging_x</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">tmp</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="n">tmp</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="n">x_group</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">tmp</span><span class="p">);</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">point</span><span class="o">&gt;</span> <span class="n">vec</span><span class="o">:</span> <span class="n">x_group</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">point</span> <span class="n">p</span><span class="o">:</span> <span class="n">vec</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">right</span><span class="p">[</span><span class="n">p</span><span class="p">.</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">point</span> <span class="n">p</span><span class="o">:</span> <span class="n">vec</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">update</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="kt">long</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">sum</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">+</span> <span class="p">(</span><span class="kt">long</span><span class="p">)</span><span class="n">left</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">right</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="n">sum</span> <span class="o">%=</span><span class="n">mod</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">sum</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>

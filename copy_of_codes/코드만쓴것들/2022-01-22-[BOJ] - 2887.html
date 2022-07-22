@@ -1,0 +1,185 @@
+<p>[Link] <a href="https://www.acmicpc.net/problem/2887">https://www.acmicpc.net/problem/2887</a></p>
+
+<p><br />
+Let’s assume Graph T is sub-graph of MST and contains edge that connects two vertex which is not next to each other.<br />
+Without Loss of Generaility let two vertext A and B andA.x - B.x is the cost.<br />
+Let’s pick a vertex between A and B and call it C.</p>
+
+<p>Case 1) When T contians C already
+Disconnect A and B and connect C and A or C and B(Connect C with not connected one)
+Then this new graph connects all the vertex included in T and the cost is lower(|C.x - A.x| or |C.x - B.x| &lt; |A.x - B.x|)
+So T cannot be the sub-graph of MST and by that assumption is contradiction.</p>
+
+<p>Case 2) When T does not contains C
+Let’s expaned T to include C.
+the cost will be T.cost + |A.x - C.x| (WLG).<br />
+If we Disconnect A and B and connect A and C or B and C
+the new graph’s cost will be T.cost - |A.x - B.x| + (|B.x - C.x| or |A.x - C.x|) which is lower.
+So T cannot be the sub-graph of MST and by that assumption is contradiction.</p>
+
+<p>So to do Krustal’s algorithm all we have to add to Edges is just
+Edges which connects two vertext which is next to each other.</p>
+
+<p><br /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+</pre></td><td class="rouge-code"><pre><span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+	<span class="kd">static</span> <span class="nc">BufferedReader</span> <span class="n">br</span><span class="o">;</span>
+	<span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">seg</span><span class="o">;</span>
+	<span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">orig</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+		<span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">));</span>
+		<span class="nc">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>
+		<span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">;</span>
+		<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">toi</span><span class="o">(</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+		<span class="kt">int</span><span class="o">[]</span> <span class="n">parent</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">n</span><span class="o">];</span>
+		<span class="nc">PriorityQueue</span><span class="o">&lt;</span><span class="nc">Edge</span><span class="o">&gt;</span> <span class="n">edges</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PriorityQueue</span><span class="o">&lt;&gt;();</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="n">parent</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+		<span class="nc">Coor</span><span class="o">[]</span> <span class="n">xx</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Coor</span><span class="o">[</span><span class="n">n</span><span class="o">];</span>
+		<span class="nc">Coor</span><span class="o">[]</span> <span class="n">yy</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Coor</span><span class="o">[</span><span class="n">n</span><span class="o">];</span>
+		<span class="nc">Coor</span><span class="o">[]</span> <span class="n">zz</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Coor</span><span class="o">[</span><span class="n">n</span><span class="o">];</span>
+		<span class="kt">long</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="n">arr</span> <span class="o">=</span> <span class="n">getArr</span><span class="o">();</span>
+			<span class="n">xx</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Coor</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">i</span><span class="o">);</span>
+			<span class="n">yy</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Coor</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="mi">1</span><span class="o">],</span> <span class="n">i</span><span class="o">);</span>
+			<span class="n">zz</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Coor</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="mi">2</span><span class="o">],</span> <span class="n">i</span><span class="o">);</span>
+		<span class="o">}</span>
+
+		<span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">xx</span><span class="o">);</span>
+		<span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">yy</span><span class="o">);</span>
+		<span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">zz</span><span class="o">);</span>
+
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="n">edges</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Edge</span><span class="o">(</span><span class="n">xx</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">idx</span><span class="o">,</span> <span class="n">xx</span><span class="o">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">].</span><span class="na">idx</span><span class="o">,</span> <span class="nc">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">xx</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">coor</span> <span class="o">-</span> <span class="n">xx</span><span class="o">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">].</span><span class="na">coor</span><span class="o">)));</span>
+			<span class="n">edges</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Edge</span><span class="o">(</span><span class="n">yy</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">idx</span><span class="o">,</span> <span class="n">yy</span><span class="o">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">].</span><span class="na">idx</span><span class="o">,</span> <span class="nc">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">yy</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">coor</span> <span class="o">-</span> <span class="n">yy</span><span class="o">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">].</span><span class="na">coor</span><span class="o">)));</span>
+			<span class="n">edges</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Edge</span><span class="o">(</span><span class="n">zz</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">idx</span><span class="o">,</span> <span class="n">zz</span><span class="o">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">].</span><span class="na">idx</span><span class="o">,</span> <span class="nc">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">zz</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">coor</span> <span class="o">-</span> <span class="n">zz</span><span class="o">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">].</span><span class="na">coor</span><span class="o">)));</span>
+		<span class="o">}</span>
+
+		<span class="k">while</span><span class="o">(!</span><span class="n">edges</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+			<span class="nc">Edge</span> <span class="n">edge</span> <span class="o">=</span> <span class="n">edges</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+			<span class="kt">int</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">getParent</span><span class="o">(</span><span class="n">parent</span><span class="o">,</span> <span class="n">edge</span><span class="o">.</span><span class="na">v1</span><span class="o">),</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">getParent</span><span class="o">(</span><span class="n">parent</span><span class="o">,</span> <span class="n">edge</span><span class="o">.</span><span class="na">v2</span><span class="o">);</span>
+			<span class="k">if</span><span class="o">(</span><span class="n">p1</span> <span class="o">==</span> <span class="n">p2</span><span class="o">)</span> <span class="k">continue</span><span class="o">;</span>
+			<span class="k">if</span><span class="o">(</span><span class="n">p1</span> <span class="o">&lt;</span> <span class="n">p2</span><span class="o">)</span> <span class="n">parent</span><span class="o">[</span><span class="n">p2</span><span class="o">]</span> <span class="o">=</span> <span class="n">p1</span><span class="o">;</span>
+			<span class="k">else</span> <span class="n">parent</span><span class="o">[</span><span class="n">p1</span><span class="o">]</span> <span class="o">=</span> <span class="n">p2</span><span class="o">;</span>
+			<span class="n">ans</span> <span class="o">+=</span> <span class="n">edge</span><span class="o">.</span><span class="na">val</span><span class="o">;</span>
+		<span class="o">}</span>
+		<span class="n">print</span><span class="o">(</span><span class="n">ans</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="kd">static</span> <span class="kd">class</span> <span class="nc">Coor</span> <span class="kd">implements</span> <span class="nc">Comparable</span><span class="o">&lt;</span><span class="nc">Coor</span><span class="o">&gt;</span> <span class="o">{</span>
+		<span class="kt">int</span> <span class="n">coor</span><span class="o">;</span>
+		<span class="kt">int</span> <span class="n">idx</span><span class="o">;</span>
+		<span class="kd">public</span> <span class="nf">Coor</span><span class="o">(</span><span class="kt">int</span> <span class="n">coor</span><span class="o">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">coor</span> <span class="o">=</span> <span class="n">coor</span><span class="o">;</span> <span class="k">this</span><span class="o">.</span><span class="na">idx</span> <span class="o">=</span> <span class="n">idx</span><span class="o">;</span> <span class="o">}</span>
+		<span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="nc">Coor</span> <span class="n">coor</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">coor</span> <span class="o">&gt;</span> <span class="n">coor</span><span class="o">.</span><span class="na">coor</span><span class="o">)</span> <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
+			<span class="k">if</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">coor</span> <span class="o">==</span> <span class="n">coor</span><span class="o">.</span><span class="na">coor</span><span class="o">)</span> <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+			<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+
+	<span class="kd">static</span> <span class="kt">int</span> <span class="nf">getParent</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">parent</span><span class="o">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">parent</span><span class="o">[</span><span class="n">idx</span><span class="o">]</span> <span class="o">==</span> <span class="n">idx</span><span class="o">)</span> <span class="k">return</span> <span class="n">idx</span><span class="o">;</span>
+		<span class="k">return</span> <span class="n">parent</span><span class="o">[</span><span class="n">idx</span><span class="o">]</span> <span class="o">=</span> <span class="n">getParent</span><span class="o">(</span><span class="n">parent</span><span class="o">,</span> <span class="n">parent</span><span class="o">[</span><span class="n">idx</span><span class="o">]);</span>
+	<span class="o">}</span>
+
+	<span class="kd">static</span> <span class="kd">class</span> <span class="nc">Edge</span> <span class="kd">implements</span> <span class="nc">Comparable</span><span class="o">&lt;</span><span class="nc">Edge</span><span class="o">&gt;</span> <span class="o">{</span>
+		<span class="kt">int</span> <span class="n">v1</span><span class="o">;</span>
+		<span class="kt">int</span> <span class="n">v2</span><span class="o">;</span>
+		<span class="kt">int</span> <span class="n">val</span><span class="o">;</span>
+		<span class="kd">public</span> <span class="nf">Edge</span><span class="o">(</span><span class="kt">int</span> <span class="n">v1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">v2</span><span class="o">,</span> <span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span> <span class="k">this</span><span class="o">.</span><span class="na">v1</span> <span class="o">=</span> <span class="n">v1</span><span class="o">;</span> <span class="k">this</span><span class="o">.</span><span class="na">v2</span> <span class="o">=</span> <span class="n">v2</span><span class="o">;</span> <span class="k">this</span><span class="o">.</span><span class="na">val</span> <span class="o">=</span> <span class="n">val</span><span class="o">;</span> <span class="o">}</span>
+		<span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="nc">Edge</span> <span class="n">edge</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">return</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">compare</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">val</span><span class="o">,</span> <span class="n">edge</span><span class="o">.</span><span class="na">val</span><span class="o">);</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+
+	<span class="kd">static</span> <span class="kt">int</span> <span class="nf">toi</span><span class="o">(</span><span class="nc">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">s</span><span class="o">);</span> <span class="o">}</span>
+	<span class="kd">static</span> <span class="nc">String</span><span class="o">[]</span> <span class="nf">getLine</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span> <span class="k">return</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">().</span><span class="na">split</span><span class="o">(</span><span class="s">" "</span><span class="o">);</span> <span class="o">}</span>
+	<span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">getArr</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span> <span class="k">return</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">().</span><span class="na">split</span><span class="o">(</span><span class="s">" "</span><span class="o">)).</span><span class="na">mapToInt</span><span class="o">(</span><span class="nl">Integer:</span><span class="o">:</span><span class="n">parseInt</span><span class="o">).</span><span class="na">toArray</span><span class="o">();</span> <span class="o">}</span>
+	<span class="kd">static</span> <span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="no">T</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">s</span><span class="o">);</span> <span class="o">}</span>
+	<span class="kd">static</span> <span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">println</span><span class="o">(</span><span class="no">T</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">);</span> <span class="o">}</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>

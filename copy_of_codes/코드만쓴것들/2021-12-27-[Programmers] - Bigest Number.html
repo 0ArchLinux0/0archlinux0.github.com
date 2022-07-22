@@ -1,0 +1,24 @@
+<p>[Link] <a href="https://programmers.co.kr/learn/courses/30/lessons/42746">https://programmers.co.kr/learn/courses/30/lessons/42746</a></p>
+
+<p><br /></p>
+
+<pre><code class="language-C++">#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+bool compare(int a, int b) {
+    string sa = to_string(a);
+    string sb = to_string(b);
+    return sa + sb &gt; sb + sa;
+}
+
+string solution(vector&lt;int&gt; numbers) {
+    string answer = "";
+    sort(numbers.begin(), numbers.end(), compare);
+    if(numbers.at(0) == 0) return "0";
+    for(int num: numbers) answer += to_string(num);
+    return answer;
+}
+</code></pre>

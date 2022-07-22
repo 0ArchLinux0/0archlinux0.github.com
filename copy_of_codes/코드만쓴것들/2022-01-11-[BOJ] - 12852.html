@@ -1,0 +1,113 @@
+<p>[Link] <a href="https://www.acmicpc.net/problem/12852">https://www.acmicpc.net/problem/12852</a></p>
+
+<p><br /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+</pre></td><td class="rouge-code"><pre><span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+	<span class="kd">static</span> <span class="nc">BufferedReader</span> <span class="n">br</span><span class="o">;</span>
+	<span class="kd">static</span> <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">maxIdx</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+		<span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">));</span>
+		<span class="nc">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>
+		<span class="nc">String</span><span class="o">[]</span> <span class="n">line</span><span class="o">;</span>
+
+		<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">toi</span><span class="o">(</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+		<span class="kt">int</span><span class="o">[][]</span> <span class="n">dp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">1000001</span><span class="o">][</span><span class="mi">2</span><span class="o">];</span>
+		<span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">al</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+		<span class="n">dp</span><span class="o">[</span><span class="mi">1</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+		<span class="n">al</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+		<span class="nl">loop:</span> <span class="k">while</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+			<span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">temp</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+			<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">e</span> <span class="o">:</span> <span class="n">al</span><span class="o">)</span> <span class="o">{</span>
+				<span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">dp</span><span class="o">[</span><span class="n">e</span><span class="o">][</span><span class="mi">0</span><span class="o">];</span>
+				<span class="k">if</span><span class="o">(</span><span class="n">e</span> <span class="o">==</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+					<span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">v</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="s">"\n"</span><span class="o">);</span>
+					<span class="k">while</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+						<span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">e</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="s">" "</span><span class="o">);</span>
+						<span class="k">if</span><span class="o">(</span><span class="n">dp</span><span class="o">[</span><span class="n">e</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">break</span> <span class="n">loop</span><span class="o">;</span>
+						<span class="n">e</span> <span class="o">=</span> <span class="n">dp</span><span class="o">[</span><span class="n">e</span><span class="o">][</span><span class="mi">1</span><span class="o">];</span>
+					<span class="o">}</span>
+				<span class="o">}</span>
+				<span class="k">if</span><span class="o">(</span><span class="mi">3</span><span class="o">*</span><span class="n">e</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">dp</span><span class="o">[</span><span class="mi">3</span><span class="o">*</span><span class="n">e</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+					<span class="n">dp</span><span class="o">[</span><span class="mi">3</span><span class="o">*</span><span class="n">e</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">v</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+					<span class="n">dp</span><span class="o">[</span><span class="mi">3</span><span class="o">*</span><span class="n">e</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">e</span><span class="o">;</span>
+					<span class="n">temp</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">e</span><span class="o">);</span>
+				<span class="o">}</span>
+				<span class="k">if</span><span class="o">(</span><span class="mi">2</span><span class="o">*</span><span class="n">e</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">dp</span><span class="o">[</span><span class="mi">2</span><span class="o">*</span><span class="n">e</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+					<span class="n">dp</span><span class="o">[</span><span class="mi">2</span><span class="o">*</span><span class="n">e</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">v</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+					<span class="n">temp</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">e</span><span class="o">);</span>
+					<span class="n">dp</span><span class="o">[</span><span class="mi">2</span><span class="o">*</span><span class="n">e</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">e</span><span class="o">;</span>
+				<span class="o">}</span>
+				<span class="k">if</span><span class="o">(</span><span class="n">e</span><span class="o">+</span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">dp</span><span class="o">[</span><span class="n">e</span><span class="o">+</span><span class="mi">1</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+					<span class="n">dp</span><span class="o">[</span><span class="n">e</span><span class="o">+</span><span class="mi">1</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">v</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+					<span class="n">temp</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">e</span><span class="o">+</span><span class="mi">1</span><span class="o">);</span>
+					<span class="n">dp</span><span class="o">[</span><span class="n">e</span><span class="o">+</span><span class="mi">1</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">e</span><span class="o">;</span>
+				<span class="o">}</span>
+			<span class="o">}</span>
+			<span class="n">al</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+		<span class="o">}</span>
+		<span class="n">print</span><span class="o">(</span><span class="n">sb</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="kd">static</span> <span class="kt">int</span> <span class="nf">toi</span><span class="o">(</span><span class="nc">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">s</span><span class="o">);</span> <span class="o">}</span>
+	<span class="kd">static</span> <span class="nc">String</span><span class="o">[]</span> <span class="nf">getLine</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span> <span class="k">return</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">().</span><span class="na">split</span><span class="o">(</span><span class="s">" "</span><span class="o">);</span> <span class="o">}</span>
+	<span class="kd">static</span> <span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="no">T</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">s</span><span class="o">);</span> <span class="o">}</span>
+	<span class="kd">static</span> <span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">println</span><span class="o">(</span><span class="no">T</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">);</span> <span class="o">}</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>

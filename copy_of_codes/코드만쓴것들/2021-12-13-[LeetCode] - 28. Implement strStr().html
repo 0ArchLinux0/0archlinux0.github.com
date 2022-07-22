@@ -1,0 +1,41 @@
+<p><img src="https://user-images.githubusercontent.com/55131164/145843857-3340663f-ea52-43df-bed7-282638c7203c.png" alt="image" /></p>
+
+<p>[Link] <a href="https://leetcode.com/problems/implement-strstr/">https://leetcode.com/problems/implement-strstr/</a></p>
+
+<p><br /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="rouge-code"><pre><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">strStr</span><span class="o">(</span><span class="nc">String</span> <span class="n">haystack</span><span class="o">,</span> <span class="nc">String</span> <span class="n">needle</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">hayIdx</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">needleIdx</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">nlen</span> <span class="o">=</span> <span class="n">needle</span><span class="o">.</span><span class="na">length</span><span class="o">(),</span> <span class="n">lenDiff</span> <span class="o">=</span> <span class="n">haystack</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="n">nlen</span><span class="o">;</span>
+        <span class="kt">char</span><span class="o">[]</span> <span class="n">hay</span> <span class="o">=</span> <span class="n">haystack</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">(),</span> <span class="n">need</span> <span class="o">=</span> <span class="n">needle</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">needle</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">while</span><span class="o">(</span><span class="n">hayIdx</span> <span class="o">&lt;=</span> <span class="n">lenDiff</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">hayIdxCp</span> <span class="o">=</span> <span class="n">hayIdx</span><span class="o">;</span>
+            <span class="n">needleIdx</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">needle</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">hay</span><span class="o">[</span><span class="n">hayIdxCp</span><span class="o">++]</span> <span class="o">!=</span> <span class="n">need</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="k">break</span><span class="o">;</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">nlen</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="k">return</span> <span class="n">hayIdx</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="n">hayIdx</span><span class="o">++;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>

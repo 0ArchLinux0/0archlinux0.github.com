@@ -1,0 +1,40 @@
+<p>[Link] <a href="https://www.acmicpc.net/problem/2268">https://www.acmicpc.net/problem/2268</a></p>
+
+<p><br /></p>
+
+<pre><code class="language-C++">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+const int N=1e6+1;
+ll seg[2*N];
+int n;
+
+void modify(int pos, int v){
+  for(seg[pos+=n]=v; pos&gt;1; pos&gt;&gt;=1)
+    seg[pos&gt;&gt;1] = seg[pos]+seg[pos^1];
+}
+
+ll sum(int l, int r){
+  ll sum=0;
+  for(l+=n, r+=n; l&lt;r; l&gt;&gt;=1, r&gt;&gt;=1){
+    if(l&amp;1) sum+=seg[l++];
+    if(r&amp;1) sum+=seg[--r];
+  }
+  return sum;
+}
+
+int main(){
+  ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+  int m;
+  cin&gt;&gt;n&gt;&gt;m;
+  while(m--){
+    int query, a, b; cin&gt;&gt;query&gt;&gt;a&gt;&gt;b;
+    if(query!=0) modify(a,b);
+    else {
+      if(a&gt;b) swap(a,b);
+      cout&lt;&lt;sum(a,b+1)&lt;&lt;'\n';
+    }
+  }
+  return 0;
+}
+</code></pre>
