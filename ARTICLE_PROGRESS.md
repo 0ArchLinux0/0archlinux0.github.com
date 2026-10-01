@@ -21,7 +21,8 @@ Article revision: **1/296 verified; 295 pending**. Korean and Japanese: **1/296 
 - Jekyll 4.2.1 built locally on Ruby 3.3 with a temporary compatibility shim for older dependencies. The GitHub Actions `Validate blog` workflow had been manually disabled; it was re-enabled for pushes, pull requests, and manual runs on GitHub-hosted runners.
 - The initial build reported tag archive collisions; normalized the three colliding tag spellings. The rebuild completed without archive warnings.
 - Visual browser inspection remains unverified because Chromium could not start or attach in this environment; generated HTML assertions covered language labels and links.
-- PR #1 is merged into `main`. GitHub Actions run [#36810550181](https://github.com/0ArchLinux0/0archlinux0.github.com/actions/runs/36810550181) is building and publishing commit `868f89e`; the remote deployment result is pending.
+- PR #1 is merged into `main`. GitHub Actions run [#36810550181](https://github.com/0ArchLinux0/0archlinux0.github.com/actions/runs/36810550181) completed successfully, including the production build and publish to `gh-pages`.
+- PR #2 adds a manual validation trigger and documents the GitHub-hosted build/deploy workflow; its current GitHub Actions validation runs were in progress when recorded.
 
 | Source file | English | Korean | Japanese | Notes |
 |---|---|---|---|---|
