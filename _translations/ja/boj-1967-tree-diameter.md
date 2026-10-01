@@ -4,15 +4,14 @@ author: MINJUN PARK
 date: 2022-01-07 00:23:00 +0900
 categories: [Record, Code]
 tags:
-  [
-    Java,
-    Algorithm,
-    Coding Interview,
-    BOJ,
-    Tree,
-    Data Structure,
-    Diameter of Tree,
-    木の直径,
+  - Java
+  - Algorithm
+  - Coding Interview
+  - BOJ
+  - Tree
+  - Data Structure
+  - Diameter of Tree
+  - 木の直径
 pin: false
 lang: ja
 translation_key: boj-1967-tree-diameter

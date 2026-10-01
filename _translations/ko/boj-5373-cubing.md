@@ -32,6 +32,7 @@ $$v' = a(a\cdot v) + s(a\times v),$$
 
 ## C++17
 
+{% raw %}
 ```cpp
 #include <array>
 #include <iostream>
@@ -164,3 +165,4 @@ int main() {
     }
 }
 ```
+{% endraw %}

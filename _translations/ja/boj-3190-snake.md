@@ -23,6 +23,7 @@ source_permalink: /posts/BOJ-3190/
 
 ## C++17
 
+{% raw %}
 ```cpp
 #include <array>
 #include <iostream>
@@ -99,3 +100,4 @@ int main() {
     return 0;
 }
 ```
+{% endraw %}

@@ -19,6 +19,7 @@ source_permalink: /posts/BOJ-15683/
 
 ## C++17
 
+{% raw %}
 ```cpp
 #include <algorithm>
 #include <iostream>
@@ -109,3 +110,4 @@ int main() {
     cout << minimumBlindSpots << '\n';
 }
 ```
+{% endraw %}

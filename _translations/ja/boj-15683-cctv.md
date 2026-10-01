@@ -19,6 +19,7 @@ CCTVは種類ごとに定められた方向を監視し、90度ずつ回転で�
 
 ## C++17
 
+{% raw %}
 ```cpp
 #include <algorithm>
 #include <iostream>
@@ -109,3 +110,4 @@ int main() {
     cout << minimumBlindSpots << '\n';
 }
 ```
+{% endraw %}

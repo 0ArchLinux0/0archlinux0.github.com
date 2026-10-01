@@ -19,6 +19,7 @@ source_permalink: /posts/BOJ-14500/
 
 各マスからの深さ4の探索は分岐数が定数で、T型の確認も4方向だけです。そのため、形の数による定数倍を含む時間計算量は `O(NM)` です。マスの値と合計には `long long` を使い、加算時のオーバーフローを避けます。
 
+{% raw %}
 ```cpp
 #include <algorithm>
 #include <iostream>
@@ -98,3 +99,4 @@ int main() {
     return 0;
 }
 ```
+{% endraw %}

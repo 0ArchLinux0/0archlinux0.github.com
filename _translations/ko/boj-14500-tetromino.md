@@ -19,6 +19,7 @@ source_permalink: /posts/BOJ-14500/
 
 각 칸에서 깊이가 4인 탐색의 분기 수는 상수이며, T 방향도 네 개뿐이므로 전체 시간 복잡도는 모양 개수에 따른 상수를 포함한 `O(NM)`입니다. 칸의 값과 합은 `long long`으로 다뤄 합산 중 오버플로를 방지합니다.
 
+{% raw %}
 ```cpp
 #include <algorithm>
 #include <iostream>
@@ -98,3 +99,4 @@ int main() {
     return 0;
 }
 ```
+{% endraw %}
