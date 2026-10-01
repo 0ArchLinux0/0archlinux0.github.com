@@ -4,10 +4,11 @@ Personal notes on mathematics, algorithms, and software engineering. Built with 
 
 ## Language and article workflow
 
-- English is the site’s default and the canonical language for articles.
-- Korean and Japanese versions live in `_translations/ko/` and `_translations/ja/`; each translation links to its English article using the same `translation_key`.
-- An article’s language switcher shows only translations that exist. It never substitutes machine-translated text or points to a missing page.
-- Record article review and translation progress in [`ARTICLE_PROGRESS.md`](ARTICLE_PROGRESS.md). Mark an English revision verified only after checking its technical claims and rendered page.
+- English is the default mode at `/`; Korean and Japanese have separate mode pages at `/ko/` and `/ja/`.
+- The persistent language selector links to the matching article when a reviewed translation exists; otherwise it opens that language’s article index. Home navigation stays in the selected mode.
+- The English home page lists canonical source posts; Korean and Japanese indexes list only reviewed translations. There is no runtime machine translation.
+- Translations live in `_translations/ko/` and `_translations/ja/` with the same stable `translation_key` as the English article.
+- Record article review and translation progress in [`ARTICLE_PROGRESS.md`](ARTICLE_PROGRESS.md). Mark a language version verified only after checking its technical claims and rendered page.
 
 ## Local development
 
@@ -28,7 +29,7 @@ JEKYLL_ENV=production bundle exec jekyll build
 
 Pull requests and pushes run the `Validate blog` workflow on GitHub-hosted runners; `workflow_dispatch` lets you start one manually. You do not need to build locally for CI or publishing.
 
-Pushing or merging to `main` runs the `Automatic build` workflow in `.github/workflows/pages-deploy.yml`; it builds the production site and publishes it from `gh-pages`. Keep `url` in `_config.yml` as the origin without a trailing slash; Jekyll constructs page URLs from it.
+Pushing or merging to `main` runs the `Automatic build` workflow in `.github/workflows/pages-deploy.yml`; it builds the production site, checks generated language/article routes with `tools/verify_language_routes.rb`, and then publishes it from `gh-pages`. Keep `url` in `_config.yml` as the origin without a trailing slash; Jekyll constructs page URLs from it.
 
 ## Adding a translation
 

@@ -13,84 +13,67 @@ tags:
     Kosaraju's algorithm,
   ]
 pin: false
+lang: en
+translation_key: strongly-connected-components
+permalink: /posts/Graph-theory-Strongly-Connected-Component/
 ---
 
-#Strongly Connected Component
-In directed graph,
-SCC means two components which are reachable in both ways
+# Strongly Connected Components
 
-#Algorithm (to get SCC)  
--- Kosaraju's algorithm(DFS)
--- Tarjan's algorithm
+In a directed graph, a strongly connected component (SCC) is a maximal set of vertices in which every vertex is reachable from every other vertex. Reachability is mutual: for any two vertices `u` and `v` in the same SCC, there is a directed path from `u` to `v` and a directed path from `v` to `u`. A one-way path alone does not put its endpoints in the same component.
 
-#Tarjan's algorithm(DFS)
+## Tarjan's algorithm
+
+Tarjan's algorithm finds all SCCs in one depth-first traversal. The function below accepts an adjacency list: `graph[u]` contains the 0-based vertex indices reached by outgoing edges from `u`. It returns an array of components, each of which is an array of 0-based vertex indices. Component and vertex order are not significant.
+
+For each vertex, `index` records its discovery order and `lowLink` records the smallest discovery index reachable from it by following DFS-tree edges and, when applicable, one edge to a vertex still on the active stack. A tree edge propagates the child's `lowLink` after that child is explored. A back edge to an active vertex uses that vertex's `index`, not its `lowLink`; edges to vertices already removed from the stack are ignored. This on-stack rule prevents a completed SCC from incorrectly joining a later one.
+
+When `lowLink[v] === index[v]`, `v` is the root of an SCC. Pop vertices from the stack through `v`; those popped vertices form one component. The outer loop starts DFS from every undiscovered vertex, so disconnected parts of the graph are included.
 
 ```javascript
-/**
- edges = {
-   ...fromVertex: [ ... toVertex ]  
- }
-*/
-stack_global; // stack
-sccIdx = 1; //to distinguish the node we haven't visit.
-parent; // parent sccIdx of node
-end; // if formed an SCC and poped out of stack
-for (vertex of vertexs) if (parent[vertex] != 0) dfs(vertex);
+function stronglyConnectedComponents(graph) {
+  const n = graph.length;
+  const index = Array(n).fill(-1);
+  const lowLink = Array(n).fill(0);
+  const onStack = Array(n).fill(false);
+  const stack = [];
+  const components = [];
+  let nextIndex = 0;
 
-function dfs(vertex) {
-  parent[vertex] = tmpParent = sccIdx++; //every time dfs is called, sccIdx increase and the value is idential
-  stack_global.push(vertex);
-  for (toVertex of edges[vertex]) {
-    if (parent[toVertex] !== 0) tmpParent = min(tmpParent, dfs(toVertex));
-    else if (!end[toVertex]) tmpParent = min(tmpParent, parent[toVertex]);
-  }
+  function visit(v) {
+    index[v] = nextIndex;
+    lowLink[v] = nextIndex;
+    nextIndex += 1;
+    stack.push(v);
+    onStack[v] = true;
 
-  if (tmpParent == parent[vertex]) {
-    //pop out nodes that form one SCC group
-    while (true) {
-      top = stack.pop();
-      localSCC.push(top);
-      end[top] = true;
-      /*  
-      the reason we don't do this before return this function
-      lets' assume we do this before return and 
-      think of dfs called: 
-      parent => ...node1 => node2=> parent
-      then, parent[node2] = parent.SCCIdx, end[parent] = true;
-      back to node1, since end[node2] = true, node1.SCCIdx is not updated to node2.SCCIdx which is parent.SCCIdx
-      */
-      if (top == vertex) break;
+    for (const w of graph[v]) {
+      if (index[w] === -1) {
+        visit(w);
+        lowLink[v] = Math.min(lowLink[v], lowLink[w]);
+      } else if (onStack[w]) {
+        lowLink[v] = Math.min(lowLink[v], index[w]);
+      }
+    }
+
+    if (lowLink[v] === index[v]) {
+      const component = [];
+      let w;
+      do {
+        w = stack.pop();
+        onStack[w] = false;
+        component.push(w);
+      } while (w !== v);
+      components.push(component);
     }
   }
-  return tmpParent;
+
+  for (let v = 0; v < n; v += 1) {
+    if (index[v] === -1) visit(v);
+  }
+
+  return components;
 }
 ```
 
-#Kosaraju's algorithm(DFS)
-
-```javascript
-/**
- edges = {
-   ...fromVertex: [ ... toVertex ]  
- }
-*/
-stack_global;
-sccIdx = 1; //to distinguish the node we haven't visit.
-visit;
-end; // if formed an SCC and poped out of stack
-rev_edges; // reverse directed graph
-for (vertex of vertexs)
-  if (parent[vertex] != 0) visitDFS(vertex, stack_global, edges);
-//initialize visit to false
-while (!stack_global.isEmpty()) {
-  top = stack_global.pop();
-  if (!visit[top]) visitDFS(top, SCC, rev_edges);
-}
-
-function visitDFS(vertex, stack, edges) {
-  stack.push([vertex, sccIdx++]);
-  visit[vertex] = true;
-  for (toVertext of edges[vertex])
-    if (!visit[toVertex]) visitDFS(toVertex, stack);
-}
-```
+The algorithm takes `O(V + E)` time and `O(V)` auxiliary space, where `V` is the number of vertices and `E` is the number of directed edges. The implementation is recursive, so its call depth can be `O(V)`; extremely deep graphs may exceed the JavaScript runtime's call-stack limit and may need an iterative implementation.

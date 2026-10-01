@@ -1,5 +1,5 @@
 ---
-title: AtCoder. ABC 235 E MST + 1
+title: AtCoder. ABC 235 D - Multiply and Rotate
 author: MINJUN PARK
 date: 2022-01-16 02:00:00 +0900
 categories: [Record, Code]
@@ -12,65 +12,69 @@ tags:
     ABC contest
   ]
 pin: false
+lang: en
+translation_key: abc235-d-multiply-and-rotate
 ---
 
-[Link] <https://AtCoder.jp/contests/abc235/tasks/abc235_e>
-<br>
+[Problem: AtCoder ABC 235 D — Multiply and Rotate](https://atcoder.jp/contests/abc235/tasks/abc235_d) · [한국어](/ko/posts/abc235-d-multiply-and-rotate/) · [日本語](/ja/posts/abc235-d-multiply-and-rotate/)
+
+Starting from `1`, apply either operation: multiply the current integer by `A`, or move its last decimal digit to the front. Rotation is allowed only when the number has at least two digits and does not end in `0`. Find the minimum number of operations needed to reach `N`; if it is impossible, print `-1`. In particular, `120` cannot be rotated: although moving its final `0` to the front and reading the result as an integer would give `12`, that operation is forbidden by the problem statement.
+
+Treat each integer as a vertex in an unweighted directed graph, with an edge for each valid operation. Breadth-first search from `1` visits states in nondecreasing order of operation count, so the first distance assigned to `N` is the minimum. A `dist` array both records that distance and prevents revisiting states. Under the constraints `A, N ≤ 10^6`, it is sufficient to search states from `1` through `10^6`: products are enqueued only when they are at most `10^6`, and a rotation of a searched state is also at most `10^6`. Thus the array and queue each need `10^6 + 1` entries. Each state has at most two outgoing operations, giving `O(10^6)` time and space in the bounded state graph.
+
+## Java
 
 ```java
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class Main {
-	static BufferedReader br;
-	static int max = 0, maxIdx = 0;
-	public static void main(String[] args) throws IOException {
-		br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
-		String[] line = getLine();
-		int n = toi(line[0]), m = toi(line[1]), q = toi(line[2]);
-		ArrayList<int[]> edges = new ArrayList<>();
-		for(int i = 0; i < m; i++) {
-			line = getLine();
-			int a = toi(line[0]) - 1, b = toi(line[1]) - 1, c = toi(line[2]);
-			edges.add(new int[] { a, b , c, -1 });
-		}
+    private static final int LIMIT = 1_000_000;
 
-		for(int i = 0; i < q; i++) {
-			line = getLine();
-			int u = toi(line[0]) - 1, v = toi(line[1]) - 1, w = toi(line[2]);
-			edges.add(new int[] { u, v, w, i });
-		}
+    public static void main(String[] args) throws IOException {
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        String[] values = input.readLine().split(" ");
+        int a = Integer.parseInt(values[0]);
+        int target = Integer.parseInt(values[1]);
 
-		edges.sort((l, r) -> l[2] - r[2]);
-		boolean[] isTrue = new boolean[q]; // to store answers
+        int[] distance = new int[LIMIT + 1];
+        Arrays.fill(distance, -1);
+        int[] queue = new int[LIMIT + 1];
+        int head = 0;
+        int tail = 0;
 
-		int[] parent = new int[n];
-		for(int i = 0; i < n; i++) parent[i] = i;
-		for(int[] cur: edges) {
-			int from = cur[0], to = cur[1], cost = cur[2], queryIdx = cur[3];
-			boolean isQuery = queryIdx == -1 ? false : true;
-			int pfrom = getParent(parent, from), pto = getParent(parent, to);
-			if(pfrom == pto) continue;
-			if(isQuery) {
-				isTrue[queryIdx] = true;
-				continue;
-			}
-			if(pfrom > pto) parent[pto] = pfrom;
-			else parent[pfrom] = pto;
-		}
-		for(boolean b : isTrue) sb.append(b ? "Yes" : "No").append("\n");
-		print(sb);
-	}
+        distance[1] = 0;
+        queue[tail++] = 1;
 
-	static int getParent(int[] arr, int idx) {
-		if(arr[idx] == idx) return idx;
-		return arr[idx] = getParent(arr, arr[idx]);
-	}
+        while (head < tail) {
+            int current = queue[head++];
+            if (current == target) {
+                System.out.println(distance[current]);
+                return;
+            }
 
-	static int toi(String s) { return Integer.parseInt(s); }
-	static String[] getLine() throws IOException { return br.readLine().split(" "); }
-	static <T> void print(T s) { System.out.print(s); }
-	static <T> void println(T s) { System.out.println(s); }
+            long product = (long) current * a;
+            if (product <= LIMIT && distance[(int) product] == -1) {
+                distance[(int) product] = distance[current] + 1;
+                queue[tail++] = (int) product;
+            }
+
+            if (current >= 10 && current % 10 != 0) {
+                int place = 1;
+                while (place <= current / 10) {
+                    place *= 10;
+                }
+                int rotated = current % 10 * place + current / 10;
+                if (distance[rotated] == -1) {
+                    distance[rotated] = distance[current] + 1;
+                    queue[tail++] = rotated;
+                }
+            }
+        }
+
+        System.out.println(-1);
+    }
 }
 ```

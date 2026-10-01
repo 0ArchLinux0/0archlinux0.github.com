@@ -1,0 +1,113 @@
+---
+title: BOJ. 最長増加部分列 5 (14003)
+author: MINJUN PARK
+date: 2022-01-12 03:31:00 +0900
+categories: [Record, Code]
+tags: [Java, Algorithm, Coding Interview, BOJ, Dynamic Programming, Binary Search, Longest Increasing Subsequence(5), 가장 긴 증가하는 부분 수열 5]
+pin: false
+lang: ja
+translation_key: boj-14003-lis-reconstruction
+permalink: /ja/posts/boj-14003-lis-reconstruction/
+source_permalink: /posts/BOJ-14003/
+---
+
+[BOJ 14003: 最長増加部分列 5](https://www.acmicpc.net/problem/14003)
+
+## 解法
+
+各入力値について、`tails[length]` には長さ `length + 1` の増加部分列が取り得る最小の末尾値を保存し、`tailIndices[length]` にはその末尾値を持つ入力インデックスを保存します。現在の値以上となる最初の末尾値を二分探索（`lower_bound`）し、現在の値で置き換えます。`tails` の値だけでは実際の部分列を構成しているとは限りませんが、末尾のインデックスと先行インデックスを記録すれば有効な部分列を復元できます。
+
+現在の値以上となる最初の位置を探すため、得られる部分列は厳密な増加になります。同じ値は既存の末尾値を置き換えるだけで、長さを増やしません。`tails` を更新する前に、現在の要素の先行インデックスとして直前の長さの `tailIndices` を記録します。その末尾値は現在値より小さく、現在の要素より前に処理済みなので、すべての先行インデックスはより前にあり、値もより小さくなります。探索位置が 0 の場合、その要素に先行要素はありません。最長の末尾インデックスから先行インデックスをたどると、最長部分列を逆順に復元できます。
+
+不変条件は、入力の各接頭部分を処理した後、`tails[k]` が長さ `k + 1` の増加部分列における最小の末尾値であり、`tailIndices[k]` が実際にその値を持つ入力位置であることです。末尾値が小さいほど後続の値をつなげる可能性は少なくとも同じだけ高いため、lower-bound の位置を置き換えてもこの不変条件は保たれます。最長の長さを増やせるのは現在の長さの末尾だけです。後から末尾値が置き換えられても、それ以前に保存した先行リンクはすでに処理した有効な連鎖を指しているため、復元には影響しません。入力には少なくとも 1 個の値があるので `length` は常に 1 以上となり、`N = 1` でも `tailIndices[length - 1]` は有効です。
+
+各値について二分探索を 1 回行い、更新は定数時間なので、時間計算量は `O(N log N)` です。入力、末尾値、末尾インデックス、先行インデックス、復元配列はそれぞれ `O(N)` のメモリを使用します。
+
+## Java
+
+```java
+import java.io.*;
+
+public class Main {
+    private static final class FastScanner {
+        private final InputStream input = new BufferedInputStream(System.in);
+        private final byte[] buffer = new byte[1 << 16];
+        private int length;
+        private int position;
+
+        private int read() throws IOException {
+            if (position == length) {
+                length = input.read(buffer);
+                position = 0;
+                if (length == -1) return -1;
+            }
+            return buffer[position++];
+        }
+
+        int nextInt() throws IOException {
+            int c;
+            do {
+                c = read();
+            } while (c <= ' ' && c != -1);
+
+            int sign = 1;
+            if (c == '-') {
+                sign = -1;
+                c = read();
+            }
+            int value = 0;
+            while (c > ' ') {
+                value = value * 10 + c - '0';
+                c = read();
+            }
+            return value * sign;
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        FastScanner input = new FastScanner();
+        int n = input.nextInt();
+        int[] values = new int[n];
+        int[] tails = new int[n];
+        int[] tailIndices = new int[n];
+        int[] predecessor = new int[n];
+        for (int i = 0; i < n; i++) {
+            values[i] = input.nextInt();
+            predecessor[i] = -1;
+        }
+
+        int length = 0;
+        for (int i = 0; i < n; i++) {
+            int value = values[i];
+            int left = 0;
+            int right = length;
+            while (left < right) {
+                int middle = left + (right - left) / 2;
+                if (tails[middle] >= value) {
+                    right = middle;
+                } else {
+                    left = middle + 1;
+                }
+            }
+
+            int position = left;
+            if (position > 0) predecessor[i] = tailIndices[position - 1];
+            tails[position] = value;
+            tailIndices[position] = i;
+            if (position == length) length++;
+        }
+
+        int[] answer = new int[length];
+        int index = tailIndices[length - 1];
+        for (int i = length - 1; i >= 0; i--) {
+            answer[i] = values[index];
+            index = predecessor[index];
+        }
+
+        StringBuilder output = new StringBuilder();
+        output.append(length).append('\n');
+        for (int value : answer) output.append(value).append(' ');
+        System.out.println(output);
+    }
+}
+```

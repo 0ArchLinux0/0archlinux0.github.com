@@ -12,48 +12,46 @@ tags:
     ABC contest
   ]
 pin: false
+lang: en
+translation_key: abc238-c-digitnum
 ---
 
-[Link] <https://AtCoder.jp/contests/abc238/tasks/abc238_c>
-<br>
+[Problem: AtCoder ABC 238 C — digitnum](https://atcoder.jp/contests/abc238/tasks/abc238_c) · [한국어](/ko/posts/abc238-c-digitnum/) · [日本語](/ja/posts/abc238-c-digitnum/)
+
+For every integer from `1` through `N`, add its number of decimal digits, then print the sum modulo `998244353`.
+
+Group the integers by digit length. For a length `d`, the applicable range is `[10^(d-1), min(N, 10^d - 1)]`; add `d` times the number of integers in that range. The loop stops once its range reaches `N`.
+
+The number of digit lengths is `O(log N)`, so the time complexity is `O(log N)` and the extra space complexity is `O(1)`. All range endpoints are computed as `long`. To avoid overflowing when forming `10^d`, the code checks whether the next power of ten is at most `N` before multiplying by ten.
 
 ```java
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
-	static BufferedReader br;
-	static StringBuilder sb = new StringBuilder();
-	static int div = 998244353;
-	public static void main(String[] args) throws IOException {
-		br = new BufferedReader(new InputStreamReader(System.in));
-		long n = tol(br.readLine()), ndiv = n % div;
-		long sum = (ndiv * (ndiv + 1) / 2) % div;
-		long ans = sum  - getDigit(n) + ndiv;
-		if(ans < 0) ans += div;
-		println(ans % div);
-	}
+    private static final long MOD = 998244353L;
 
-	static long getDigit(long n) {
-		int len = String.valueOf(n).length();
-		long tenExp = 1l, remainder = 0l, tenExpDiv = 0l;
-		for(int i = 1; i < len; i++) {
-			tenExpDiv = tenExp % div;
-			remainder += (((tenExpDiv * tenExpDiv) % div) * 9) % div;
-			remainder %= div;
-			tenExp = tenExp * 10;
-		}
-		tenExpDiv = tenExp % div;
-		remainder += (tenExpDiv * ((n - tenExp + 1) % div)) % div;
-		remainder %= div;
-		return remainder;
-	}
+    public static void main(String[] args) throws IOException {
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        long n = Long.parseLong(input.readLine().trim());
 
-	static int toi(String s) { return Integer.parseInt(s); }
-	static long tol(String s) { return Long.parseLong(s); }
-	static String[] getLine() throws IOException { return br.readLine().split(" "); }
-	static int[] getArr() throws IOException { return Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray(); }
-	static <T> void print(T s) { System.out.print(s); }
-	static <T> void println(T s) { System.out.println(s); }
+        long answer = 0;
+        long start = 1;
+        for (long digits = 1; start <= n; digits++) {
+            long end = n;
+            if (start <= n / 10) {
+                end = start * 10 - 1;
+            }
+            long count = end - start + 1;
+            answer = (answer + (digits % MOD) * (count % MOD)) % MOD;
+            if (end == n) {
+                break;
+            }
+            start *= 10;
+        }
+
+        System.out.println(answer);
+    }
 }
 ```

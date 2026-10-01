@@ -2,10 +2,16 @@
   The Side Bar
 -->
 
+{% assign _home_url = '/' %}
+{% if lang == 'ko' %}
+  {% assign _home_url = '/ko/' %}
+{% elsif lang == 'ja' %}
+  {% assign _home_url = '/ja/' %}
+{% endif %}
 <div id="sidebar" class="d-flex flex-column align-items-end" lang="{{lang}}">
   <div class="profile-wrapper text-center">
     <div id="avatar">
-      <a href="{{ '/' | relative_url }}" alt="avatar" class="mx-auto">
+      <a href="{{ _home_url | relative_url }}" alt="avatar" class="mx-auto">
         {% if site.avatar != '' and site.avatar %}
           {% capture avatar_url %}
             {%- if site.avatar contains '://' -%}
@@ -22,17 +28,18 @@
     </div>
 
     <div class="site-title mt-3">
-      <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      <a href="{{ _home_url | relative_url }}">{{ site.title }}</a>
     </div>
     <div class="site-subtitle font-italic">{{ site.tagline }}</div>
 
+    {% include site-language-switcher.html %}
   </div><!-- .profile-wrapper -->
 
   <ul class="w-100">
 
     <!-- home -->
     <li class="nav-item{% if page.layout == 'home' %}{{ " active" }}{% endif %}">
-      <a href="{{ '/' | relative_url }}" class="nav-link">
+      <a href="{{ _home_url | relative_url }}" class="nav-link">
         <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i>
         <span>{{ site.data.locales[lang].tabs.home | upcase }}</span>
       </a>

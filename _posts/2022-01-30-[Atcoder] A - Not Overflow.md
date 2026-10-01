@@ -12,29 +12,28 @@ tags:
     ABC contest
   ]
 pin: false
+lang: en
+translation_key: abc237-a-not-overflow
+permalink: /posts/Atcoder-A-Not-Overflow/
 ---
 
-[Link] <https://AtCoder.jp/contests/abc237/tasks/abc237_a>
-<br>
+[Problem: AtCoder ABC 237 A — Not Overflow](https://atcoder.jp/contests/abc237/tasks/abc237_a)
+[English] · [한국어](/ko/posts/abc237-a-not-overflow/) · [日本語](/ja/posts/abc237-a-not-overflow/)
+
+The input value can be much larger than a 32-bit signed integer, so read it as a `long`. A signed 32-bit integer ranges from `Integer.MIN_VALUE` (`-2^31`) through `Integer.MAX_VALUE` (`2^31 - 1`), inclusive. Compare the `long` value against both endpoints; print `Yes` exactly when it lies within that range, and `No` otherwise. Using inclusive comparisons correctly accepts both boundary values and rejects values just below or above them.
+
+## Java
 
 ```java
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
-	static BufferedReader br;
-	static StringBuilder sb = new StringBuilder();
-	public static void main(String[] args) throws IOException {
-		br = new BufferedReader(new InputStreamReader(System.in));
-		long l = Long.parseLong(br.readLine());
-		if(l <= Integer.MAX_VALUE && Integer.MIN_VALUE <= l) println("Yes");
-		else println("No");
-	}
-
-	static int toi(String s) { return Integer.parseInt(s); }
-	static String[] getLine() throws IOException { return br.readLine().split(" "); }
-	static int[] getArr() throws IOException { return Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray(); }
-	static <T> void print(T s) { System.out.print(s); }
-	static <T> void println(T s) { System.out.println(s); }
+    public static void main(String[] args) throws IOException {
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        long value = Long.parseLong(input.readLine().trim());
+        System.out.println(Integer.MIN_VALUE <= value && value <= Integer.MAX_VALUE ? "Yes" : "No");
+    }
 }
 ```

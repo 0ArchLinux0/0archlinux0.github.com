@@ -14,49 +14,72 @@ tags:
     Encyclopedia of Parentheses,
   ]
 pin: false
+lang: en
+translation_key: atcoder-typical90-002-parentheses
+permalink: /posts/競プロ典型-90-問-002-Encyclopedia-of-Parentheses-3/
 ---
 
-[Link] <https://AtCoder.jp/contests/typical90/tasks/typical90_b>
+Generate each parenthesis string from left to right. At any prefix, the number of closing parentheses cannot exceed the number of opening parentheses; otherwise no suffix could make the string balanced. Also, a complete balanced string of length `N` has exactly `N/2` opening parentheses.
 
-<br>
+The recursion therefore adds `(` while fewer than `N/2` openings have been used, and adds `)` only when `close < open`. A prefix with equal counts is allowed: subsequent openings can still make it valid. When the length reaches `N`, these rules guarantee the string is balanced, so it can be emitted. Trying `(` before `)` visits the valid strings in lexicographic order. For odd `N`, no leaf can satisfy the equal-count condition, so no result is printed.
+
+The prefix-balance invariant is `0 <= close <= open <= N/2`. Each result is generated once, and the work is proportional to the total output size; the recursion and current string use `O(N)` working space, in addition to the buffered output.
+
+[Problem link](https://AtCoder.jp/contests/typical90/tasks/typical90_b)
+
+## Java
 
 ```java
-import java.util.*;
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.IOException;
 
-public class Main{
-  static int n;
-  static StringBuilder sb = new StringBuilder();
-  public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
-    n = sc.nextInt();
-    if(n%2 == 1) return;
+public class Main {
+    private static int n;
+    private static final StringBuilder current = new StringBuilder();
+    private static final StringBuilder output = new StringBuilder();
 
-    char[] charArr = new char[n];
-    bfs(charArr, 0, 0, 0);
-    System.out.println(sb.toString());
-  }
-
-  static void bfs(char[] charArr, int index, int open, int close) {
-    if(index == n) {
-      sb.append(new String(charArr)).append("\n");
-      return;
+    public static void main(String[] args) throws IOException {
+        FastScanner input = new FastScanner();
+        n = input.nextInt();
+        generate(0, 0);
+        System.out.print(output);
     }
-    if(open < n/2 && close < n/2) {
-      charArr[index] = '(';
-      open++;
-      bfs(charArr, index + 1 , open, close);
-      open--;
-      if(open > close) {
-        charArr[index] = ')';
-        close++;
-        bfs(charArr, index + 1 , open, close);
-        close--;
-      }
-    } else if(open == n/2) {
-      for(int i = index; i < n; i++) charArr[i] = ')';
-      bfs(charArr, n, n/2, n/2);
+
+    private static void generate(int open, int close) {
+        if (current.length() == n) {
+            if (open == close) {
+                output.append(current).append('\n');
+            }
+            return;
+        }
+
+        if (open < n / 2) {
+            current.append('(');
+            generate(open + 1, close);
+            current.setLength(current.length() - 1);
+        }
+        if (close < open) {
+            current.append(')');
+            generate(open, close + 1);
+            current.setLength(current.length() - 1);
+        }
     }
-  }
+
+    private static final class FastScanner {
+        private final BufferedInputStream input = new BufferedInputStream(System.in);
+
+        int nextInt() throws IOException {
+            int value = 0;
+            int c;
+            do {
+                c = input.read();
+            } while (c <= ' ' && c != -1);
+            while (c > ' ') {
+                value = value * 10 + c - '0';
+                c = input.read();
+            }
+            return value;
+        }
+    }
 }
 ```

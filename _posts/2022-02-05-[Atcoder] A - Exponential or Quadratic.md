@@ -12,30 +12,29 @@ tags:
     ABC contest
   ]
 pin: false
+lang: en
+translation_key: abc238-a-exponential-or-quadratic
 ---
 
-[Link] <https://AtCoder.jp/contests/abc238/tasks/abc238_a>
-<br>
+[Problem: AtCoder ABC 238 A — Exponential or Quadratic](https://atcoder.jp/contests/abc238/tasks/abc238_a)
+[English] · [한국어](/ko/posts/abc238-a-exponential-or-quadratic/) · [日本語](/ja/posts/abc238-a-exponential-or-quadratic/)
+
+We need to determine whether `2^N > N^2`. There is no need to calculate the power: for `N = 1`, the inequality holds; for `N = 2, 3, 4`, it does not (`2^4 = 4^2`). Starting at `N = 5`, it is always true. If `2^N > N^2` for some `N >= 5`, then `2^(N + 1) > 2N^2 >= (N + 1)^2`, so the inequality continues to hold for every larger integer.
+
+Therefore, the answer is `Yes` exactly when `N = 1` or `N >= 5`; otherwise it is `No`. A pair of integer comparisons is enough, even for large permitted values of `N`.
+
+## Java
 
 ```java
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
-	static BufferedReader br;
-	static StringBuilder sb = new StringBuilder();
-	static int div =  1000000003;
-	public static void main(String[] args) throws IOException {
-		br = new BufferedReader(new InputStreamReader(System.in));
-		int n = toi(br.readLine());
-		if(n > 4 || n == 1) println("Yes");
-		else println("No");
-	}
-
-	static int toi(String s) { return Integer.parseInt(s); }
-	static String[] getLine() throws IOException { return br.readLine().split(" "); }
-	static int[] getArr() throws IOException { return Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray(); }
-	static <T> void print(T s) { System.out.print(s); }
-	static <T> void println(T s) { System.out.println(s); }
+    public static void main(String[] args) throws IOException {
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(input.readLine().trim());
+        System.out.println(n == 1 || n >= 5 ? "Yes" : "No");
+    }
 }
 ```

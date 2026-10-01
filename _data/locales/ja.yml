@@ -1,0 +1,82 @@
+title: 日本語の記事
+
+language_selector:
+  label: 言語
+
+language_mode:
+  empty: この言語で確認済みの記事はまだありません。
+
+layout:
+  post: 記事
+  category: カテゴリー
+  tag: タグ
+
+tabs:
+  home: ホーム
+  categories: カテゴリー
+  tags: タグ
+  archives: アーカイブ
+  about: このブログについて
+
+search:
+  hint: 検索
+  cancel: キャンセル
+  no_results: 検索結果がありません。
+
+panel:
+  lastmod: 最近の更新
+  trending_tags: 人気のタグ
+  toc: 目次
+
+date_format:
+  tooltip: '%Y年%m月%d日 %H:%M %z'
+  post:
+    long: '%Y年%m月%d日'
+    short: '%m月%d日'
+    archive_month: '%m月'
+
+copyright:
+  license:
+    template: 'この記事は著者により :LICENSE_NAME ライセンスで公開されています。'
+    name: CC BY 4.0
+    link: https://creativecommons.org/licenses/by/4.0/
+  brief: 一部の権利を留保します
+  verbose: >-
+    特記がない限り、このブログの記事は著者によりクリエイティブ・コモンズ 表示 4.0 国際ライセンス（CC BY 4.0）で公開されています。
+
+meta: ':PLATFORM と :THEME テーマで提供しています。'
+
+not_found:
+  statment: URLが見つからないか、存在しないページを指しています。
+  hint_template: ':HEAD_BAKするか、:ARCHIVES_PAGEから探してください。'
+  head_back: ホームに戻る
+  archives_page: アーカイブ
+
+post:
+  published: 公開日
+  updated: 更新
+  timeago:
+    day: 日前
+    hour: 時間前
+    minute: 分前
+    just_now: たった今
+  words: 語
+  pageview_measure: 閲覧
+  read_time:
+    unit: 分
+    prompt: 読了
+  relate_posts: 関連記事
+  share: 共有
+  button:
+    next: 新しい記事
+    previous: 前の記事
+    copy_code:
+      succeed: コピーしました！
+    share_link:
+      title: リンクをコピー
+      succeed: リンクをコピーしました！
+  pin_prompt: 固定記事
+
+categories:
+  category_measure: カテゴリー
+  post_measure: 記事

@@ -12,64 +12,56 @@ tags:
     ABC contest
   ]
 pin: false
+lang: en
+translation_key: abc237-c-kasaka
 ---
 
-[Link] <https://AtCoder.jp/contests/abc237/tasks/abc237_c>
-<br>
+[Problem: AtCoder ABC 237 C — kasaka](https://atcoder.jp/contests/abc237/tasks/abc237_c) · [한국어](/ko/posts/abc237-c-kasaka/) · [日本語](/ja/posts/abc237-c-kasaka/)
+
+The only operation is prepending `a`, so the characters at the end cannot be changed. Let `leadingA` and `trailingA` be the lengths of the runs of `a` at the beginning and end of the string. If `leadingA > trailingA`, the string cannot become a palindrome: the existing leading `a`s would need more matching `a`s at the end than are available.
+
+Otherwise, prepending `trailingA - leadingA` copies of `a` balances those runs. The remaining part between the leading and trailing runs must already be a palindrome. Skip both runs with two pointers and compare the characters that remain. If the pointers cross, that middle part is empty or has one character, so it is a palindrome.
+
+This also covers strings made entirely of `a` (the middle is empty) and strings with no `a` at either end (the entire string is checked). The scan takes `O(|S|)` time and uses `O(1)` extra space.
+
+## Java
 
 ```java
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
-	static BufferedReader br;
-	static StringBuilder sb = new StringBuilder();
-	public static void main(String[] args) throws IOException {
-		br = new BufferedReader(new InputStreamReader(System.in));
-		String s = br.readLine();
-		int l = -1, r = s.length();
-		int rlen = 0, llen = 0;
+    public static void main(String[] args) throws IOException {
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        String s = input.readLine();
 
-		for(int i = 0; i < s.length(); i++) {
-			if(s.charAt(i) != 'a') {
-				break;
-			} else l = i;
-		}
+        int left = 0;
+        while (left < s.length() && s.charAt(left) == 'a') {
+            left++;
+        }
 
-		for(int i = s.length() - 1; i >= 0; i--) {
-			if(s.charAt(i) != 'a') {
-				break;
-			} else r = i;
-		}
+        int right = s.length() - 1;
+        while (right >= 0 && s.charAt(right) == 'a') {
+            right--;
+        }
 
-		if(r <= l) {
-			println("Yes");
-			return;
-		}
+        int leadingA = left;
+        int trailingA = s.length() - 1 - right;
+        if (leadingA > trailingA) {
+            System.out.println("No");
+            return;
+        }
 
-		if(l > s.length() - 1 - r) {
-			println("No");
-			return;
-		}
-
-		l++;
-		r--;
-
-		while(l < r) {
-			if(s.charAt(l) != s.charAt(r)) {
-				println("No");
-				return;
-			}
-			l++;
-			r--;
-		}
-		println("Yes");
-	}
-
-	static int toi(String s) { return Integer.parseInt(s); }
-	static String[] getLine() throws IOException { return br.readLine().split(" "); }
-	static int[] getArr() throws IOException { return Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray(); }
-	static <T> void print(T s) { System.out.print(s); }
-	static <T> void println(T s) { System.out.println(s); }
+        while (left < right) {
+            if (s.charAt(left) != s.charAt(right)) {
+                System.out.println("No");
+                return;
+            }
+            left++;
+            right--;
+        }
+        System.out.println("Yes");
+    }
 }
 ```
