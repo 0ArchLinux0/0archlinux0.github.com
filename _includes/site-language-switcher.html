@@ -1,0 +1,41 @@
+{% assign _english_url = '/' %}
+{% assign _korean_url = '/ko/' %}
+{% assign _japanese_url = '/ja/' %}
+
+{% if page.translation_key %}
+  {% assign _english_article = site.posts | where: 'translation_key', page.translation_key | first %}
+  {% assign _korean_article = site.translations | where: 'translation_key', page.translation_key | where: 'lang', 'ko' | first %}
+  {% assign _japanese_article = site.translations | where: 'translation_key', page.translation_key | where: 'lang', 'ja' | first %}
+  {% if _english_article %}
+    {% assign _english_url = _english_article.url %}
+  {% endif %}
+  {% if _korean_article %}
+    {% assign _korean_url = _korean_article.url %}
+  {% endif %}
+  {% if _japanese_article %}
+    {% assign _japanese_url = _japanese_article.url %}
+  {% endif %}
+{% endif %}
+
+<nav class="site-language-switcher text-center mt-3" aria-label="{{ site.data.locales[lang].language_selector.label }}">
+  <span class="small text-muted">{{ site.data.locales[lang].language_selector.label }}:</span>
+  <div class="small">
+    {% if lang == 'en' %}
+      <span lang="en" aria-current="page">English</span>
+    {% else %}
+      <a href="{{ _english_url | relative_url }}" lang="en">English</a>
+    {% endif %}
+    <span aria-hidden="true"> · </span>
+    {% if lang == 'ko' %}
+      <span lang="ko" aria-current="page">한국어</span>
+    {% else %}
+      <a href="{{ _korean_url | relative_url }}" lang="ko">한국어</a>
+    {% endif %}
+    <span aria-hidden="true"> · </span>
+    {% if lang == 'ja' %}
+      <span lang="ja" aria-current="page">日本語</span>
+    {% else %}
+      <a href="{{ _japanese_url | relative_url }}" lang="ja">日本語</a>
+    {% endif %}
+  </div>
+</nav>

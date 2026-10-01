@@ -1,0 +1,124 @@
+---
+title: BOJ. Prefix sum (2042)
+author: MINJUN PARK
+date: 2021-12-28 01:28:00 +0900
+categories: [Record, Code]
+tags: [Java, Algorithm, Coding Interview, Fenwick Tree, BOJ, Prefix sum, 구간 합 구하기]
+pin: false
+lang: ja
+translation_key: boj-2042-fenwick
+permalink: /ja/posts/boj-2042-fenwick/
+---
+
+フェンウィック木（Binary Indexed Tree）は部分和を保持し、1点の更新と接頭辞和の取得をそれぞれ`O(log N)`時間で行います。元の値は別の配列に保存します。1-based index `i`の値が`old`から`new`に変わったら、その差`new - old`を木のindex `i`に加算します。
+
+1-based index `i`に対して、`i & -i`は最下位のセットビットを取り出します。接頭辞和を計算するときはこの値を繰り返し引き、重ならないブロックをたどります。値を更新するときは繰り返し足し、該当する値を含むすべてのブロックを訪れます。`a`から`b`までの区間和は`prefix(b) - prefix(a - 1)`です。初期化した各ノードを親ノードへ伝播させて木を構築するため、構築には`O(N)`時間かかります。更新と取得はそれぞれ`O(log N)`時間で、値の配列と木に必要な領域は`O(N)`です。各値と累積和を保持するために`long`を使います。
+
+[問題リンク](https://www.acmicpc.net/problem/2042)
+
+## Java
+
+```java
+import java.io.BufferedInputStream;
+import java.io.IOException;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        FastScanner input = new FastScanner();
+        int n = input.nextInt();
+        int updateCount = input.nextInt();
+        int queryCount = input.nextInt();
+
+        long[] values = new long[n];
+        for (int i = 0; i < n; i++) {
+            values[i] = input.nextLong();
+        }
+        FenwickTree tree = new FenwickTree(values);
+
+        StringBuilder output = new StringBuilder();
+        for (int i = 0; i < updateCount + queryCount; i++) {
+            int type = input.nextInt();
+            int a = input.nextInt();
+            long b = input.nextLong();
+            if (type == 1) {
+                int index = a - 1;
+                long delta = b - values[index];
+                values[index] = b;
+                tree.add(a, delta);
+            } else {
+                output.append(tree.prefixSum((int) b) - tree.prefixSum(a - 1)).append('\n');
+            }
+        }
+        System.out.print(output);
+    }
+
+    private static final class FenwickTree {
+        private final long[] tree;
+
+        FenwickTree(long[] values) {
+            tree = new long[values.length + 1];
+            for (int i = 1; i < tree.length; i++) {
+                tree[i] += values[i - 1];
+                int parent = i + (i & -i);
+                if (parent < tree.length) {
+                    tree[parent] += tree[i];
+                }
+            }
+        }
+
+        void add(int index, long delta) {
+            for (int i = index; i < tree.length; i += i & -i) {
+                tree[i] += delta;
+            }
+        }
+
+        long prefixSum(int index) {
+            long sum = 0;
+            for (int i = index; i > 0; i -= i & -i) {
+                sum += tree[i];
+            }
+            return sum;
+        }
+    }
+
+    private static final class FastScanner {
+        private final BufferedInputStream input = new BufferedInputStream(System.in);
+        private final byte[] buffer = new byte[1 << 16];
+        private int length;
+        private int position;
+
+        private int read() throws IOException {
+            if (position == length) {
+                length = input.read(buffer);
+                position = 0;
+                if (length == -1) {
+                    return -1;
+                }
+            }
+            return buffer[position++];
+        }
+
+        long nextLong() throws IOException {
+            int c;
+            do {
+                c = read();
+            } while (c <= ' ' && c != -1);
+
+            boolean negative = c == '-';
+            if (negative) {
+                c = read();
+            }
+            long value = 0;
+            while (c > ' ') {
+                value = value * 10 + c - '0';
+                c = read();
+            }
+            return negative ? -value : value;
+        }
+
+        int nextInt() throws IOException {
+            return (int) nextLong();
+        }
+    }
+}
+```

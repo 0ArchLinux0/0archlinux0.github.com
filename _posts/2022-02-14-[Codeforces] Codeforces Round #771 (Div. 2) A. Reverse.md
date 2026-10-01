@@ -16,55 +16,90 @@ tags:
     Reverse
   ]
 pin: false
+lang: en
+translation_key: cf-1638a-reverse
 ---
 
-[Link] <https://codeforces.com/contest/1638/problem/A>
+[Problem: Codeforces 1638A — Reverse](https://codeforces.com/contest/1638/problem/A) · [한국어](/ko/posts/cf-1638a-reverse/) · [日本語](/ja/posts/cf-1638a-reverse/)
 
-<br>
+The array is a permutation of `1..n`. We may choose one segment and reverse it; the goal is to make the permutation lexicographically smallest.
+
+Scan from left to right to find the first index `i` where `p[i] != i + 1`. Every earlier position already contains its smallest possible value, so it must stay fixed. The value `i + 1` occurs somewhere to the right; let its position be `j`. Reversing `[i, j]` moves `i + 1` to the first mismatching position while leaving the already-correct prefix unchanged. This is the lexicographically smallest possible result.
+
+If no mismatch exists, the permutation is already sorted, so reversing a length-one segment leaves it unchanged. Finding the mismatch and the target value takes `O(n)` time, and the input permutation uses `O(n)` space per test case.
 
 ```java
-import java.util.*;
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.IOException;
 
 public class Main {
-	static BufferedReader br;
-	static StringBuilder sb = new StringBuilder();
-	public static void main(String[] args) throws IOException {
-		br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
-		int test = toi(br.readLine());
-		int[] arr;
-		for(int iter = 0; iter < test; iter++) {
-			int n = toi(br.readLine());
-			arr = getArr();
-			int l = 0, r = 0, cnt = 1;
-			int[] idx = new int[n + 1];
-			for(int i = 0; i < n; i++) idx[arr[i]] = i + 1;
-			for(int i = 1; i <= n; i++)
-				if(idx[i] != i) {
-					r = i;
-					break;
-				} else {
-					l++;
-				}
-			while(l < r) {
-				int tmp = arr[l];
-				arr[l] = arr[r];
-				arr[r] = tmp;
-				l++;
-				r--;
-			}
-			for(int e: arr) sb.append(e).append(" ");
-			sb.append("\n");
-		}
-		print(sb);
-	}
+    private static final class FastScanner {
+        private final BufferedInputStream in = new BufferedInputStream(System.in);
+        private final byte[] buffer = new byte[1 << 16];
+        private int ptr;
+        private int len;
 
-	static int toi(String s) { return Integer.parseInt(s); }
-	static long tol(String s) { return Long.parseLong(s); }
-	static String[] getLine() throws IOException { return br.readLine().split(" "); }
-	static int[] getArr() throws IOException { return Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray(); }
-	static <T> void print(T s) { System.out.print(s); }
-	static <T> void println(T s) { System.out.println(s); }
+        private int read() throws IOException {
+            if (ptr == len) {
+                len = in.read(buffer);
+                ptr = 0;
+                if (len == -1) return -1;
+            }
+            return buffer[ptr++];
+        }
+
+        int nextInt() throws IOException {
+            int c;
+            do {
+                c = read();
+            } while (c <= ' ' && c != -1);
+
+            int value = 0;
+            while (c > ' ') {
+                value = value * 10 + c - '0';
+                c = read();
+            }
+            return value;
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        FastScanner fs = new FastScanner();
+        int tests = fs.nextInt();
+        StringBuilder answer = new StringBuilder();
+
+        while (tests-- > 0) {
+            int n = fs.nextInt();
+            int[] permutation = new int[n];
+            for (int i = 0; i < n; i++) {
+                permutation[i] = fs.nextInt();
+            }
+
+            int left = 0;
+            while (left < n && permutation[left] == left + 1) {
+                left++;
+            }
+
+            if (left < n) {
+                int right = left;
+                while (permutation[right] != left + 1) {
+                    right++;
+                }
+                while (left < right) {
+                    int value = permutation[left];
+                    permutation[left++] = permutation[right];
+                    permutation[right--] = value;
+                }
+            }
+
+            for (int i = 0; i < n; i++) {
+                if (i > 0) answer.append(' ');
+                answer.append(permutation[i]);
+            }
+            answer.append('\n');
+        }
+
+        System.out.print(answer);
+    }
 }
 ```

@@ -12,41 +12,49 @@ tags:
     ABC contest
   ]
 pin: false
+lang: en
+translation_key: abc238-b-pizza
 ---
 
-[Link] <https://AtCoder.jp/contests/abc238/tasks/abc238_b>
-<br>
+[Problem: AtCoder ABC 238 B — Pizza](https://atcoder.jp/contests/abc238/tasks/abc238_b) · [한국어](/ko/posts/abc238-b-pizza/) · [日本語](/ja/posts/abc238-b-pizza/)
+
+Start with a cut at `0°`. Each instruction rotates the knife clockwise by the given angle, so the new cut is the previous angle plus that rotation, modulo `360`. Store all `N` resulting cut positions together with `0°`. Repeated positions are valid: they mean that a cut falls on an existing cut and create a zero-width gap.
+
+Sort the positions. The gaps between consecutive positions are slice sizes, and the last slice wraps around from the final cut to `360°` (the same point as `0°`). The largest of these gaps is the largest possible slice. With `N + 1` positions, sorting takes `O(N log N)` time and the array uses `O(N)` space.
+
+For example, with rotations `90, 180, 45, 195`, the cut positions are `0, 90, 270, 315, 150`. After sorting they are `0, 90, 150, 270, 315`; the gaps are `90, 60, 120, 45`, and the wraparound gap is `45`, so the answer is `120`.
+
+## Java
 
 ```java
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Main {
-	static BufferedReader br;
-	static StringBuilder sb = new StringBuilder();
-	static int div =  1000000003;
-	public static void main(String[] args) throws IOException {
-		br = new BufferedReader(new InputStreamReader(System.in));
-		int n = toi(br.readLine());
-		int[] a = getArr();
-		int[] deg = new int[n + 1];
-		for(int i = 1; i <= n; i++) {
-			deg[i] = deg[i-1] + a[i - 1];
-			if(deg[i] >= 360) deg[i] -= 360;
-		}
-		Arrays.sort(deg);
-		int max = -1;
-		for(int i = 0; i < n; i++) {
-			max = Math.max(max, deg[i + 1] - deg[i]);
-		}
-		max = Math.max(max, 360 - deg[n]);
-		println(max);
-	}
+    public static void main(String[] args) throws IOException {
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(input.readLine().trim());
+        StringTokenizer rotations = new StringTokenizer(input.readLine());
 
-	static int toi(String s) { return Integer.parseInt(s); }
-	static String[] getLine() throws IOException { return br.readLine().split(" "); }
-	static int[] getArr() throws IOException { return Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray(); }
-	static <T> void print(T s) { System.out.print(s); }
-	static <T> void println(T s) { System.out.println(s); }
+        int[] cuts = new int[n + 1];
+        int angle = 0;
+        for (int i = 1; i <= n; i++) {
+            angle = (angle + Integer.parseInt(rotations.nextToken())) % 360;
+            cuts[i] = angle;
+        }
+
+        Arrays.sort(cuts);
+
+        int largest = 0;
+        for (int i = 1; i <= n; i++) {
+            largest = Math.max(largest, cuts[i] - cuts[i - 1]);
+        }
+        largest = Math.max(largest, 360 - cuts[n] + cuts[0]);
+
+        System.out.println(largest);
+    }
 }
 ```

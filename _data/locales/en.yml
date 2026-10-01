@@ -88,3 +88,9 @@ post:
 categories:
   category_measure: categories
   post_measure: posts
+
+language_selector:
+  label: Site language
+
+language_mode:
+  empty: There are no reviewed articles in this language yet.

@@ -5,55 +5,52 @@ date: 2022-04-12 18:28:00 +0900
 categories: [Math, Number Theory]
 tags: [Math, Number Theory, Euclidean Algorithm, 유클리드 호제법, 증명, 정수론]
 pin: false
+lang: en
+translation_key: euclidean-algorithm
 ---
 
-**\# Definition**
+The **Euclidean algorithm** computes the greatest common divisor (gcd) of two nonnegative integers by repeatedly replacing the pair with a smaller pair that has the same common divisors.
 
-**$ a = bq + r(0 \\le r < b) $ $\\Rightarrow $ $GCD(a, b) = GCD(b, r)$**
+## The key identity
 
----
+Let $a$ and $b$ be nonnegative integers, with $b>0$. Euclidean division gives unique integers $q$ and $r$ such that
 
-최대공약수에 관한 문제에서 자주 쓰이는 기본 정리 중 하나이다.
+$$a=bq+r,\qquad 0\le r<b.$$
 
-증명부터 해보자.
+The key fact is
 
-|$ Lemma 1)$ $WLOG \\ a >= b,$ $GCD(a, b) = GCD(a-b, b) $
+$$\gcd(a,b)=\gcd(b,r).$$
 
----
+To prove it, compare the common divisors of the two pairs. If an integer $d$ divides both $a$ and $b$, then it divides their difference $a-bq=r$, so $d$ divides both $b$ and $r$. Conversely, if $d$ divides both $b$ and $r$, then it divides $bq+r=a$, so it divides both $a$ and $b$. Thus the pairs $(a,b)$ and $(b,r)$ have exactly the same common divisors, and in particular the same greatest common divisor.
 
-$proof)$
+## Repeating the step
 
-$g=GCD(a,b),$ $ \\ a = gA,$ $ \\ b =gB$ 라 두자.  
-$ GCD(a-b, b) $ $= GCD(g(A-B), gB) $ 이기에 A-B와 B가 서로소임을 보이면 Lemma 1은 증명된다.
+Apply the identity again to $(b,r)$ whenever $r>0$. Each remainder is a nonnegative integer smaller than the preceding divisor, so the remainders strictly decrease until one is zero. For example,
 
-귀류법으로  
-$ GCD(A-B, B) = g\_{A,B},$ $A-B = g\_{A,B}M,\\ B $ $= g\_{A,B}N,\\ g\_{A,B} \\neq 1$  
-를 만족하는  
-$\\exists g\_{A,B} \\in \\mathbb{Z} $가 존재한다고 가정하자.
+$$252=105\cdot2+42,\qquad
+105=42\cdot2+21,\qquad
+42=21\cdot2+0.$$
 
-$ B = g\_{A,B}N,$ $A = (A-B) + B = g\_{A,B}M + g\_{A,B}N $ $= g\_{A,B}(M+N) $  
-$ a = gA $ $= gg\_{A,B}(M+N),$ $ b = gB =$ $ gg\_{A,B}N $ 으로 부터  
-$ g = GCD(a, b) $ $= \\geq gg\_{A,B} $  
-$ g\_{A,B} \\le 1 $
+Therefore
 
-이는 가정과 모순됨으로 Lemma 1이 증명된다.
+$$\gcd(252,105)=\gcd(105,42)=\gcd(42,21)=\gcd(21,0)=21.$$
 
-이제 Lemma 1으로부터 본 정리가 증명됨은 자명하다.
+For nonnegative $a$, the terminal case is $\gcd(a,0)=a$: every nonnegative integer divides $0$, and the greatest nonnegative common divisor of $a$ and $0$ is $a$. This also gives the conventional value $\gcd(0,0)=0$. Hence the algorithm also handles an initial input with $b=0$ immediately.
 
-$WLOG\\ a=bq+r(0 \\le r < B) $ 이라 두자.
+## Iterative C++ implementation
 
-$ GCD(a, b) = GCD(a - b, b) $ $= GCD(a - 2b, b) = \\cdots $ $= GCD(a - bq, b) = GCD(r, b) $ $= GCD(b, r) $  
-을 얻을 수 있음을 확인 할 수 있다.
+The following function accepts nonnegative `int` values only. Its precondition is that both arguments are nonnegative and representable as `int`; it returns their gcd, with `gcd(0, 0) == 0`.
 
----
-
-**\# Pseudo Code**
-
-유클리드 호제법을 이용한 최대공약수를 구하는 코드는 다음과 같이 간결하게 쓸 수 있다.
-
-```c++
-int gcd(int a, b) {
-  if(b == 0) return a;
-  return gcd(b, a%b);
+```cpp
+int gcd(int a, int b) {
+    // Precondition: a >= 0 and b >= 0.
+    while (b != 0) {
+        int remainder = a % b;
+        a = b;
+        b = remainder;
+    }
+    return a;
 }
 ```
+
+At each iteration, `remainder` is the $r$ in $a=bq+r$, so the invariant $\gcd(a,b)$ is unchanged as the pair becomes $(b,r)$. When `b` reaches zero, `a` is the gcd.

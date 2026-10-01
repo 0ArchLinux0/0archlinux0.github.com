@@ -7,34 +7,48 @@ tags:
   [
     Java,
     Algorithm,
-		Coding Interview,
+    Coding Interview,
     AtCoder,
     ABC contest
   ]
 pin: false
+translation_key: abc237-b-matrix-transposition
 ---
 
-[Link] <https://AtCoder.jp/contests/abc237/tasks/abc237_b>
-<br>
+[Problem: AtCoder ABC 237 B — Matrix Transposition](https://atcoder.jp/contests/abc237/tasks/abc237_b)
+
+Given an `H` by `W` matrix `A`, output its transpose `B`, which has `W` rows and `H` columns. Transposition swaps each element's row and column indices: for every `0 <= i < H` and `0 <= j < W`, set `B[j][i] = A[i][j]`. The dimensions need not be equal, so the output must be built with `W` rows of `H` values each; this also handles a single row or column naturally.
+
+The constraints are small (`1 <= H, W <= 100`), and every input value can be copied once into its transposed position. The time and storage required are both `O(HW)`. The code reads the dimensions and matrix, then prints each output row with spaces between values and a newline after the row.
 
 ```java
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
 public class Main {
-	static BufferedReader br;
-	static StringBuilder sb = new StringBuilder();
-	public static void main(String[] args) throws IOException {
-		br = new BufferedReader(new InputStreamReader(System.in));
-		long l = Long.parseLong(br.readLine());
-		if(l <= Integer.MAX_VALUE && Integer.MIN_VALUE <= l) println("Yes");
-		else println("No");
-	}
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int h = Integer.parseInt(st.nextToken());
+        int w = Integer.parseInt(st.nextToken());
+        int[][] a = new int[h][w];
 
-	static int toi(String s) { return Integer.parseInt(s); }
-	static String[] getLine() throws IOException { return br.readLine().split(" "); }
-	static int[] getArr() throws IOException { return Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray(); }
-	static <T> void print(T s) { System.out.print(s); }
-	static <T> void println(T s) { System.out.println(s); }
+        for (int i = 0; i < h; i++) {
+            st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < w; j++) {
+                a[i][j] = Integer.parseInt(st.nextToken());
+            }
+        }
+
+        StringBuilder out = new StringBuilder();
+        for (int j = 0; j < w; j++) {
+            for (int i = 0; i < h; i++) {
+                if (i > 0) out.append(' ');
+                out.append(a[i][j]);
+            }
+            out.append('\n');
+        }
+        System.out.print(out);
+    }
 }
 ```

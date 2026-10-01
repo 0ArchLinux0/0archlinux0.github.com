@@ -12,52 +12,55 @@ tags:
     Regular Contest
   ]
 pin: false
+lang: en
+translation_key: arc135-a-floor-ceil-decomposition
 ---
 
-[Link] <https://AtCoder.jp/contests/arc135/tasks/arc135_a>
-<br>
+[Problem: AtCoder ARC 135 A — Floor, Ceil Decomposition](https://atcoder.jp/contests/arc135/tasks/arc135_a)
+[English] · [한국어](/ko/posts/arc135-a-floor-ceil-decomposition/) · [日本語](/ja/posts/arc135-a-floor-ceil-decomposition/)
+
+For a positive integer `x`, define `f(x) = x` when `x <= 4`. Otherwise, split `x` into `floor(x / 2)` and `ceil(x / 2)`, and define `f(x)` as the product of their values modulo `998244353`:
+
+`f(x) = f(floor(x / 2)) * f(ceil(x / 2)) mod 998244353`.
+
+The split makes both arguments smaller, so the recurrence eventually reaches the base cases. Memoized recursion avoids recomputing the same arguments. At each recursion depth, the values are only the rounded halves of the original input, so there are at most two distinct values per depth. Thus there are `O(log x)` distinct states, recursion depth is `O(log x)`, and the memo table uses `O(log x)` space.
+
+Reduce each recursive result modulo `998244353` before multiplying. Since each factor is less than the modulus, their product is less than `998244353²`, which fits in a signed Java `long`. Computing the upper half as `x / 2 + x % 2` also avoids overflowing `x + 1`.
+
+## Java
 
 ```java
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
-	static BufferedReader br;
-	static StringBuilder sb = new StringBuilder();
-	static HashMap<Long, Long> hm = new HashMap<>();
-	static long mod = 998244353l;
-	public static void main(String[] args) throws IOException {
-		br = new BufferedReader(new InputStreamReader(System.in));
-		long x = tol(br.readLine());
-		println(getMax(x));
-	}
+    private static final long MOD = 998244353L;
+    private static final Map<Long, Long> memo = new HashMap<>();
 
-	static long getMax(long x) {
-		if(hm.containsKey(x)) return hm.get(x);
-		long lower = x / 2, upper = (x + 1) / 2;
-		if((x & 1) == 1) {
-			if(x >= 5) {
-				long val = (getMax(lower) * getMax(upper)) % mod;
-				hm.put(x, val);
-				return val % mod;
-			}
-			else return x;
-		} else {
-			if(x >= 6) {
-				long val = getMax(lower);
-				val = (val * val) % mod;
-				hm.put(x, val);
-				return (val) % mod;
-			}
-			else return x;
-		}
-	}
+    public static void main(String[] args) throws IOException {
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        long x = Long.parseLong(input.readLine().trim());
+        System.out.println(value(x));
+    }
 
-	static int toi(String s) { return Integer.parseInt(s); }
-	static long tol(String s) { return Long.parseLong(s); }
-	static String[] getLine() throws IOException { return br.readLine().split(" "); }
-	static int[] getArr() throws IOException { return Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray(); }
-	static <T> void print(T s) { System.out.print(s); }
-	static <T> void println(T s) { System.out.println(s); }
+    private static long value(long x) {
+        if (x <= 4) {
+            return x;
+        }
+
+        Long cached = memo.get(x);
+        if (cached != null) {
+            return cached;
+        }
+
+        long lower = x / 2;
+        long upper = lower + x % 2;
+        long result = value(lower) * value(upper) % MOD;
+        memo.put(x, result);
+        return result;
+    }
 }
 ```

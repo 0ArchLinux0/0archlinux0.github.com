@@ -1,0 +1,82 @@
+title: 한국어 글
+
+language_selector:
+  label: 언어
+
+language_mode:
+  empty: 이 언어로 검토를 마친 글이 아직 없습니다.
+
+layout:
+  post: 글
+  category: 카테고리
+  tag: 태그
+
+tabs:
+  home: 홈
+  categories: 카테고리
+  tags: 태그
+  archives: 보관함
+  about: 소개
+
+search:
+  hint: 검색
+  cancel: 취소
+  no_results: 검색 결과가 없습니다.
+
+panel:
+  lastmod: 최근 업데이트
+  trending_tags: 인기 태그
+  toc: 목차
+
+date_format:
+  tooltip: '%Y-%m-%d %H:%M %z'
+  post:
+    long: '%Y년 %m월 %d일'
+    short: '%m월 %d일'
+    archive_month: '%m월'
+
+copyright:
+  license:
+    template: '이 글은 저자가 :LICENSE_NAME 라이선스로 배포합니다.'
+    name: CC BY 4.0
+    link: https://creativecommons.org/licenses/by/4.0/
+  brief: 일부 권리 보유
+  verbose: >-
+    별도 표시가 없는 한, 이 블로그의 글은 저자가 크리에이티브 커먼즈 저작자표시 4.0 국제 라이선스(CC BY 4.0)로 제공합니다.
+
+meta: ':PLATFORM 기반, :THEME 테마로 제공됩니다.'
+
+not_found:
+  statment: 요청한 주소를 찾을 수 없거나 존재하지 않는 페이지를 가리킵니다.
+  hint_template: ':HEAD_BAK 하거나 :ARCHIVES_PAGE에서 찾아보세요.'
+  head_back: 홈으로 돌아가기
+  archives_page: 보관함
+
+post:
+  published: 게시일
+  updated: 수정일
+  timeago:
+    day: 일 전
+    hour: 시간 전
+    minute: 분 전
+    just_now: 방금 전
+  words: 단어
+  pageview_measure: 조회
+  read_time:
+    unit: 분
+    prompt: 읽기
+  relate_posts: 관련 글
+  share: 공유
+  button:
+    next: 최신 글
+    previous: 이전 글
+    copy_code:
+      succeed: 복사했습니다!
+    share_link:
+      title: 링크 복사
+      succeed: 링크를 복사했습니다!
+  pin_prompt: 고정
+
+categories:
+  category_measure: 카테고리
+  post_measure: 글

@@ -12,53 +12,50 @@ tags:
     ABC contest
   ]
 pin: false
+lang: en
+translation_key: abc237-d-lr-insertion
+permalink: /posts/Atcoder-D-LR-insertion/
 ---
 
-[Link] <https://AtCoder.jp/contests/abc237/tasks/abc237_d>
-<br>
+[Problem: AtCoder ABC 237 D — LR insertion](https://atcoder.jp/contests/abc237/tasks/abc237_d) · [한국어](/ko/posts/abc237-d-lr-insertion/) · [日本語](/ja/posts/abc237-d-lr-insertion/)
+
+The recursive inorder traversal of a tree with up to 500,000 nodes can overflow the call stack. Instead, construct the answer directly with a deque. Start with `N`, then process `S` from right to left. For each index `i`, append `i` to the back if `S[i]` is `L`; otherwise prepend it to the front. The deque then contains the required order.
+
+This works because we undo the insertions in reverse order. The last value to be inserted is `N`, so it is the initial deque. For each earlier `i`, `L` means `i + 1` was inserted immediately before `i`, so `i` belongs at the right end; `R` means `i + 1` was inserted immediately after `i`, so `i` belongs at the left end. Each operation extends the corresponding end and preserves the required relative order. Each value is added once, so the time and space complexities are both `O(N)`.
+
+## Java
 
 ```java
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class Main {
-	static BufferedReader br;
-	static StringBuilder sb = new StringBuilder();
-	public static void main(String[] args) throws IOException {
-		br = new BufferedReader(new InputStreamReader(System.in));
-		int n = toi(br.readLine());
-		String s = br.readLine();
-		Node[] nodes = new Node[n + 1];
-		for(int i = 0; i <= n; i++) nodes[i] = new Node(i);
+    public static void main(String[] args) throws IOException {
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(input.readLine().trim());
+        String s = input.readLine().trim();
 
-		for(int i = 0; i < s.length(); i++) {
-			char ch = s.charAt(i);
-			if(ch == 'L') {
-				nodes[i].left = nodes[i + 1];
-			} else nodes[i].right = nodes[i + 1];
-		}
+        Deque<Integer> order = new ArrayDeque<>();
+        order.addLast(n);
+        for (int i = n - 1; i >= 0; i--) {
+            if (s.charAt(i) == 'L') {
+                order.addLast(i);
+            } else {
+                order.addFirst(i);
+            }
+        }
 
-		solve(nodes[0]);
-		println(sb);
-	}
-
-	static void solve(Node node) {
-		if(node.left != null) solve(node.left);
-		sb.append(node.idx).append(" ");
-		if(node.right != null) solve(node.right);
-	}
-
-	static class Node{
-		Node left;
-		Node right;
-		int idx;
-		Node(int idx) { this. idx = idx; }
-	}
-
-	static int toi(String s) { return Integer.parseInt(s); }
-	static String[] getLine() throws IOException { return br.readLine().split(" "); }
-	static int[] getArr() throws IOException { return Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray(); }
-	static <T> void print(T s) { System.out.print(s); }
-	static <T> void println(T s) { System.out.println(s); }
+        StringBuilder answer = new StringBuilder();
+        for (int value : order) {
+            if (answer.length() > 0) {
+                answer.append(' ');
+            }
+            answer.append(value);
+        }
+        System.out.println(answer);
+    }
 }
 ```

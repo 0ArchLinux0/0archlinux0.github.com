@@ -63,6 +63,10 @@ test() {
     "$SITE_DIR"
 }
 
+route_test() {
+  ruby tools/verify_language_routes.rb "$SITE_DIR"
+}
+
 resume_site_dir() {
   if [[ -n $_baseurl ]]; then
     # Move the site file to the regular directory '_site'
@@ -120,6 +124,7 @@ main() {
   build
   # test
   resume_site_dir
+  route_test
 
   if $_opt_dry_run; then
     exit 0

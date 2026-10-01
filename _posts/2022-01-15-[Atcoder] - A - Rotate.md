@@ -12,33 +12,35 @@ tags:
     ABC contest
   ]
 pin: false
+lang: en
+translation_key: abc235-a-digit-rotations
 ---
 
-[Link] <https://AtCoder.jp/contests/abc235/tasks/abc235_a>
-<br>
+[Problem: AtCoder ABC 235 A — Rotate](https://atcoder.jp/contests/abc235/tasks/abc235_a) · [한국어](/ko/posts/abc235-a-digit-rotations/) · [日本語](/ja/posts/abc235-a-digit-rotations/)
+
+Given a three-digit decimal number, let its hundreds, tens, and ones digits be `A`, `B`, and `C`. The three left cyclic rotations are `ABC`, `BCA`, and `CAB`; output their sum. These are permutations of the three input digits, so repeated digits and zero are handled without any special cases. For example, input `123` produces `123`, `231`, and `312`, whose sum is `666`.
+
+Read the input as a string to retain the three digit positions even when `B` or `C` is `0`. Convert each character to a digit and evaluate the place values directly: `100A + 10B + C`, `100B + 10C + A`, and `100C + 10A + B`. Their sum is at most `2997`, so an `int` is sufficient. The time and additional space complexities are both `O(1)`.
+
+## Java
 
 ```java
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
-	static BufferedReader br;
-	static int max = 0, maxIdx = 0;
-	public static void main(String[] args) throws IOException {
-		br = new BufferedReader(new InputStreamReader(System.in));
-		String input = br.readLine();
-		int[] digit = new int[3];
-		for(int i = 0; i < 3; i++) digit[i] = input.charAt(i) - '0';
-		int ans = sum(digit[0], digit[1], digit[2]) + sum(digit[1], digit[2], digit[0]) + sum(digit[2], digit[0], digit[1]);
-		println(ans);
-	}
+    public static void main(String[] args) throws IOException {
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        String digits = input.readLine();
+        int a = digits.charAt(0) - '0';
+        int b = digits.charAt(1) - '0';
+        int c = digits.charAt(2) - '0';
 
-	static int sum(int a, int b, int c) {
-		return 100 * a + 10 * b + c;
-	}
-
-	static int toi(String s) { return Integer.parseInt(s); }
-	static String[] getLine() throws IOException { return br.readLine().split(" "); }
-	static <T> void println(T s) { System.out.println(s); }
+        int answer = (100 * a + 10 * b + c)
+                + (100 * b + 10 * c + a)
+                + (100 * c + 10 * a + b);
+        System.out.println(answer);
+    }
 }
 ```
