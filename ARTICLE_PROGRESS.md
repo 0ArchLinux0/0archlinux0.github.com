@@ -18,10 +18,11 @@ Article revision: **1/296 verified; 295 pending**. Korean and Japanese: **1/296 
 
 - `_posts/2022-04-24- Monotone Convergence Theorem.md`: rewritten in English, with separately reviewed Korean and Japanese translations.
 - Smoke checks passed for the English homepage listing, all three rendered language pages, reciprocal English/Korean/Japanese links, correct HTML `lang` values, and canonical URLs without `//`.
-- Jekyll 4.2.1 built successfully on Ruby 3.3 with a throwaway compatibility shim for removed Ruby logger/string APIs. The repository’s normal Ruby 2.7 CI build still needs to run.
+- Jekyll 4.2.1 built locally on Ruby 3.3 with a temporary compatibility shim for older dependencies. The GitHub Actions `Validate blog` workflow had been manually disabled; it was re-enabled for pushes, pull requests, and manual runs on GitHub-hosted runners.
 - The initial build reported tag archive collisions; normalized the three colliding tag spellings. The rebuild completed without archive warnings.
 - Visual browser inspection remains unverified because Chromium could not start or attach in this environment; generated HTML assertions covered language labels and links.
-- Changes are on `blog/english-first-cleanup` in [draft PR #1](https://github.com/0ArchLinux0/0archlinux0.github.com/pull/1); no GitHub Actions checks have run, and the PR is not merged.
+- PR #1 is merged into `main`. GitHub Actions run [#36810550181](https://github.com/0ArchLinux0/0archlinux0.github.com/actions/runs/36810550181) completed successfully, including the production build and publish to `gh-pages`.
+- PR #2 adds a manual validation trigger and documents the GitHub-hosted build/deploy workflow; its current GitHub Actions validation runs were in progress when recorded.
 
 | Source file | English | Korean | Japanese | Notes |
 |---|---|---|---|---|
