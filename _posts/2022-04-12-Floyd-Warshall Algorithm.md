@@ -12,7 +12,7 @@ tags:
     플로이드 워셜,
     flow network,
     네트워크 플로우,
-    shortest path,
+    Shortest Path,
     최단 비용,
   ]
 pin: false
