@@ -18,7 +18,7 @@ bundle install
 bundle exec jekyll serve
 ```
 
-Preview at <http://127.0.0.1:4000/>. Build the production site with:
+Preview at <http://127.0.0.1:4000/>. A production build is optional locally; GitHub Actions builds the site for validation and publishing:
 
 ```sh
 JEKYLL_ENV=production bundle exec jekyll build
@@ -26,9 +26,9 @@ JEKYLL_ENV=production bundle exec jekyll build
 
 ## Publishing
 
-Pushing to `main` runs the GitHub Actions Pages deployment workflow in `.github/workflows/pages-deploy.yml`. The generated site is published from `gh-pages`.
+Pull requests and pushes run the `Validate blog` workflow on GitHub-hosted runners; `workflow_dispatch` lets you start one manually. You do not need to build locally for CI or publishing.
 
-The validation workflow builds the site for pushes and pull requests. Keep `url` in `_config.yml` as the origin without a trailing slash; Jekyll constructs page URLs from it.
+Pushing or merging to `main` runs the `Automatic build` workflow in `.github/workflows/pages-deploy.yml`; it builds the production site and publishes it from `gh-pages`. Keep `url` in `_config.yml` as the origin without a trailing slash; Jekyll constructs page URLs from it.
 
 ## Adding a translation
 
