@@ -17,9 +17,11 @@ Article revision: **1/296 verified; 295 pending**. Korean and Japanese: **1/296 
 ## Verified cycle 1
 
 - `_posts/2022-04-24- Monotone Convergence Theorem.md`: rewritten in English, with separately reviewed Korean and Japanese translations.
-- Smoke check passed for the English homepage listing, all three rendered language pages, reciprocal translation links, correct HTML `lang` values, and canonical URLs without `//`.
+- Smoke checks passed for the English homepage listing, all three rendered language pages, reciprocal English/Korean/Japanese links, correct HTML `lang` values, and canonical URLs without `//`.
 - Jekyll 4.2.1 built successfully on Ruby 3.3 with a throwaway compatibility shim for removed Ruby logger/string APIs. The repository’s normal Ruby 2.7 CI build still needs to run.
 - The initial build reported tag archive collisions; normalized the three colliding tag spellings. The rebuild completed without archive warnings.
+- Visual browser inspection remains unverified because Chromium could not start or attach in this environment; generated HTML assertions covered language labels and links.
+- Changes are on `blog/english-first-cleanup` in [draft PR #1](https://github.com/0ArchLinux0/0archlinux0.github.com/pull/1); no GitHub Actions checks have run, and the PR is not merged.
 
 | Source file | English | Korean | Japanese | Notes |
 |---|---|---|---|---|

@@ -1,5 +1,6 @@
 {% assign _translation_key = page.translation_key %}
 {% if _translation_key %}
+  {% assign _english_post = site.posts | where: 'translation_key', _translation_key | first %}
   {% assign _translations = site.translations | where: 'translation_key', _translation_key %}
   {% if _translations.size > 0 %}
     {% assign _current_language = page.lang | default: 'en' %}
@@ -10,7 +11,9 @@
       {% if _current_language == 'en' %}
         <span aria-current="page">English</span>
       {% else %}
-        <a href="{{ page.url | relative_url }}">English</a>
+        {% if _english_post %}
+          <a href="{{ _english_post.url | relative_url }}">English</a>
+        {% endif %}
       {% endif %}
       {% if _korean %}
         {% if _current_language == 'ko' %}
