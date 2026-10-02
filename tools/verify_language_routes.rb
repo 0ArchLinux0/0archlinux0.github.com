@@ -131,7 +131,16 @@ end
   ["ko/posts/max-flow-min-cut-theorem/index.html", "Max-flow min-cut theorem - 최대 유량 최소 컷 정리"],
   ["posts/github-pages-actions-workflow/index.html", "GitHub Actions CI/CD for a Jekyll Site"],
   ["ko/posts/github-pages-actions-workflow/index.html", "GitHub Actions로 Jekyll 사이트 자동 빌드·배포하기"],
-  ["ja/posts/github-pages-actions-workflow/index.html", "GitHub ActionsでJekyllサイトを自動ビルド・デプロイする"]
+  ["ja/posts/github-pages-actions-workflow/index.html", "GitHub ActionsでJekyllサイトを自動ビルド・デプロイする"],
+  ["posts/boj-7579-app/index.html", "BOJ 7579 — App"],
+  ["ko/posts/boj-7579-app/index.html", "BOJ 7579번 — 앱"],
+  ["ja/posts/boj-7579-app/index.html", "BOJ 7579 — アプリ"],
+  ["posts/boj-1199-euler-circuit/index.html", "BOJ 1199 — Euler Circuit"],
+  ["ko/posts/boj-1199-euler-circuit/index.html", "BOJ 1199번 — 오일러 회로"],
+  ["ja/posts/boj-1199-euler-circuit/index.html", "BOJ 1199 — オイラー回路"],
+  ["posts/fast-fourier-transform/index.html", "Fast Fourier Transform (FFT)"],
+  ["ko/posts/fast-fourier-transform/index.html", "고속 푸리에 변환 (FFT)"],
+  ["ja/posts/fast-fourier-transform/index.html", "高速フーリエ変換 (FFT)"],
 ].each do |path, expected_title|
   assert_article_title(site_root, path, expected_title)
 end
@@ -367,6 +376,9 @@ end
   ["BOJ-1240", "boj-1240-tree-distance"],
   ["BOJ-16235", "boj-16235-tree-investment"],
   ["github-pages-actions-workflow", "github-pages-actions-workflow"],
+  ["boj-7579-app", "boj-7579-app"],
+  ["boj-1199-euler-circuit", "boj-1199-euler-circuit"],
+  ["fast-fourier-transform", "fast-fourier-transform"],
 ].each do |source_slug, translation_key|
   source_url = "/posts/#{source_slug}/"
   korean_url = "/ko/posts/#{translation_key}/"
