@@ -73,6 +73,7 @@ post:
     prompt: read
   relate_posts: Further Reading
   share: Share
+  support: Buy me a coffee
   button:
     next: Newer
     previous: Older
