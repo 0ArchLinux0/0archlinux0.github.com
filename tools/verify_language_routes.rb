@@ -2,6 +2,7 @@
 
 require "pathname"
 require "uri"
+require "cgi"
 
 site_root = Pathname.new(ARGV.fetch(0, "_site"))
 
@@ -18,6 +19,15 @@ end
 
 def language_is?(html, language)
   html.match?(/<html\b[^>]*\blang="#{Regexp.escape(language)}"/)
+end
+
+def assert_article_title(site_root, path, expected_title)
+  html = read_page(site_root, path)
+  match = html.match(/<h1 data-toc-skip>(.*?)<\/h1>/m)
+  assert(match, "#{path} must render its article title")
+
+  actual_title = CGI.unescapeHTML(match[1].strip)
+  assert(actual_title == expected_title, "#{path} must render #{expected_title.inspect}, got #{actual_title.inspect}")
 end
 
 def language_nav(html)
@@ -106,6 +116,21 @@ end
   expected_links.each do |expected|
     assert(actual_links.include?(expected), "Language selector is missing #{expected}")
   end
+end
+
+[
+  ["posts/Bézout's-identity-p1/index.html", "Bézout's identity"],
+  ["ko/posts/bezout-identity-1/index.html", "Bézout's identity - 베주 항등식(Part. 1)"],
+  ["posts/Euclidean-Algorithm/index.html", "Euclidean Algorithm"],
+  ["ko/posts/euclidean-algorithm/index.html", "Euclidean Algorithm - 유클리드 호제법"],
+  ["posts/Flow-network/index.html", "Flow network"],
+  ["ko/posts/flow-network/index.html", "Flow network - 네트워크 플로우"],
+  ["posts/Floyd-Warshall-Algorithm/index.html", "Floyd-Warshall Algorithm"],
+  ["ko/posts/floyd-warshall-algorithm/index.html", "Floyd-Warshall Algorithm - 플로이드 워셜 알고리즘"],
+  ["posts/Max-flow-min-cut-theorem/index.html", "Max-flow min-cut theorem"],
+  ["ko/posts/max-flow-min-cut-theorem/index.html", "Max-flow min-cut theorem - 최대 유량 최소 컷 정리"]
+].each do |path, expected_title|
+  assert_article_title(site_root, path, expected_title)
 end
 
 [

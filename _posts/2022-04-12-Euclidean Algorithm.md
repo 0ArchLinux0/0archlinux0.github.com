@@ -1,5 +1,5 @@
 ---
-title: Euclidean Algorithm - 유클리드 호제법
+title: Euclidean Algorithm
 author: MINJUN PARK
 date: 2022-04-12 18:28:00 +0900
 categories: [Math, Number Theory]

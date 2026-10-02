@@ -1,5 +1,5 @@
 ---
-title: Max-flow min-cut theorem - 최대 유량 최소 컷 정리
+title: Max-flow min-cut theorem
 author: MINJUN PARK
 date: 2022-04-12 18:28:00 +0900
 categories: [Graph theory, Flow network]

@@ -1,5 +1,5 @@
 ---
-title: Bézout's identity - 베주 항등식(Part. 1)
+title: Bézout's identity
 author: MINJUN PARK
 date: 2022-04-12 18:28:00 +0900
 categories: [Math, Number Theory]
