@@ -27,9 +27,18 @@ JEKYLL_ENV=production bundle exec jekyll build
 
 ## Publishing
 
-Pull requests and pushes run the `Validate blog` workflow on GitHub-hosted runners; `workflow_dispatch` lets you start one manually. You do not need to build locally for CI or publishing.
+`Validate blog` runs for every push (any branch), every pull request, and its own `workflow_dispatch`. It builds the site and checks generated language/article routes; it never publishes.
 
-Pushing or merging to `main` runs the `Automatic build` workflow in `.github/workflows/pages-deploy.yml`; it builds the production site, checks generated language/article routes with `tools/verify_language_routes.rb`, and then publishes it from `gh-pages`. Keep `url` in `_config.yml` as the origin without a trailing slash; Jekyll constructs page URLs from it.
+`Automatic build` publishes the production site to `gh-pages`:
+
+| Action | Workflow result |
+|---|---|
+| Push to a feature branch or open/update a pull request | `Validate blog` only |
+| Actions → **Validate blog** → **Run workflow** | Manual validation only |
+| Push or merge a site change to `main` | `Validate blog` plus `Automatic build` and production publish |
+| Actions → **Automatic build** → **Run workflow**, with `main` selected | Manual production build and publish; other branches are blocked |
+
+The production workflow ignores commits that change only `.gitignore`, `README.md`, `LICENSE`, or `ARTICLE_PROGRESS.md`; validation still runs, but those changes do not deploy. `Automatic build` runs `bash tools/deploy.sh`, which production-builds the Jekyll site, checks language routes, and replaces the generated contents of `gh-pages`. Do not edit `gh-pages` directly. Keep `url` in `_config.yml` as the origin without a trailing slash.
 
 ## Adding a translation
 

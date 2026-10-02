@@ -128,7 +128,10 @@ end
   ["posts/Floyd-Warshall-Algorithm/index.html", "Floyd-Warshall Algorithm"],
   ["ko/posts/floyd-warshall-algorithm/index.html", "Floyd-Warshall Algorithm - 플로이드 워셜 알고리즘"],
   ["posts/Max-flow-min-cut-theorem/index.html", "Max-flow min-cut theorem"],
-  ["ko/posts/max-flow-min-cut-theorem/index.html", "Max-flow min-cut theorem - 최대 유량 최소 컷 정리"]
+  ["ko/posts/max-flow-min-cut-theorem/index.html", "Max-flow min-cut theorem - 최대 유량 최소 컷 정리"],
+  ["posts/github-pages-actions-workflow/index.html", "GitHub Actions CI/CD for a Jekyll Site"],
+  ["ko/posts/github-pages-actions-workflow/index.html", "GitHub Actions로 Jekyll 사이트 자동 빌드·배포하기"],
+  ["ja/posts/github-pages-actions-workflow/index.html", "GitHub ActionsでJekyllサイトを自動ビルド・デプロイする"]
 ].each do |path, expected_title|
   assert_article_title(site_root, path, expected_title)
 end
@@ -363,6 +366,7 @@ end
   ["BOJ-17144", "boj-17144-dust-simulation"],
   ["BOJ-1240", "boj-1240-tree-distance"],
   ["BOJ-16235", "boj-16235-tree-investment"],
+  ["github-pages-actions-workflow", "github-pages-actions-workflow"],
 ].each do |source_slug, translation_key|
   source_url = "/posts/#{source_slug}/"
   korean_url = "/ko/posts/#{translation_key}/"
