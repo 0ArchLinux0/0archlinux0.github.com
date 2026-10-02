@@ -1,55 +1,38 @@
 ---
 title: About
 icon: fas fa-info-circle
-order: 4
+order: 6
 ---
 
-<!-- > **Note**: Add Markdown syntax content to file `_tabs/about.md` and it will show up on this page. -->
+# Minjun Park
 
-Interested in cryptograph and security
+**Software engineer · builder · researcher · explainer**
 
-> Feel free to contact me through linkedin or email
+I like taking complicated problems apart, looking at them from several angles, and turning them into systems that work and explanations that are easier to reason about.
 
-<!-- ![header](header.png) -->
+My background and current work span software engineering, mathematics and statistics, research, and technical experimentation. I am especially interested in systems, AI tooling and automation, security, and cryptography.
 
-## 👋 I'm Software Engineer, MINJUN PARK
+This site is where I keep technical notes, worked-out ideas, experiments, and longer explanations. Some older posts are preserved as an archive of what I was learning at the time; newer writing is intended to be more deliberate, reproducible, and useful.
 
-<!-- <p align="left"> -->
-<img style="float: left;" src="https://img.shields.io/badge/javascript-%23323330.svg?style=plastic&logo=javascript&logoColor=%23F7DF1E" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/node.js-6DA55F?style=plastic&logo=node.js&logoColor=white" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/express.js-%23404d59.svg?style=plastic&logo=express&logoColor=%2361DAFB" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/ruby-%23CC342D.svg?style=plastic&logo=ruby&logoColor=white" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/rails-%23CC0000.svg?style=plastic&logo=ruby-on-rails&logoColor=white" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/dart-%230175C2.svg?style=plastic&logo=dart&logoColor=white" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/Flutter-%2302569B.svg?style=plastic&logo=Flutter&logoColor=white" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/python-3670A0?style=plastic&logo=python&logoColor=ffdd54" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/numpy-%23013243.svg?style=plastic&logo=numpy&logoColor=white" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/c-%2300599C.svg?style=plastic&logo=c&logoColor=white" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/C++-%2300599C.svg?style=plastic&logo=c%2B%2B&logoColor=white" alt="404/error"/>  <br>
+## What I write about
 
-<img style="float: left;" src="https://img.shields.io/badge/Red%20Hat-EE0000?style=plastic&logo=redhat&logoColor=white" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/Arch%20Linux-1793D1?logo=arch-linux&logoColor=fff&style=plastic" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/Android-3DDC84?style=plastic&logo=android&logoColor=white" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/VIM-%2311AB00.svg?style=plastic&logo=vim&logoColor=white" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/shell_script-%23121011.svg?style=plastic&logo=gnu-bash&logoColor=white" alt="404/error"/>  <br>
+- **Software & systems** — engineering notes, infrastructure, developer tooling, automation, and lessons from building things.
+- **Mathematics & algorithms** — problem solving, algorithms, proofs, and mathematical ideas worth explaining carefully.
+- **Research & data** — reproducible analysis, modeling, and research-adjacent experiments.
+- **Security & cryptography** — topics I am actively interested in and want to explore more deeply over time.
 
-<img style="float: left;" src="https://img.shields.io/badge/git-%23F05033.svg?style=plastic&logo=git&logoColor=white" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/gitlab-%23181717.svg?style=plastic&logo=gitlab&logoColor=white" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/apache-%23D42029.svg?style=plastic&logo=apache&logoColor=white" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/AWS-%23FF9900.svg?style=plastic&logo=amazon-aws&logoColor=white" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/Cloudflare-F38020?style=plastic&logo=Cloudflare&logoColor=white" alt="404/error"/>  <br>
+## Selected public work
 
-<img style="float: left;" src="https://img.shields.io/badge/NPM-%23000000.svg?style=plastic&logo=npm&logoColor=white" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/vuejs-%2335495e.svg?style=plastic&logo=vuedotjs&logoColor=%234FC08D" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/-mocha-%238D6748?style=plastic&logo=mocha&logoColor=white" alt="404/error"/>  <br>
+- [NHANES 2013–2014 Circadian Sleep Analysis](https://github.com/0ArchLinux0/Nocturnal-Rest-Activity-Transition-Instability_NHANES-2013-2014) — actigraphy-based analysis of sleep–wake dynamics.
+- [tunnelcat-ts](https://github.com/0ArchLinux0/tunnelcat-ts) — a TypeScript CLI experiment around peer-to-peer tunneling and networking.
+- [This blog](https://github.com/0ArchLinux0/0archlinux0.github.com) — Jekyll/Chirpy site with CI/CD, language routes, and reviewed translations.
 
-<img style="float: left;" src="https://img.shields.io/badge/opencv-%23white.svg?style=plastic&logo=opencv&logoColor=white" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/threejs-black?style=plastic&logo=three.js&logoColor=white" alt="404/error"/>  <br>
+For more, see the [Work](/work/) page or my [GitHub](https://github.com/0ArchLinux0).
 
-<img style="float: left;" src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=plastic&logo=mongodb&logoColor=white" alt="404/error"/>
-<img style="float: left;" src="https://img.shields.io/badge/sqlite-%2307405e.svg?style=plastic&logo=sqlite&logoColor=white" alt="404/error"/><br><br>
+## Contact
 
-### 📞 Contact
+For professional, research, or collaboration inquiries:
 
-<a href="mailto:bluebluerize900@gmail.com"><img style="float: left;" src="https://img.shields.io/badge/Gmail-D14836?style=plastic&logo=gmail&logoColor=white" alt="404/error"/></a>
-<a href="https://www.linkedin.com/in/minjun-park-536ba2213/"><img style="float: left;" src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=plastic&logo=linkedin&logoColor=white" alt="404/error"/></a><br>
+- [LinkedIn](https://www.linkedin.com/in/minjun-park-536ba2213/)
+- [Email](mailto:bluebluerize900@gmail.com)
+- [GitHub](https://github.com/0ArchLinux0)
