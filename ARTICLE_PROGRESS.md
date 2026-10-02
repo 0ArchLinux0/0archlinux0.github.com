@@ -1,6 +1,6 @@
 # Blog maintenance and article progress
 
-Inventory: 296 article-content files under `_posts` on the `main` baseline (295 Markdown files and one extensionless math note). The duplicate Korean Analysis post was merged into a locale translation, leaving 295 source files; the duplicate LeetCode 4 post was merged into the canonical Java article, so the current inventory has 294 source files (293 Markdown files and one extensionless math note). The old LeetCode 4 URL redirects to the canonical article. The misplaced deployment script was removed; `tools/deploy.sh` is the canonical copy.
+Inventory: 296 article-content files under `_posts` at the baseline (295 Markdown files and one extensionless math note). The duplicate Korean Analysis and LeetCode 4 posts were merged into their canonical entries; this CI/CD guide adds one source, so the current inventory is 295 source files (294 Markdown files and one extensionless math note). The old LeetCode 4 URL redirects to its canonical article. The misplaced deployment script was removed; `tools/deploy.sh` is the canonical copy.
 
 ## Work plan
 
@@ -12,7 +12,7 @@ Inventory: 296 article-content files under `_posts` on the `main` baseline (295 
 - [ ] Revise each article in English, checking technical claims and preserving existing URLs where possible.
 - [ ] Add Korean/Japanese translations only as separately reviewed translations.
 
-Article revision: **1/294 verified; 231 awaiting remote render checks; 62 not started**. Korean and Japanese: **1/294 verified each; 231 awaiting remote render checks each**.
+Article revision: **1/295 verified; 232 awaiting remote render checks; 62 not started**. Korean and Japanese: **1/295 verified each; 232 awaiting remote render checks each**.
 
 ## Verified cycle 1
 
@@ -328,3 +328,4 @@ Article revision: **1/294 verified; 231 awaiting remote render checks; 62 not st
 | `_posts/2022-04-24-Bolzano–Weierstrass theorem.md` | Awaiting CI | Awaiting CI | Awaiting CI | English rewrite and Korean/Japanese translations added |
 | `_posts/2022-04-24-Nested Interval Property.md` | Awaiting CI | Awaiting CI | Awaiting CI | English rewrite and Korean/Japanese translations added |
 | `_posts/IBM_Internship_temp.md` | Pending | Not started | Not started | — |
+| `_posts/2026-10-02-GitHub Pages CI CD.md` | Awaiting CI | Awaiting CI | Awaiting CI | New guide from the session notes; CI triggers, manual actions, and deployment usage |
