@@ -1,5 +1,5 @@
 ---
-title: 네트워크 플로우
+title: Flow network - 네트워크 플로우
 author: MINJUN PARK
 date: 2022-04-12 18:28:00 +0900
 categories: [Graph theory, Flow network]

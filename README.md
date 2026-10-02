@@ -38,6 +38,8 @@ Pushing or merging to `main` runs the `Automatic build` workflow in `.github/wor
 3. Verify the language switcher links both ways and the translated page’s HTML `lang` attribute matches its content.
 4. Update the article’s row in `ARTICLE_PROGRESS.md`.
 
+Keep English post titles English-only; put bilingual English–Korean titles in the Korean translation's own `title` field.
+
 Translations are editorial content and require review; there is no automatic translation fallback.
 
 ## License
