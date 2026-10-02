@@ -13,12 +13,12 @@ permalink: /ja/posts/nested-interval-property/
 
 実数全体の集合 $\mathbb{R}$ における、空でない閉区間の列
 $(I_n)_{n\in\mathbb{N}}$ を考える。各区間を $I_n=[a_n,b_n]$ とし、その
-長さを $|I_n|=b_n-a_n$ と表す。
+長さを $\lvert I_n\rvert=b_n-a_n$ と表す。
 
 次の二つの条件を仮定する。
 
 1. すべての $n\in\mathbb{N}$ について $I_{n+1}\subseteq I_n$ である。
-2. $n\to\infty$ のとき $|I_n|\to 0$ である。
+2. $n\to\infty$ のとき $\lvert I_n\rvert\to 0$ である。
 
 このとき、すべての区間に共通して含まれる実数がただ一つ存在する。すなわち、
 
@@ -53,9 +53,9 @@ $a_n\leq x$ である。よって $a_n\leq x\leq b_n$、すなわち $x\in I_n$
 すべての $n$ について
 
 $$
-|x-y|\leq b_n-a_n=|I_n|
+\lvert x-y\rvert\leq b_n-a_n=\lvert I_n\rvert
 $$
 
-が成り立つ。$|I_n|\to 0$ なので、非負の数 $|x-y|$ はいくらでも小さい正の数
-以下である。したがって $|x-y|=0$、つまり $x=y$ である。ゆえに共通点は
+が成り立つ。$\lvert I_n\rvert\to 0$ なので、非負の数 $\lvert x-y\rvert$ はいくらでも小さい正の数
+以下である。したがって $\lvert x-y\rvert=0$、つまり $x=y$ である。ゆえに共通点は
 ただ一つである。

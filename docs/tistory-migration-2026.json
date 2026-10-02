@@ -43,9 +43,9 @@
   },
   "canonical_inventory": {
     "baseline_source_ref": "origin/main",
-    "baseline_source_commit": "e1f3e140c6818e04ecfb587795a31f6abdfc696a",
+    "baseline_source_commit": "7d5ec4eb79220aa160821ea1d52b1c14b6fc415d",
     "baseline_generated_ref": "origin/gh-pages",
-    "baseline_generated_commit": "da83489ccf8645637b53d8b4128828d484e4bb71",
+    "baseline_generated_commit": "5049dc8e7d7379c7f1988dd145f32edfe6084bc0",
     "post_permalink_template": "/posts/:title/",
     "translation_permalink_pattern": "explicit /<locale>/posts/<translation_key>/ in translation front matter",
     "posts": [
@@ -20714,6 +20714,19 @@
       ]
     }
   },
+  "production_rendering_fixes": [
+    {
+      "canonical_article": "_posts/2022-04-24-Nested Interval Property.md",
+      "routes": [
+        "/posts/Nested-Interval-Property/",
+        "/ko/posts/nested-interval-property/",
+        "/ja/posts/nested-interval-property/"
+      ],
+      "issue": "Raw vertical bars in inline math inside numbered-list items were parsed as Markdown pipe-table separators, splitting the theorem condition.",
+      "resolution": "Replace absolute-value delimiters with MathJax \\lvert and \\rvert notation in English, Korean, and Japanese variants.",
+      "local_render_status": "PASS_LOCAL_BUILD_AND_GENERATED_HTML"
+    }
+  ],
   "corrections": [
     {
       "source_id": 39,

@@ -2,7 +2,7 @@
 
 Source: [ilikechicken.tistory.com](https://ilikechicken.tistory.com/) · Canonical site: [0archlinux0.github.io](https://0archlinux0.github.io/) · Repository: [0ArchLinux0/0archlinux0.github.com](https://github.com/0ArchLinux0/0archlinux0.github.com) · Branch: `tistory-migration-2026`
 
-The complete machine-readable source capture, canonical inventory, route map, classification, ranking, audit notes, and correction log are in [`tistory-migration-2026.json`](tistory-migration-2026.json). Twenty numeric Tistory article pages were found through the sitemap and archive pages; all twenty article bodies were captured. The canonical inventory baseline is `origin/main` at `e1f3e140c6818e04ecfb587795a31f6abdfc696a`; generated-site baseline is `origin/gh-pages` at `da83489ccf8645637b53d8b4128828d484e4bb71`.
+The complete machine-readable source capture, canonical inventory, route map, classification, ranking, audit notes, and correction log are in [`tistory-migration-2026.json`](tistory-migration-2026.json). Twenty numeric Tistory article pages were found through the sitemap and archive pages; all twenty article bodies were captured. The canonical inventory baseline is `origin/main` at `7d5ec4eb79220aa160821ea1d52b1c14b6fc415d`; generated-site baseline is `origin/gh-pages` at `5049dc8e7d7379c7f1988dd145f32edfe6084bc0`.
 
 ## Disposition
 
@@ -71,10 +71,15 @@ The five-proof first review batch covered Tistory IDs **17, 25, 45, 46, and 47**
 
 All three migrated C++17 programs compiled with `-std=c++17 -O2 -Wall -Wextra -Wpedantic -Werror -pedantic-errors`. Verified: BOJ 7579 against 200 deterministic brute-force cases and cost-boundary cases; BOJ 1199 for even/odd degrees, disconnected components, isolated vertices, loops, parallel edges, a zero-edge graph, and cycles; FFT round trips for powers of two through 1024 and 625 deterministic convolution comparisons. The local Jekyll 4.2.1 build completed, and `ruby tools/verify_language_routes.rb _site` passed. The build reports one pre-existing collision for `/tags/prefix-sum/` from canonical posts `_posts/2021-11-17-[BOJ] - 11659.md` and `_posts/2021-12-28-[BOJ] - 2042.md`; no Tistory migration post introduces it.
 
+## Rendering correction — Nested Interval Property
+
+The live English, Korean, and Japanese theorem statements split the interval-length formula into table cells: raw `|...|` delimiters inside numbered-list math were parsed as Markdown table separators. Replaced these absolute-value delimiters with equivalent MathJax `\lvert...\rvert` notation throughout all three variants. A local Jekyll build now retains the formulas in the ordered-list items rather than generating tables. Browser verification of the live pages and the post-deployment `ads.txt` invariant will be recorded in the linked Notion tracker.
+
 ## Preservation and follow-up
 
 - Original publish dates and author attribution are retained in all three migrated articles. Tistory source links and the source license are recorded where the source page displayed CC BY 4.0; IDs 14, 15, and 17 showed no license footer and were not copied.
 - No Tistory page was edited or deleted. The GitHub repository cannot redirect the separate Tistory domain; original Tistory URLs remain intact and migrated articles cite their source URLs.
 - No direct `gh-pages` edit. Publication uses the repository's existing GitHub Actions workflow.
+- Production invariant: root `ads.txt`, generated `gh-pages/ads.txt`, and live `/ads.txt` must remain exactly `google.com, pub-6869608997080714, DIRECT, f08c47fec0942fa0`. The current production source, deployed file, and live response matched before this migration deployment; verify again afterward.
 - Open review items: establish or reject the full BOJ 10803 recurrence proof; locate and verify the polynomial Bézout extension before considering it for the canonical site.
 - Notion tracker: [Personal Brand & Fame-to-Revenue Strategy — 2026-10-02](https://app.notion.com/p/Personal-Brand-Fame-to-Revenue-Strategy-2026-10-02-3ed7b981c51481cb8e93e31d72415748). Publication run, PR, commit SHAs, and live route checks will be added after CI and Pages deployment.
