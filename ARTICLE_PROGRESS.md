@@ -1,6 +1,6 @@
 # Blog maintenance and article progress
 
-Inventory: 296 article-content files under `_posts` at the baseline (295 Markdown files and one extensionless math note). The duplicate Korean Analysis and LeetCode 4 posts were merged into their canonical entries; this CI/CD guide adds one source, so the current inventory is 295 source files (294 Markdown files and one extensionless math note). The old LeetCode 4 URL redirects to its canonical article. The misplaced deployment script was removed; `tools/deploy.sh` is the canonical copy.
+Inventory: **298 Markdown source articles** under `_posts` on the migration branch (295 on the canonical baseline plus three Tistory-only migrations). The duplicate Korean Analysis and LeetCode 4 posts were merged into their canonical entries. The old LeetCode 4 URL redirects to its canonical article. The misplaced deployment script was removed; `tools/deploy.sh` is the canonical copy.
 
 ## Work plan
 
@@ -12,7 +12,7 @@ Inventory: 296 article-content files under `_posts` at the baseline (295 Markdow
 - [ ] Revise each article in English, checking technical claims and preserving existing URLs where possible.
 - [ ] Add Korean/Japanese translations only as separately reviewed translations.
 
-Article revision: **1/295 verified; 232 awaiting remote render checks; 62 not started**. Korean and Japanese: **1/295 verified each; 232 awaiting remote render checks each**.
+Article revision: **7/298 verified; 229 awaiting remote render checks; 62 not started**. Korean and Japanese: **7/298 verified each; 229 awaiting remote render checks each; 62 not started each**.
 
 ## Verified cycle 1
 
@@ -324,8 +324,11 @@ Article revision: **1/295 verified; 232 awaiting remote render checks; 62 not st
 | `_posts/2022-04-12-boj3653.md` | Awaiting CI | Awaiting CI | Awaiting CI | Replaced position tracking with a Fenwick tree and repeated-request-safe updates |
 | `_posts/2022-04-13-Analysis - 解析学（１）.md` | Awaiting CI | Awaiting CI | Awaiting CI | Explicit ASCII-`1` permalink fixes reported 404; old fullwidth and Korean routes redirect to canonical page |
 | `_posts/2022-04-16-Analysis - 해석학(2).md` | Awaiting CI | Awaiting CI | Awaiting CI | English rewrite and Korean/Japanese translations added |
+| `_posts/2022-04-18-boj-7579-app.md` | Verified | Verified | Verified | Tistory ID 39; strict C++17 and 200 brute-force cases passed; PR #8 build and routes passed |
 | `_posts/2022-04-24- Monotone Convergence Theorem.md` | Verified | Verified | Verified | Corrected proof; existing permalink preserved; rendered pages smoke-tested |
 | `_posts/2022-04-24-Bolzano–Weierstrass theorem.md` | Awaiting CI | Awaiting CI | Awaiting CI | English rewrite and Korean/Japanese translations added |
-| `_posts/2022-04-24-Nested Interval Property.md` | Awaiting CI | Awaiting CI | Awaiting CI | English rewrite and Korean/Japanese translations added |
+| `_posts/2022-04-24-Nested Interval Property.md` | Verified | Verified | Verified | Raw-pipe math delimiters fixed; PR #8 Jekyll build/routes and generated ordered-list markup passed |
+| `_posts/2022-04-26-boj-1199-euler-circuit.md` | Verified | Verified | Verified | Tistory ID 48; iterative Hierholzer checks all edges; PR #8 build and routes passed |
+| `_posts/2022-05-15-fast-fourier-transform.md` | Verified | Verified | Verified | Tistory ID 50; FFT/convolution tests passed; PR #8 build and routes passed |
 | `_posts/IBM_Internship_temp.md` | Pending | Not started | Not started | — |
 | `_posts/2026-10-02-GitHub Pages CI CD.md` | Awaiting CI | Awaiting CI | Awaiting CI | New guide from the session notes; CI triggers, manual actions, and deployment usage |

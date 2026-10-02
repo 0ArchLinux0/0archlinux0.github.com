@@ -13,12 +13,12 @@ translation_key: nested-interval-property
 
 Let $(I_n)_{n\in\mathbb{N}}$ be a sequence of nonempty closed intervals
 $I_n=[a_n,b_n]$ in $\mathbb{R}$. Write
-$|I_n|=b_n-a_n$ for the length of $I_n$.
+$\lvert I_n\rvert=b_n-a_n$ for the length of $I_n$.
 
 If
 
 1. $I_{n+1}\subseteq I_n$ for every $n\in\mathbb{N}$, and
-2. $|I_n|\to 0$ as $n\to\infty$,
+2. $\lvert I_n\rvert\to 0$ as $n\to\infty$,
 
 then there is exactly one real number that belongs to every interval:
 
@@ -51,9 +51,9 @@ For uniqueness, suppose that $x$ and $y$ both belong to every interval.
 Then for every $n$,
 
 $$
-|x-y|\leq b_n-a_n=|I_n|.
+\lvert x-y\rvert\leq b_n-a_n=\lvert I_n\rvert.
 $$
 
-Since $|I_n|\to 0$, the nonnegative number $|x-y|$ is at most arbitrarily
-small positive numbers. It follows that $|x-y|=0$, so $x=y$. Thus the
+Since $\lvert I_n\rvert\to 0$, the nonnegative number $\lvert x-y\rvert$ is at most arbitrarily
+small positive numbers. It follows that $\lvert x-y\rvert=0$, so $x=y$. Thus the
 common point is unique.

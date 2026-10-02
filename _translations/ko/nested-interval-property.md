@@ -13,12 +13,12 @@ permalink: /ko/posts/nested-interval-property/
 
 실수 집합 $\mathbb{R}$의 공집합이 아닌 닫힌구간들로 이루어진 열
 $(I_n)_{n\in\mathbb{N}}$을 생각하자. 각 구간을 $I_n=[a_n,b_n]$이라 하고,
-그 길이를 $|I_n|=b_n-a_n$으로 나타내자.
+그 길이를 $\lvert I_n\rvert=b_n-a_n$으로 나타내자.
 
 다음 두 조건을 가정한다.
 
 1. 모든 $n\in\mathbb{N}$에 대해 $I_{n+1}\subseteq I_n$이다.
-2. $n\to\infty$일 때 $|I_n|\to 0$이다.
+2. $n\to\infty$일 때 $\lvert I_n\rvert\to 0$이다.
 
 그러면 모든 구간에 공통으로 속하는 실수는 정확히 하나 존재한다. 즉,
 
@@ -51,8 +51,8 @@ $a_m\leq a_n\leq b_n$이기 때문이다. 따라서 $b_n$은 모든 왼쪽 끝�
 각 $n$에 대해
 
 $$
-|x-y|\leq b_n-a_n=|I_n|
+\lvert x-y\rvert\leq b_n-a_n=\lvert I_n\rvert
 $$
 
-이다. $|I_n|\to 0$이므로 음이 아닌 수 $|x-y|$는 임의로 작은 양수보다도
-작거나 같다. 따라서 $|x-y|=0$, 즉 $x=y$이다. 공통점은 유일하다.
+이다. $\lvert I_n\rvert\to 0$이므로 음이 아닌 수 $\lvert x-y\rvert$는 임의로 작은 양수보다도
+작거나 같다. 따라서 $\lvert x-y\rvert=0$, 즉 $x=y$이다. 공통점은 유일하다.
