@@ -12,7 +12,7 @@ Inventory: **299 Markdown source articles** under `_posts` on the completion bra
 - [ ] Revise each article in English, checking technical claims and preserving existing URLs where possible.
 - [ ] Add Korean/Japanese translations only as separately reviewed translations.
 
-Article revision: **7/299 verified; 230 awaiting remote render checks; 62 not started**. Korean and Japanese: **7/299 verified each; 230 awaiting remote render checks each; 62 not started each**.
+Article revision: **9/299 verified; 228 awaiting remote render checks; 62 not started**. Korean and Japanese: **9/299 verified each; 228 awaiting remote render checks each; 62 not started each**.
 
 ## Verified cycle 1
 
@@ -312,7 +312,7 @@ Article revision: **7/299 verified; 230 awaiting remote render checks; 62 not st
 | `_posts/2022-03-11-[BOJ] -7469.md` | Awaiting CI | Awaiting CI | Awaiting CI | Corrected problem identity and replaced O(NM) scan with persistent segment tree |
 | `_posts/2022-03-12-[BOJ] -2494.md` | Awaiting CI | Awaiting CI | Awaiting CI | Reworked carry-state DP and signed-turn reconstruction; randomized operation simulation passed |
 | `_posts/2022-03-13-[BOJ] -5373.md` | Awaiting CI | Awaiting CI | Awaiting CI | Replaced fragile strip cases with exact sticker coordinates; 437 reference cases passed |
-| `_posts/2022-04-12-Bézout's identity-p1.md` | Awaiting CI | Awaiting CI | Awaiting CI | Added an independently proved polynomial extension over fields; ID 25 provenance retained in all locales |
+| `_posts/2022-04-12-Bézout's identity-p1.md` | Verified | Verified | Verified | Tistory ID 25; field-polynomial proof integrated in all locales; PR #9 validation and local visual checks passed |
 | `_posts/2022-04-12-Euclidean Algorithm.md` | Awaiting CI | Awaiting CI | Awaiting CI | Corrected invariant proof and iterative C++ example; translations added |
 | `_posts/2022-04-12-Flow network.md` | Awaiting CI | Awaiting CI | Awaiting CI | Replaced flawed flow notation with edge-indexed feasible-flow and residual-network definitions |
 | `_posts/2022-04-12-Floyd-Warshall Algorithm.md` | Awaiting CI | Awaiting CI | Awaiting CI | Corrected recurrence, initialization, sentinel handling, and negative-cycle conditions; translations added |
@@ -330,6 +330,6 @@ Article revision: **7/299 verified; 230 awaiting remote render checks; 62 not st
 | `_posts/2022-04-24-Nested Interval Property.md` | Verified | Verified | Verified | Raw-pipe math delimiters fixed; PR #8 Jekyll build/routes and generated ordered-list markup passed |
 | `_posts/2022-04-26-boj-1199-euler-circuit.md` | Verified | Verified | Verified | Tistory ID 48; iterative Hierholzer checks all edges; PR #8 build and routes passed |
 | `_posts/2022-05-15-fast-fourier-transform.md` | Verified | Verified | Verified | Tistory ID 50; FFT/convolution tests passed; PR #8 build and routes passed |
-| `_posts/2022-05-31-boj-10803-square-tiling-proof.md` | Awaiting CI | Awaiting CI | Awaiting CI | Tistory ID 52; corrected conservative recurrence bound proved under guillotine cuts; original source threshold intentionally not claimed |
+| `_posts/2022-05-31-boj-10803-square-tiling-proof.md` | Verified | Verified | Verified | Tistory ID 52; conservative guillotine recurrence proof; original threshold not claimed; PR #9 validation and local visual checks passed |
 | `_posts/IBM_Internship_temp.md` | Pending | Not started | Not started | — |
 | `_posts/2026-10-02-GitHub Pages CI CD.md` | Awaiting CI | Awaiting CI | Awaiting CI | New guide from the session notes; CI triggers, manual actions, and deployment usage |

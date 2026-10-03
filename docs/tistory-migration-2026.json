@@ -20694,7 +20694,7 @@
     "first_batch_math_proofs_checked": 5,
     "first_batch_math_proof_source_ids": [17, 25, 45, 46, 47],
     "verified_for_migration": 2,
-    "fixed_and_published": 0,
+    "fixed_and_integrated": 2,
     "conflicting_proofs_blocked": 0,
     "partial_extensions_unresolved": 0,
     "reviewed_source_ids": [17, 25, 45, 46, 47, 52],
