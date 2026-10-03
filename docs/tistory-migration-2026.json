@@ -20574,8 +20574,8 @@
     "EXACT_DUPLICATES": 0,
     "GITHUB_IS_BETTER": 15,
     "PARTIAL_OVERLAP": 1,
-    "TISTORY_ONLY": 3,
-    "CONFLICT_REQUIRES_REVIEW": 1
+    "TISTORY_ONLY": 4,
+    "CONFLICT_REQUIRES_REVIEW": 0
   },
   "ranking": [
     {
@@ -20607,16 +20607,16 @@
       "tistory_id": 52,
       "priority": "P1",
       "title": "BOJ 10803 — Make a Square",
-      "status": "BLOCKED",
-      "reason": "High-value proof candidate, but the recurrence proof is not established; kept out of public migration pending independent proof review."
+      "status": "MIGRATED_CONSERVATIVE_BOUND",
+      "reason": "The original threshold is not claimed. The migration proves the sufficient condition m-n >= n^2/3 for positive integers 1 <= n <= m under guillotine cuts."
     },
     {
       "rank": 5,
       "tistory_id": 25,
       "priority": "P2",
       "title": "Bézout's identity — Part 1",
-      "status": "PARTIAL_OVERLAP_REVIEW",
-      "reason": "The 2025 source revision broadens the statement to polynomials but proves only the integer case; the linked Part 3 page returned HTTP 403, so retain the verified integer-only canonical article and defer that extension."
+      "status": "ENHANCED_EXISTING_CANONICAL",
+      "reason": "The unique polynomial extension is independently proved over K[x] for a field K and merged into the existing article and translations; no duplicate route or arbitrary coefficient-ring claim."
     }
   ],
   "first_batch": {
@@ -20660,17 +20660,47 @@
       }
     ]
   },
+  "completion_batch": {
+    "base_main_commit": "f3a970c65e9def9f54b57671305cd9002fed9034",
+    "base_gh_pages_commit": "71b6d337f3c9b68ee2a783a35046f09f56c59863",
+    "completed_source_ids": [25, 52],
+    "all_tistory_only_source_ids": [39, 48, 50, 52],
+    "new_english_posts": 1,
+    "new_korean_translations": 1,
+    "new_japanese_translations": 1,
+    "existing_articles_enhanced": 1,
+    "source_posts_after_completion": 299,
+    "routes": {
+      "boj-10803-square-tiling-proof": {
+        "en": "/posts/boj-10803-square-tiling-proof/",
+        "ko": "/ko/posts/boj-10803-square-tiling-proof/",
+        "ja": "/ja/posts/boj-10803-square-tiling-proof/"
+      },
+      "bezout-identity-1": {
+        "en": "/posts/Bézout's-identity-p1/",
+        "ko": "/ko/posts/bezout-identity-1/",
+        "ja": "/ja/posts/bezout-identity-1/"
+      }
+    },
+    "validation": {
+      "production_build": "PASS; Jekyll 4.2.1; the existing /tags/prefix-sum/ collision remains between the 11659 and 2042 posts.",
+      "language_routes": "PASS",
+      "generated_article_smoke": "PASS; all six affected locale pages have the expected language and article section.",
+      "guillotine_dp_spot_check": "PASS; 975 states satisfying the corrected condition within 1 <= n <= m <= 100 had no mismatches. This finite check is not the proof."
+    }
+  },
   "proof_audit": {
     "legacy_source_proofs_checked": 6,
     "first_batch_math_proofs_checked": 5,
     "first_batch_math_proof_source_ids": [17, 25, 45, 46, 47],
-    "verified_for_migration": 0,
-    "fixed_and_published": 0,
-    "conflicting_proofs_blocked": 1,
-    "partial_extensions_unresolved": 1,
+    "verified_for_migration": 2,
+    "fixed_and_integrated": 2,
+    "conflicting_proofs_blocked": 0,
+    "partial_extensions_unresolved": 0,
     "reviewed_source_ids": [17, 25, 45, 46, 47, 52],
-    "blocked_source_id": 52,
-    "partial_extension_source_id": 25
+    "migrated_proof_source_ids": [52],
+    "enhanced_existing_proof_source_ids": [25],
+    "original_claims_rejected_source_ids": [52]
   },
   "code_validation": {
     "strict_cpp17_compile": {
@@ -20750,7 +20780,7 @@
       "source_id": 52,
       "severity": "high",
       "issue": "The recurrence proof has a positive-side boundary problem, a shifted-variable/threshold mismatch, a malformed reciprocal-sum inequality, and an unproved replacement-tile bound.",
-      "resolution": "Do not publish the claimed recurrence. Preserve only the direct one-sided rectangle-splitting bound as a candidate for later proof review; open Notion issue."
+      "resolution": "Reject the source's stronger threshold. The completion batch proves only m-n >= n^2/3 under the stated guillotine model and integrates corrected article variants in English, Korean, and Japanese."
     },
     {
       "source_id": 17,
@@ -20762,7 +20792,7 @@
       "source_id": 25,
       "severity": "high",
       "issue": "The source defines S as positive combinations, then claims S equals all integer multiples of g; these sets cannot be equal. It also includes polynomials in the statement but proves only the integer case, and the linked Part 3 page returned HTTP 403 during review.",
-      "resolution": "Retain the canonical integer-only theorem and proof. Do not import the polynomial claim without an accessible source and independent proof review."
+      "resolution": "Retain the canonical integer proof and add the polynomial extension independently proved over K[x] for a field K in all existing locales; do not generalize to arbitrary coefficient rings."
     },
     {
       "source_id": 45,
@@ -21411,7 +21441,7 @@
       },
       "match": {
         "classification": "PARTIAL_OVERLAP",
-        "action": "RETAIN_CANONICAL_SCOPE",
+        "action": "ENHANCE_EXISTING_CANONICAL",
         "canonical_source_path": "_posts/2022-04-12-Bézout's identity-p1.md",
         "canonical_route": "/posts/Bézout's-identity-p1/",
         "translation_key": "bezout-identity-1",
@@ -21420,7 +21450,7 @@
           "ja",
           "ko"
         ],
-        "reason": "The current source revision was modified in 2025 and adds a polynomial identity to its definition, but its proof establishes only the integer case. The canonical article fixes the integer proof and explicitly scopes out the polynomial analogue; the linked Part 3 page was inaccessible during review, so do not import that extension."
+        "reason": "The source states the polynomial analogue but does not prove it on that page. The existing integer article is retained and now adds an independently proved polynomial result over a field in all locales; the linked Part 3 page remains unnecessary to establish the migrated claim."
       }
     },
     {
@@ -23016,26 +23046,31 @@
         "raw_markup_characters": 22623
       },
       "match": {
-        "classification": "CONFLICT_REQUIRES_REVIEW",
-        "action": "BLOCKED",
-        "canonical_source_path": null,
-        "canonical_route": null,
-        "translation_key": null,
-        "available_locales": [],
-        "reason": "Unique proof claim remains unverified. The recurrence proof has a shifted-variable/boundary mismatch and an unproved geometric tile-count argument; preserve the source and do not publish the claim."
+        "classification": "TISTORY_ONLY",
+        "action": "MIGRATE_CONSERVATIVE_PROOF",
+        "canonical_source_path": "_posts/2022-05-31-boj-10803-square-tiling-proof.md",
+        "canonical_route": "/posts/boj-10803-square-tiling-proof/",
+        "translation_key": "boj-10803-square-tiling-proof",
+        "available_locales": [
+          "en",
+          "ko",
+          "ja"
+        ],
+        "reason": "Unique source content is migrated with an independently established conservative recurrence bound. The source's stronger threshold remains explicitly unclaimed."
       },
       "proof_audit": {
-        "status": "UNRESOLVED_NOT_MIGRATED",
-        "claim": "f(n,m)=f(n,m-n)+1 when m >= n^2/3",
-        "safe_portion": "For positive n,m, splitting an n by (n+m) rectangle into n by n and n by m pieces gives f(n,n+m) <= f(n,m)+1.",
-        "issues": [
-          "The stated condition includes boundary cases where m=n, but f(n,0) is not defined.",
-          "The proof works with f(n,n+m) and then shifts variables without carrying the condition through to the final recurrence.",
-          "The integer implication between m >= n^2/3 and a choice k > n/3 is not valid at equality as written.",
-          "The repeated sum 1/a_1 and the following Cauchy/AM-GM display are malformed; the geometric lower bound for deleted tiles needs a rigorous derivation.",
-          "The claimed bound on the number of replacement tiles outside the window is asserted without a complete geometric proof."
+        "status": "PASS_CONSERVATIVE_BOUND",
+        "original_claim": "f(n,m)=f(n,m-n)+1 when m >= n^2/3",
+        "migrated_claim": "For positive integers 1 <= n <= m, if m-n >= n^2/3 then f(n,m)=f(n,m-n)+1.",
+        "model": "Minimum number of positive-integer-sided squares in a guillotine dissection; every cut splits one rectangle into two rectangles.",
+        "proof_outline": "The upper bound places an n by n square beside an optimal n by r dissection. For the strict reverse, an existing n by n square can be removed directly; otherwise a prefix of q=floor(n/3)+1 widths intersects at least 4q original squares by a column-wise reciprocal-side count. Cropping the slicing tree leaves boundary fragments whose total height is at most n, so the rectangle bound tiles them with at most n squares. Replacing the prefix and removing one new n by n square yields a strictly smaller r-wide dissection.",
+        "original_proof_issues": [
+          "The source threshold is not carried through the variable shift.",
+          "The source includes a boundary where the recurrence's remainder is undefined.",
+          "Its reciprocal-count inequality and replacement-tile bound are incomplete."
         ],
-        "spot_check": "The recurrence matched the standard guillotine DP for 1 <= n <= m <= 80; this finite check is not a proof and does not resolve the written gaps."
+        "resolution": "The migrated proof uses the corrected sufficient condition m-n >= n^2/3 and explicitly does not claim the source's stronger threshold.",
+        "spot_check": "A standard guillotine DP found no mismatch in 975 states satisfying the corrected condition within 1 <= n <= m <= 100. This finite check is corroborating evidence, not a proof."
       }
     }
   ]

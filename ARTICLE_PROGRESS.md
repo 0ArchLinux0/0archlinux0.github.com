@@ -1,6 +1,6 @@
 # Blog maintenance and article progress
 
-Inventory: **298 Markdown source articles** under `_posts` on the migration branch (295 on the canonical baseline plus three Tistory-only migrations). The duplicate Korean Analysis and LeetCode 4 posts were merged into their canonical entries. The old LeetCode 4 URL redirects to its canonical article. The misplaced deployment script was removed; `tools/deploy.sh` is the canonical copy.
+Inventory: **299 Markdown source articles** under `_posts` on the completion branch (295 on the original canonical baseline plus four Tistory-only migrations). The duplicate Korean Analysis and LeetCode 4 posts were merged into their canonical entries. The old LeetCode 4 URL redirects to its canonical article. The misplaced deployment script was removed; `tools/deploy.sh` is the canonical copy.
 
 ## Work plan
 
@@ -12,7 +12,7 @@ Inventory: **298 Markdown source articles** under `_posts` on the migration bran
 - [ ] Revise each article in English, checking technical claims and preserving existing URLs where possible.
 - [ ] Add Korean/Japanese translations only as separately reviewed translations.
 
-Article revision: **7/298 verified; 229 awaiting remote render checks; 62 not started**. Korean and Japanese: **7/298 verified each; 229 awaiting remote render checks each; 62 not started each**.
+Article revision: **9/299 verified; 228 awaiting remote render checks; 62 not started**. Korean and Japanese: **9/299 verified each; 228 awaiting remote render checks each; 62 not started each**.
 
 ## Verified cycle 1
 
@@ -29,7 +29,7 @@ Article revision: **7/298 verified; 229 awaiting remote render checks; 62 not st
 - Rewrote the Analysis foundations, Analysis II, Bolzano–Weierstrass, nested-interval, Euclidean algorithm, Bézout identity, De Moivre's formula, flow network, Floyd–Warshall, max-flow/min-cut, Programmers Network, AtCoder ARC 135 A: Floor, Ceil Decomposition, B: Sum of Three Terms, and C: XOR to All, ABC 235 A: Rotate, B: Climbing Takahashi, C: The Kth Time Query, D: Multiply and Rotate, ABC 237 A: Not Overflow, B: Matrix Transposition, C: Kasaka, D: LR Insertion, and E: Skiing, ABC 238 A: Exponential or Quadratic, B: Pizza, and C: Digitnum, BOJ 1005, 1006, 1009, 10217, 10266, 1035, 1069, 1086, 1094, 10999, 11003, 11049, 11066, 11279, 11280, 11281, 11375, 11376, 11378, 11404, 11438, 11505, 1167, 1168, 11657, 11659, 11723, 11725, 11779, 11780, 1197, 1240, 1275, 12852, 12899, 1305, 1311, 13275, 1339, 13460, 13511, 13913, 1395, 14002, 14003, 14425, 1450, 14500, 14725, 1504, 1509, 1517, 1520, 15681, 15683, 15686, 15927, 16234, 16235, 16236, 1644, 1697, 16975, 1707, 1717, 17131, 17144, 17386, 17387, 17404, 17435, 17472, 1753, 1766, 1786, 1806, 1949, 1956, 1967, 1976, 1991, 20040, 2042, 2098, 2150, 2162, 2169, 2170, 2206, 2213, 2252, 2263, 2357, 2470, 2482, 2494, 2533, 2618, 2636, 2836, 2887, 3176, 3190, 3273, 3584, 3648, 3653, 3665, 3977, 4013, 4195, 4196, 4354, 4803, 5052, 5373, 5419, 5639, 5670, 7469, 7562, 7569, 7869, 9019, 9252, 9345, and 9370, Codeforces Global Round 19 A: Sorting Parts, B: MEX and Array, and C: Andrew and Stones, Codeforces Round 771 A: Reverse, BOJ 11437, 14499, 14503, 14890, 1725, and 2268, Codility ArrayInversionCount, Programmers Largest Number, LeetCode 1, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 53, 83, 94, 131, 312, 461, 540, and 997, the SCC overview, AtCoder Typical 90 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 018, and 021, and BOJ 1655; added separately reviewed Korean and Japanese pages for each.
 - Corrected the Analysis II canonical URL to its original `/posts/Analysis-해석학(2)/` path after the English title changed.
 - The reported 404 came from a generated fullwidth `１` slug while the requested route uses ASCII `1`; the canonical page now uses the requested route and keeps redirects from both legacy slugs.
-- GitHub Actions will verify the generated language-mode pages, reciprocal article links, canonical routes, and legacy redirects before these 231 articles are marked verified.
+- GitHub Actions will verify generated language-mode pages, reciprocal article links, canonical routes, and legacy redirects before rows marked Awaiting CI are marked verified.
 
 
 | Source file | English | Korean | Japanese | Notes |
@@ -312,7 +312,7 @@ Article revision: **7/298 verified; 229 awaiting remote render checks; 62 not st
 | `_posts/2022-03-11-[BOJ] -7469.md` | Awaiting CI | Awaiting CI | Awaiting CI | Corrected problem identity and replaced O(NM) scan with persistent segment tree |
 | `_posts/2022-03-12-[BOJ] -2494.md` | Awaiting CI | Awaiting CI | Awaiting CI | Reworked carry-state DP and signed-turn reconstruction; randomized operation simulation passed |
 | `_posts/2022-03-13-[BOJ] -5373.md` | Awaiting CI | Awaiting CI | Awaiting CI | Replaced fragile strip cases with exact sticker coordinates; 437 reference cases passed |
-| `_posts/2022-04-12-Bézout's identity-p1.md` | Awaiting CI | Awaiting CI | Awaiting CI | Corrected integer proof; Korean/Japanese translations added |
+| `_posts/2022-04-12-Bézout's identity-p1.md` | Verified | Verified | Verified | Tistory ID 25; field-polynomial proof integrated in all locales; PR #9 validation and local visual checks passed |
 | `_posts/2022-04-12-Euclidean Algorithm.md` | Awaiting CI | Awaiting CI | Awaiting CI | Corrected invariant proof and iterative C++ example; translations added |
 | `_posts/2022-04-12-Flow network.md` | Awaiting CI | Awaiting CI | Awaiting CI | Replaced flawed flow notation with edge-indexed feasible-flow and residual-network definitions |
 | `_posts/2022-04-12-Floyd-Warshall Algorithm.md` | Awaiting CI | Awaiting CI | Awaiting CI | Corrected recurrence, initialization, sentinel handling, and negative-cycle conditions; translations added |
@@ -330,5 +330,6 @@ Article revision: **7/298 verified; 229 awaiting remote render checks; 62 not st
 | `_posts/2022-04-24-Nested Interval Property.md` | Verified | Verified | Verified | Raw-pipe math delimiters fixed; PR #8 Jekyll build/routes and generated ordered-list markup passed |
 | `_posts/2022-04-26-boj-1199-euler-circuit.md` | Verified | Verified | Verified | Tistory ID 48; iterative Hierholzer checks all edges; PR #8 build and routes passed |
 | `_posts/2022-05-15-fast-fourier-transform.md` | Verified | Verified | Verified | Tistory ID 50; FFT/convolution tests passed; PR #8 build and routes passed |
+| `_posts/2022-05-31-boj-10803-square-tiling-proof.md` | Verified | Verified | Verified | Tistory ID 52; conservative guillotine recurrence proof; original threshold not claimed; PR #9 validation and local visual checks passed |
 | `_posts/IBM_Internship_temp.md` | Pending | Not started | Not started | — |
 | `_posts/2026-10-02-GitHub Pages CI CD.md` | Awaiting CI | Awaiting CI | Awaiting CI | New guide from the session notes; CI triggers, manual actions, and deployment usage |
